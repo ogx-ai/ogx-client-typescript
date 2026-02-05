@@ -36,23 +36,21 @@ export class VectorStores extends APIResource {
   fileBatches: FileBatchesAPI.FileBatches = new FileBatchesAPI.FileBatches(this._client);
 
   /**
-   * Creates a vector store.
-   *
-   * Generate an OpenAI-compatible vector store with the given parameters.
+   * Create a vector store (OpenAI-compatible).
    */
   create(body: VectorStoreCreateParams, options?: Core.RequestOptions): Core.APIPromise<VectorStore> {
     return this._client.post('/v1/vector_stores', { body, ...options });
   }
 
   /**
-   * Retrieves a vector store.
+   * Retrieve a vector store (OpenAI-compatible).
    */
   retrieve(vectorStoreId: string, options?: Core.RequestOptions): Core.APIPromise<VectorStore> {
     return this._client.get(`/v1/vector_stores/${vectorStoreId}`, options);
   }
 
   /**
-   * Updates a vector store.
+   * Update a vector store (OpenAI-compatible).
    */
   update(
     vectorStoreId: string,
@@ -63,7 +61,7 @@ export class VectorStores extends APIResource {
   }
 
   /**
-   * Returns a list of vector stores.
+   * List vector stores (OpenAI-compatible).
    */
   list(
     query?: VectorStoreListParams,
@@ -81,17 +79,14 @@ export class VectorStores extends APIResource {
   }
 
   /**
-   * Delete a vector store.
+   * Delete a vector store (OpenAI-compatible).
    */
   delete(vectorStoreId: string, options?: Core.RequestOptions): Core.APIPromise<VectorStoreDeleteResponse> {
     return this._client.delete(`/v1/vector_stores/${vectorStoreId}`, options);
   }
 
   /**
-   * Search for chunks in a vector store.
-   *
-   * Searches a vector store for relevant chunks based on a query and optional file
-   * attribute filters.
+   * Search a vector store (OpenAI-compatible).
    */
   search(
     vectorStoreId: string,
@@ -242,10 +237,6 @@ export namespace VectorStoreSearchResponse {
        * the context during inference.
        */
       export interface ChunkMetadata {
-        chunk_embedding_dimension?: number | null;
-
-        chunk_embedding_model?: string | null;
-
         chunk_id?: string | null;
 
         chunk_tokenizer?: string | null;
@@ -321,44 +312,127 @@ export namespace VectorStoreCreateParams {
 }
 
 export interface VectorStoreUpdateParams {
+  /**
+   * Expiration policy for the vector store.
+   */
   expires_after?: { [key: string]: unknown } | null;
 
+  /**
+   * Metadata to associate with the vector store.
+   */
   metadata?: { [key: string]: unknown } | null;
 
+  /**
+   * The new name for the vector store.
+   */
   name?: string | null;
 }
 
 export interface VectorStoreListParams extends OpenAICursorPageParams {
+  /**
+   * Pagination cursor (before).
+   */
   before?: string | null;
 
+  /**
+   * Sort order by created_at: asc or desc.
+   */
   order?: string | null;
 }
 
 export interface VectorStoreSearchParams {
+  /**
+   * The search query string or list of query strings.
+   */
   query: string | Array<string>;
 
+  /**
+   * Filters to apply to the search.
+   */
   filters?: { [key: string]: unknown } | null;
 
+  /**
+   * Maximum number of results to return.
+   */
   max_num_results?: number | null;
 
   /**
    * Options for ranking and filtering search results.
+   *
+   * This class configures how search results are ranked and filtered. You can use
+   * algorithm-based rerankers (weighted, RRF) or neural rerankers. Defaults from
+   * VectorStoresConfig are used when parameters are not provided.
+   *
+   * Examples: # Weighted ranker with custom alpha
+   * SearchRankingOptions(ranker="weighted", alpha=0.7)
+   *
+   *     # RRF ranker with custom impact factor
+   *     SearchRankingOptions(ranker="rrf", impact_factor=50.0)
+   *
+   *     # Use config defaults (just specify ranker type)
+   *     SearchRankingOptions(ranker="weighted")  # Uses alpha from VectorStoresConfig
+   *
+   *     # Score threshold filtering
+   *     SearchRankingOptions(ranker="weighted", score_threshold=0.5)
    */
   ranking_options?: VectorStoreSearchParams.RankingOptions | null;
 
+  /**
+   * Whether to rewrite the query for better results.
+   */
   rewrite_query?: boolean | null;
 
+  /**
+   * The search mode to use (e.g., 'vector', 'keyword').
+   */
   search_mode?: string | null;
 }
 
 export namespace VectorStoreSearchParams {
   /**
    * Options for ranking and filtering search results.
+   *
+   * This class configures how search results are ranked and filtered. You can use
+   * algorithm-based rerankers (weighted, RRF) or neural rerankers. Defaults from
+   * VectorStoresConfig are used when parameters are not provided.
+   *
+   * Examples: # Weighted ranker with custom alpha
+   * SearchRankingOptions(ranker="weighted", alpha=0.7)
+   *
+   *     # RRF ranker with custom impact factor
+   *     SearchRankingOptions(ranker="rrf", impact_factor=50.0)
+   *
+   *     # Use config defaults (just specify ranker type)
+   *     SearchRankingOptions(ranker="weighted")  # Uses alpha from VectorStoresConfig
+   *
+   *     # Score threshold filtering
+   *     SearchRankingOptions(ranker="weighted", score_threshold=0.5)
    */
   export interface RankingOptions {
+    /**
+     * Weight factor for weighted ranker
+     */
+    alpha?: number | null;
+
+    /**
+     * Impact factor for RRF algorithm
+     */
+    impact_factor?: number | null;
+
+    /**
+     * Model identifier for neural reranker
+     */
+    model?: string | null;
+
     ranker?: string | null;
 
     score_threshold?: number | null;
+
+    /**
+     * Weights for combining vector, keyword, and neural scores. Keys: 'vector',
+     * 'keyword', 'neural'
+     */
+    weights?: { [key: string]: number } | null;
   }
 }
 

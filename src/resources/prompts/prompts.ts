@@ -16,8 +16,6 @@ export class Prompts extends APIResource {
   versions: VersionsAPI.Versions = new VersionsAPI.Versions(this._client);
 
   /**
-   * Create prompt.
-   *
    * Create a new prompt.
    */
   create(body: PromptCreateParams, options?: Core.RequestOptions): Core.APIPromise<Prompt> {
@@ -25,8 +23,6 @@ export class Prompts extends APIResource {
   }
 
   /**
-   * Get prompt.
-   *
    * Get a prompt by its identifier and optional version.
    */
   retrieve(
@@ -47,12 +43,10 @@ export class Prompts extends APIResource {
   }
 
   /**
-   * Update prompt.
-   *
    * Update an existing prompt (increments version).
    */
   update(promptId: string, body: PromptUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Prompt> {
-    return this._client.post(`/v1/prompts/${promptId}`, { body, ...options });
+    return this._client.put(`/v1/prompts/${promptId}`, { body, ...options });
   }
 
   /**
@@ -65,8 +59,6 @@ export class Prompts extends APIResource {
   }
 
   /**
-   * Delete prompt.
-   *
    * Delete a prompt.
    */
   delete(promptId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -77,8 +69,6 @@ export class Prompts extends APIResource {
   }
 
   /**
-   * Set prompt version.
-   *
    * Set which version of a prompt should be the default in get_prompt (latest).
    */
   setDefaultVersion(
@@ -86,7 +76,7 @@ export class Prompts extends APIResource {
     body: PromptSetDefaultVersionParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<Prompt> {
-    return this._client.post(`/v1/prompts/${promptId}/set-default-version`, { body, ...options });
+    return this._client.put(`/v1/prompts/${promptId}/set-default-version`, { body, ...options });
   }
 }
 
@@ -131,26 +121,50 @@ export interface Prompt {
 export type PromptListResponse = Array<Prompt>;
 
 export interface PromptCreateParams {
+  /**
+   * The prompt text content with variable placeholders.
+   */
   prompt: string;
 
+  /**
+   * List of variable names that can be used in the prompt template.
+   */
   variables?: Array<string> | null;
 }
 
 export interface PromptRetrieveParams {
+  /**
+   * The version of the prompt to get (defaults to latest).
+   */
   version?: number | null;
 }
 
 export interface PromptUpdateParams {
+  /**
+   * The updated prompt text content.
+   */
   prompt: string;
 
+  /**
+   * The current version of the prompt being updated.
+   */
   version: number;
 
+  /**
+   * Set the new version as the default (default=True).
+   */
   set_as_default?: boolean;
 
+  /**
+   * Updated list of variable names that can be used in the prompt template.
+   */
   variables?: Array<string> | null;
 }
 
 export interface PromptSetDefaultVersionParams {
+  /**
+   * The version to set as default.
+   */
   version: number;
 }
 

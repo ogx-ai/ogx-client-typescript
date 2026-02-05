@@ -119,7 +119,14 @@ describe('resource vectorStores', () => {
       query: 'string',
       filters: { foo: 'bar' },
       max_num_results: 0,
-      ranking_options: { ranker: 'ranker', score_threshold: 0 },
+      ranking_options: {
+        alpha: 0,
+        impact_factor: 0,
+        model: 'model',
+        ranker: 'ranker',
+        score_threshold: 0,
+        weights: { foo: 0 },
+      },
       rewrite_query: true,
       search_mode: 'search_mode',
     });

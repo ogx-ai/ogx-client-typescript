@@ -12,9 +12,7 @@ import * as Shared from './shared';
 
 export class Safety extends APIResource {
   /**
-   * Run shield.
-   *
-   * Run a shield.
+   * Run a safety shield on messages to check for policy violations.
    */
   runShield(body: SafetyRunShieldParams, options?: Core.RequestOptions): Core.APIPromise<RunShieldResponse> {
     return this._client.post('/v1/safety/run-shield', { body, ...options });
@@ -32,6 +30,9 @@ export interface RunShieldResponse {
 }
 
 export interface SafetyRunShieldParams {
+  /**
+   * The messages to run the shield on
+   */
   messages: Array<
     | SafetyRunShieldParams.OpenAIUserMessageParamInput
     | SafetyRunShieldParams.OpenAISystemMessageParam
@@ -40,8 +41,9 @@ export interface SafetyRunShieldParams {
     | SafetyRunShieldParams.OpenAIDeveloperMessageParam
   >;
 
-  params: { [key: string]: unknown };
-
+  /**
+   * The identifier of the shield to run
+   */
   shield_id: string;
 }
 
@@ -50,6 +52,9 @@ export namespace SafetyRunShieldParams {
    * A message from the user in an OpenAI-compatible chat completion request.
    */
   export interface OpenAIUserMessageParamInput {
+    /**
+     * The content of the message, which can include text and other media.
+     */
     content:
       | string
       | Array<
@@ -58,8 +63,14 @@ export namespace SafetyRunShieldParams {
           | OpenAIUserMessageParamInput.OpenAIFile
         >;
 
+    /**
+     * The name of the user message participant.
+     */
     name?: string | null;
 
+    /**
+     * Must be 'user' to identify this as a user message.
+     */
     role?: 'user';
   }
 
@@ -68,8 +79,14 @@ export namespace SafetyRunShieldParams {
      * Text content part for OpenAI-compatible chat completion messages.
      */
     export interface OpenAIChatCompletionContentPartTextParam {
+      /**
+       * The text content of the message.
+       */
       text: string;
 
+      /**
+       * Must be 'text' to identify this as text content.
+       */
       type?: 'text';
     }
 
@@ -78,36 +95,63 @@ export namespace SafetyRunShieldParams {
      */
     export interface OpenAIChatCompletionContentPartImageParam {
       /**
-       * Image URL specification for OpenAI-compatible chat completion messages.
+       * Image URL specification and processing details.
        */
       image_url: OpenAIChatCompletionContentPartImageParam.ImageURL;
 
+      /**
+       * Must be 'image_url' to identify this as image content.
+       */
       type?: 'image_url';
     }
 
     export namespace OpenAIChatCompletionContentPartImageParam {
       /**
-       * Image URL specification for OpenAI-compatible chat completion messages.
+       * Image URL specification and processing details.
        */
       export interface ImageURL {
+        /**
+         * URL of the image to include in the message.
+         */
         url: string;
 
-        detail?: string | null;
+        /**
+         * Level of detail for image processing. Can be 'low', 'high', or 'auto'.
+         */
+        detail?: 'low' | 'high' | 'auto' | null;
       }
     }
 
     export interface OpenAIFile {
+      /**
+       * File specification.
+       */
       file: OpenAIFile.File;
 
+      /**
+       * Must be 'file' to identify this as file content.
+       */
       type?: 'file';
     }
 
     export namespace OpenAIFile {
+      /**
+       * File specification.
+       */
       export interface File {
+        /**
+         * Base64-encoded file data.
+         */
         file_data?: string | null;
 
+        /**
+         * ID of an uploaded file.
+         */
         file_id?: string | null;
 
+        /**
+         * Name of the file.
+         */
         filename?: string | null;
       }
     }
@@ -117,10 +161,20 @@ export namespace SafetyRunShieldParams {
    * A system message providing instructions or context to the model.
    */
   export interface OpenAISystemMessageParam {
+    /**
+     * The content of the 'system prompt'. If multiple system messages are provided,
+     * they are concatenated.
+     */
     content: string | Array<OpenAISystemMessageParam.ListOpenAIChatCompletionContentPartTextParam>;
 
+    /**
+     * The name of the system message participant.
+     */
     name?: string | null;
 
+    /**
+     * Must be 'system' to identify this as a system message.
+     */
     role?: 'system';
   }
 
@@ -129,8 +183,14 @@ export namespace SafetyRunShieldParams {
      * Text content part for OpenAI-compatible chat completion messages.
      */
     export interface ListOpenAIChatCompletionContentPartTextParam {
+      /**
+       * The text content of the message.
+       */
       text: string;
 
+      /**
+       * Must be 'text' to identify this as text content.
+       */
       type?: 'text';
     }
   }
@@ -140,15 +200,27 @@ export namespace SafetyRunShieldParams {
    * chat completion request.
    */
   export interface OpenAIAssistantMessageParamInput {
+    /**
+     * The content of the model's response.
+     */
     content?:
       | string
       | Array<OpenAIAssistantMessageParamInput.ListOpenAIChatCompletionContentPartTextParam>
       | null;
 
+    /**
+     * The name of the assistant message participant.
+     */
     name?: string | null;
 
+    /**
+     * Must be 'assistant' to identify this as the model's response.
+     */
     role?: 'assistant';
 
+    /**
+     * List of tool calls. Each tool call is an OpenAIChatCompletionToolCall object.
+     */
     tool_calls?: Array<OpenAIAssistantMessageParamInput.ToolCall> | null;
   }
 
@@ -157,8 +229,14 @@ export namespace SafetyRunShieldParams {
      * Text content part for OpenAI-compatible chat completion messages.
      */
     export interface ListOpenAIChatCompletionContentPartTextParam {
+      /**
+       * The text content of the message.
+       */
       text: string;
 
+      /**
+       * Must be 'text' to identify this as text content.
+       */
       type?: 'text';
     }
 
@@ -166,6 +244,9 @@ export namespace SafetyRunShieldParams {
      * Tool call specification for OpenAI-compatible chat completion responses.
      */
     export interface ToolCall {
+      /**
+       * Unique identifier for the tool call.
+       */
       id?: string | null;
 
       /**
@@ -173,8 +254,14 @@ export namespace SafetyRunShieldParams {
        */
       function?: ToolCall.Function | null;
 
+      /**
+       * Index of the tool call in the list.
+       */
       index?: number | null;
 
+      /**
+       * Must be 'function' to identify this as a function call.
+       */
       type?: 'function';
     }
 
@@ -183,8 +270,14 @@ export namespace SafetyRunShieldParams {
        * Function call details for OpenAI-compatible tool calls.
        */
       export interface Function {
+        /**
+         * Arguments to pass to the function as a JSON string.
+         */
         arguments?: string | null;
 
+        /**
+         * Name of the function to call.
+         */
         name?: string | null;
       }
     }
@@ -195,10 +288,19 @@ export namespace SafetyRunShieldParams {
    * chat completion request.
    */
   export interface OpenAIToolMessageParam {
+    /**
+     * The response content from the tool.
+     */
     content: string | Array<OpenAIToolMessageParam.ListOpenAIChatCompletionContentPartTextParam>;
 
+    /**
+     * Unique identifier for the tool call this response is for.
+     */
     tool_call_id: string;
 
+    /**
+     * Must be 'tool' to identify this as a tool response.
+     */
     role?: 'tool';
   }
 
@@ -207,8 +309,14 @@ export namespace SafetyRunShieldParams {
      * Text content part for OpenAI-compatible chat completion messages.
      */
     export interface ListOpenAIChatCompletionContentPartTextParam {
+      /**
+       * The text content of the message.
+       */
       text: string;
 
+      /**
+       * Must be 'text' to identify this as text content.
+       */
       type?: 'text';
     }
   }
@@ -217,10 +325,19 @@ export namespace SafetyRunShieldParams {
    * A message from the developer in an OpenAI-compatible chat completion request.
    */
   export interface OpenAIDeveloperMessageParam {
+    /**
+     * The content of the developer message.
+     */
     content: string | Array<OpenAIDeveloperMessageParam.ListOpenAIChatCompletionContentPartTextParam>;
 
+    /**
+     * The name of the developer message participant.
+     */
     name?: string | null;
 
+    /**
+     * Must be 'developer' to identify this as a developer message.
+     */
     role?: 'developer';
   }
 
@@ -229,8 +346,14 @@ export namespace SafetyRunShieldParams {
      * Text content part for OpenAI-compatible chat completion messages.
      */
     export interface ListOpenAIChatCompletionContentPartTextParam {
+      /**
+       * The text content of the message.
+       */
       text: string;
 
+      /**
+       * Must be 'text' to identify this as text content.
+       */
       type?: 'text';
     }
   }

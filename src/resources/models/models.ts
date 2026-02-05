@@ -15,8 +15,6 @@ export class Models extends APIResource {
   openai: OpenAIAPI.OpenAI = new OpenAIAPI.OpenAI(this._client);
 
   /**
-   * Get model.
-   *
    * Get a model by its identifier.
    */
   retrieve(modelId: string, options?: Core.RequestOptions): Core.APIPromise<ModelRetrieveResponse> {
@@ -33,8 +31,6 @@ export class Models extends APIResource {
   }
 
   /**
-   * Register model.
-   *
    * Register a model.
    *
    * @deprecated
@@ -44,8 +40,6 @@ export class Models extends APIResource {
   }
 
   /**
-   * Unregister model.
-   *
    * Unregister a model.
    *
    * @deprecated
@@ -58,7 +52,13 @@ export class Models extends APIResource {
   }
 }
 
+/**
+ * Response containing a list of OpenAI model objects.
+ */
 export interface ListModelsResponse {
+  /**
+   * List of OpenAI model objects.
+   */
   data: ModelListResponse;
 }
 
@@ -114,6 +114,9 @@ export interface ModelRetrieveResponse {
   type?: 'model';
 }
 
+/**
+ * List of OpenAI model objects.
+ */
 export type ModelListResponse = Array<Model>;
 
 /**
@@ -149,8 +152,14 @@ export interface ModelRegisterResponse {
 }
 
 export interface ModelRegisterParams {
+  /**
+   * The identifier of the model to register.
+   */
   model_id: string;
 
+  /**
+   * Any additional metadata for this model.
+   */
   metadata?: { [key: string]: unknown } | null;
 
   /**
@@ -158,8 +167,14 @@ export interface ModelRegisterParams {
    */
   model_type?: 'llm' | 'embedding' | 'rerank' | null;
 
+  /**
+   * The identifier of the provider.
+   */
   provider_id?: string | null;
 
+  /**
+   * The identifier of the model in the provider.
+   */
   provider_model_id?: string | null;
 }
 

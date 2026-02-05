@@ -30,8 +30,8 @@ describe('resource job', () => {
     );
   });
 
-  test('artifacts: only required params', async () => {
-    const responsePromise = client.alpha.postTraining.job.artifacts({ job_uuid: 'job_uuid' });
+  test('artifacts', async () => {
+    const responsePromise = client.alpha.postTraining.job.artifacts();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -41,12 +41,15 @@ describe('resource job', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('artifacts: required and optional params', async () => {
-    const response = await client.alpha.postTraining.job.artifacts({ job_uuid: 'job_uuid' });
+  test('artifacts: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.alpha.postTraining.job.artifacts({ path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(LlamaStackClient.NotFoundError);
   });
 
-  test('cancel: only required params', async () => {
-    const responsePromise = client.alpha.postTraining.job.cancel({ job_uuid: 'job_uuid' });
+  test('cancel', async () => {
+    const responsePromise = client.alpha.postTraining.job.cancel();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -56,12 +59,15 @@ describe('resource job', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('cancel: required and optional params', async () => {
-    const response = await client.alpha.postTraining.job.cancel({ job_uuid: 'job_uuid' });
+  test('cancel: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.alpha.postTraining.job.cancel({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      LlamaStackClient.NotFoundError,
+    );
   });
 
-  test('status: only required params', async () => {
-    const responsePromise = client.alpha.postTraining.job.status({ job_uuid: 'job_uuid' });
+  test('status', async () => {
+    const responsePromise = client.alpha.postTraining.job.status();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -71,7 +77,10 @@ describe('resource job', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('status: required and optional params', async () => {
-    const response = await client.alpha.postTraining.job.status({ job_uuid: 'job_uuid' });
+  test('status: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.alpha.postTraining.job.status({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      LlamaStackClient.NotFoundError,
+    );
   });
 });

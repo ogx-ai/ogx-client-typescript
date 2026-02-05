@@ -14,7 +14,16 @@ const client = new LlamaStackClient({ baseURL: process.env['TEST_API_BASE_URL'] 
 describe('resource vectorIo', () => {
   test('insert: only required params', async () => {
     const responsePromise = client.vectorIo.insert({
-      chunks: [{ chunk_id: 'chunk_id', content: 'string' }],
+      chunks: [
+        {
+          chunk_id: 'chunk_id',
+          chunk_metadata: {},
+          content: 'string',
+          embedding: [0],
+          embedding_dimension: 0,
+          embedding_model: 'embedding_model',
+        },
+      ],
       vector_store_id: 'vector_store_id',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -31,10 +40,7 @@ describe('resource vectorIo', () => {
       chunks: [
         {
           chunk_id: 'chunk_id',
-          content: 'string',
           chunk_metadata: {
-            chunk_embedding_dimension: 0,
-            chunk_embedding_model: 'chunk_embedding_model',
             chunk_id: 'chunk_id',
             chunk_tokenizer: 'chunk_tokenizer',
             chunk_window: 'chunk_window',
@@ -45,7 +51,10 @@ describe('resource vectorIo', () => {
             source: 'source',
             updated_timestamp: 0,
           },
+          content: 'string',
           embedding: [0],
+          embedding_dimension: 0,
+          embedding_model: 'embedding_model',
           metadata: { foo: 'bar' },
         },
       ],

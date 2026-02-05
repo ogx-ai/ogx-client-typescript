@@ -32,7 +32,7 @@ describe('resource inference', () => {
       items: ['string'],
       model: 'model',
       query: 'string',
-      max_num_results: 0,
+      max_num_results: 1,
     });
   });
 });

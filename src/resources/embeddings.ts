@@ -11,8 +11,6 @@ import * as Core from '../core';
 
 export class Embeddings extends APIResource {
   /**
-   * Create embeddings.
-   *
    * Generate OpenAI-compatible embeddings for the given input using the specified
    * model.
    */
@@ -28,15 +26,24 @@ export class Embeddings extends APIResource {
  * Response from an OpenAI-compatible embeddings request.
  */
 export interface CreateEmbeddingsResponse {
+  /**
+   * List of embedding data objects.
+   */
   data: Array<CreateEmbeddingsResponse.Data>;
 
+  /**
+   * The model that was used to generate the embeddings.
+   */
   model: string;
 
   /**
-   * Usage information for an OpenAI-compatible embeddings response.
+   * Usage information.
    */
   usage: CreateEmbeddingsResponse.Usage;
 
+  /**
+   * The object type.
+   */
   object?: 'list';
 }
 
@@ -45,33 +52,64 @@ export namespace CreateEmbeddingsResponse {
    * A single embedding data object from an OpenAI-compatible embeddings response.
    */
   export interface Data {
+    /**
+     * The embedding vector as a list of floats (when encoding_format='float') or as a
+     * base64-encoded string.
+     */
     embedding: Array<number> | string;
 
+    /**
+     * The index of the embedding in the input list.
+     */
     index: number;
 
+    /**
+     * The object type.
+     */
     object?: 'embedding';
   }
 
   /**
-   * Usage information for an OpenAI-compatible embeddings response.
+   * Usage information.
    */
   export interface Usage {
+    /**
+     * The number of tokens in the input.
+     */
     prompt_tokens: number;
 
+    /**
+     * The total number of tokens used.
+     */
     total_tokens: number;
   }
 }
 
 export interface EmbeddingCreateParams {
-  input: string | Array<string>;
+  /**
+   * Input text to embed, encoded as a string or array of tokens.
+   */
+  input: string | Array<string> | Array<number> | Array<Array<number>>;
 
+  /**
+   * The identifier of the model to use.
+   */
   model: string;
 
-  dimensions?: number | null;
+  /**
+   * The number of dimensions for output embeddings.
+   */
+  dimensions?: number;
 
-  encoding_format?: string | null;
+  /**
+   * The format to return the embeddings in.
+   */
+  encoding_format?: 'float' | 'base64';
 
-  user?: string | null;
+  /**
+   * A unique identifier representing your end-user.
+   */
+  user?: string;
 
   [k: string]: unknown;
 }
