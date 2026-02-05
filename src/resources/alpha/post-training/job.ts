@@ -23,15 +23,15 @@ export class Job extends APIResource {
   /**
    * Get the artifacts of a training job.
    */
-  artifacts(options?: Core.RequestOptions): Core.APIPromise<JobArtifactsResponse> {
-    return this._client.get('/v1alpha/post-training/job/artifacts', options);
+  artifacts(jobUuid: string, options?: Core.RequestOptions): Core.APIPromise<JobArtifactsResponse> {
+    return this._client.get(`/v1alpha/post-training/jobs/${jobUuid}/artifacts`, options);
   }
 
   /**
    * Cancel a training job.
    */
-  cancel(options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/v1alpha/post-training/job/cancel', {
+  cancel(jobUuid: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post(`/v1alpha/post-training/jobs/${jobUuid}/cancel`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -40,8 +40,8 @@ export class Job extends APIResource {
   /**
    * Get the status of a training job.
    */
-  status(options?: Core.RequestOptions): Core.APIPromise<JobStatusResponse> {
-    return this._client.get('/v1alpha/post-training/job/status', options);
+  status(jobUuid: string, options?: Core.RequestOptions): Core.APIPromise<JobStatusResponse> {
+    return this._client.get(`/v1alpha/post-training/jobs/${jobUuid}/status`, options);
   }
 }
 
