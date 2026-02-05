@@ -33,6 +33,9 @@ export class Scoring extends APIResource {
  * The response from scoring.
  */
 export interface ScoringScoreResponse {
+  /**
+   * A map of scoring function name to ScoringResult.
+   */
   results: { [key: string]: Shared.ScoringResult };
 }
 
@@ -40,14 +43,26 @@ export interface ScoringScoreResponse {
  * Response from batch scoring operations on datasets.
  */
 export interface ScoringScoreBatchResponse {
+  /**
+   * A map of scoring function name to ScoringResult
+   */
   results: { [key: string]: Shared.ScoringResult };
 
+  /**
+   * (Optional) The identifier of the dataset that was scored
+   */
   dataset_id?: string | null;
 }
 
 export interface ScoringScoreParams {
+  /**
+   * The rows to score.
+   */
   input_rows: Array<{ [key: string]: unknown }>;
 
+  /**
+   * The scoring functions to use for the scoring.
+   */
   scoring_functions: {
     [key: string]:
       | ScoringScoreParams.LlmAsJudgeScoringFnParams
@@ -116,8 +131,14 @@ export namespace ScoringScoreParams {
 }
 
 export interface ScoringScoreBatchParams {
+  /**
+   * The ID of the dataset to score.
+   */
   dataset_id: string;
 
+  /**
+   * The scoring functions to use for the scoring.
+   */
   scoring_functions: {
     [key: string]:
       | ScoringScoreBatchParams.LlmAsJudgeScoringFnParams
@@ -126,6 +147,9 @@ export interface ScoringScoreBatchParams {
       | null;
   };
 
+  /**
+   * Whether to save the results to a dataset.
+   */
   save_results_dataset?: boolean;
 }
 

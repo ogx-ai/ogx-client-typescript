@@ -9,15 +9,7 @@
 import { APIResource } from '../../../resource';
 import * as Core from '../../../core';
 import * as JobAPI from './job';
-import {
-  Job,
-  JobArtifactsParams,
-  JobArtifactsResponse,
-  JobCancelParams,
-  JobListResponse,
-  JobStatusParams,
-  JobStatusResponse,
-} from './job';
+import { Job, JobArtifactsResponse, JobListResponse, JobStatusResponse } from './job';
 
 export class PostTraining extends APIResource {
   job: JobAPI.Job = new JobAPI.Job(this._client);
@@ -92,27 +84,39 @@ export interface PostTrainingJob {
 
 export interface PostTrainingPreferenceOptimizeParams {
   /**
-   * Configuration for Direct Preference Optimization (DPO) alignment.
+   * The algorithm configuration.
    */
   algorithm_config: PostTrainingPreferenceOptimizeParams.AlgorithmConfig;
 
+  /**
+   * The model to fine-tune.
+   */
   finetuned_model: string;
 
+  /**
+   * The hyperparam search configuration.
+   */
   hyperparam_search_config: { [key: string]: unknown };
 
+  /**
+   * The UUID of the job to create.
+   */
   job_uuid: string;
 
+  /**
+   * The logger configuration.
+   */
   logger_config: { [key: string]: unknown };
 
   /**
-   * Comprehensive configuration for the training process.
+   * The training configuration.
    */
   training_config: PostTrainingPreferenceOptimizeParams.TrainingConfig;
 }
 
 export namespace PostTrainingPreferenceOptimizeParams {
   /**
-   * Configuration for Direct Preference Optimization (DPO) alignment.
+   * The algorithm configuration.
    */
   export interface AlgorithmConfig {
     beta: number;
@@ -121,7 +125,7 @@ export namespace PostTrainingPreferenceOptimizeParams {
   }
 
   /**
-   * Comprehensive configuration for the training process.
+   * The training configuration.
    */
   export interface TrainingConfig {
     n_epochs: number;
@@ -205,36 +209,48 @@ export namespace PostTrainingPreferenceOptimizeParams {
 }
 
 export interface PostTrainingSupervisedFineTuneParams {
+  /**
+   * The hyperparam search configuration.
+   */
   hyperparam_search_config: { [key: string]: unknown };
 
+  /**
+   * The UUID of the job to create.
+   */
   job_uuid: string;
 
+  /**
+   * The logger configuration.
+   */
   logger_config: { [key: string]: unknown };
 
   /**
-   * Comprehensive configuration for the training process.
+   * The training configuration.
    */
   training_config: PostTrainingSupervisedFineTuneParams.TrainingConfig;
 
   /**
-   * Configuration for Low-Rank Adaptation (LoRA) fine-tuning.
+   * The algorithm configuration.
    */
   algorithm_config?:
     | PostTrainingSupervisedFineTuneParams.LoraFinetuningConfig
     | PostTrainingSupervisedFineTuneParams.QatFinetuningConfig
     | null;
 
+  /**
+   * The directory to save checkpoint(s) to.
+   */
   checkpoint_dir?: string | null;
 
   /**
-   * Model descriptor for training if not in provider config`
+   * Model descriptor for training if not in provider config
    */
   model?: string | null;
 }
 
 export namespace PostTrainingSupervisedFineTuneParams {
   /**
-   * Comprehensive configuration for the training process.
+   * The training configuration.
    */
   export interface TrainingConfig {
     n_epochs: number;
@@ -365,8 +381,5 @@ export declare namespace PostTraining {
     type JobListResponse as JobListResponse,
     type JobArtifactsResponse as JobArtifactsResponse,
     type JobStatusResponse as JobStatusResponse,
-    type JobArtifactsParams as JobArtifactsParams,
-    type JobCancelParams as JobCancelParams,
-    type JobStatusParams as JobStatusParams,
   };
 }

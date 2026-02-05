@@ -23,16 +23,15 @@ export class Job extends APIResource {
   /**
    * Get the artifacts of a training job.
    */
-  artifacts(query: JobArtifactsParams, options?: Core.RequestOptions): Core.APIPromise<JobArtifactsResponse> {
-    return this._client.get('/v1alpha/post-training/job/artifacts', { query, ...options });
+  artifacts(options?: Core.RequestOptions): Core.APIPromise<JobArtifactsResponse> {
+    return this._client.get('/v1alpha/post-training/job/artifacts', options);
   }
 
   /**
    * Cancel a training job.
    */
-  cancel(body: JobCancelParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  cancel(options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/v1alpha/post-training/job/cancel', {
-      body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -41,8 +40,8 @@ export class Job extends APIResource {
   /**
    * Get the status of a training job.
    */
-  status(query: JobStatusParams, options?: Core.RequestOptions): Core.APIPromise<JobStatusResponse> {
-    return this._client.get('/v1alpha/post-training/job/status', { query, ...options });
+  status(options?: Core.RequestOptions): Core.APIPromise<JobStatusResponse> {
+    return this._client.get('/v1alpha/post-training/job/status', options);
   }
 }
 
@@ -153,25 +152,10 @@ export namespace JobStatusResponse {
   }
 }
 
-export interface JobArtifactsParams {
-  job_uuid: string;
-}
-
-export interface JobCancelParams {
-  job_uuid: string;
-}
-
-export interface JobStatusParams {
-  job_uuid: string;
-}
-
 export declare namespace Job {
   export {
     type JobListResponse as JobListResponse,
     type JobArtifactsResponse as JobArtifactsResponse,
     type JobStatusResponse as JobStatusResponse,
-    type JobArtifactsParams as JobArtifactsParams,
-    type JobCancelParams as JobCancelParams,
-    type JobStatusParams as JobStatusParams,
   };
 }

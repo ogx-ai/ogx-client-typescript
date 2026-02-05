@@ -27,8 +27,8 @@ describe('resource embeddings', () => {
     const response = await client.embeddings.create({
       input: 'string',
       model: 'model',
-      dimensions: 0,
-      encoding_format: 'encoding_format',
+      dimensions: 1,
+      encoding_format: 'float',
       user: 'user',
     });
   });

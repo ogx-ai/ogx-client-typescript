@@ -54,7 +54,13 @@ export class ScoringFunctions extends APIResource {
   }
 }
 
+/**
+ * Response containing a list of scoring function objects.
+ */
 export interface ListScoringFunctionsResponse {
+  /**
+   * List of scoring function objects.
+   */
   data: ScoringFunctionListResponse;
 }
 
@@ -237,17 +243,27 @@ export namespace ScoringFnParams {
   }
 }
 
+/**
+ * List of scoring function objects.
+ */
 export type ScoringFunctionListResponse = Array<ScoringFn>;
 
 export interface ScoringFunctionRegisterParams {
+  /**
+   * The description of the scoring function.
+   */
   description: string;
 
   return_type: ScoringFunctionRegisterParams.ReturnType;
 
+  /**
+   * The ID of the scoring function to register.
+   */
   scoring_fn_id: string;
 
   /**
-   * Parameters for LLM-as-judge scoring function configuration.
+   * The parameters for the scoring function for benchmark eval, these can be
+   * overridden for app eval.
    */
   params?:
     | ScoringFunctionRegisterParams.LlmAsJudgeScoringFnParams
@@ -255,8 +271,14 @@ export interface ScoringFunctionRegisterParams {
     | ScoringFunctionRegisterParams.BasicScoringFnParams
     | null;
 
+  /**
+   * The ID of the provider to use for the scoring function.
+   */
   provider_id?: string | null;
 
+  /**
+   * The ID of the provider scoring function to use for the scoring function.
+   */
   provider_scoring_fn_id?: string | null;
 }
 

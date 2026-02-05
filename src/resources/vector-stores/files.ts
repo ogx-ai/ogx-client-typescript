@@ -13,7 +13,7 @@ import { OpenAICursorPage, type OpenAICursorPageParams } from '../../pagination'
 
 export class Files extends APIResource {
   /**
-   * Attach a file to a vector store.
+   * Attach a file to a vector store (OpenAI-compatible).
    */
   create(
     vectorStoreId: string,
@@ -24,7 +24,7 @@ export class Files extends APIResource {
   }
 
   /**
-   * Retrieves a vector store file.
+   * Retrieve a vector store file (OpenAI-compatible).
    */
   retrieve(
     vectorStoreId: string,
@@ -35,7 +35,7 @@ export class Files extends APIResource {
   }
 
   /**
-   * Updates a vector store file.
+   * Update a vector store file (OpenAI-compatible).
    */
   update(
     vectorStoreId: string,
@@ -47,7 +47,7 @@ export class Files extends APIResource {
   }
 
   /**
-   * List files in a vector store.
+   * List files in a vector store (OpenAI-compatible).
    */
   list(
     vectorStoreId: string,
@@ -74,7 +74,7 @@ export class Files extends APIResource {
   }
 
   /**
-   * Delete a vector store file.
+   * Delete a vector store file (OpenAI-compatible).
    */
   delete(
     vectorStoreId: string,
@@ -85,7 +85,7 @@ export class Files extends APIResource {
   }
 
   /**
-   * Retrieves the contents of a vector store file.
+   * Retrieve vector store file contents (OpenAI-compatible).
    */
   content(
     vectorStoreId: string,
@@ -253,10 +253,6 @@ export namespace FileContentResponse {
      * the context during inference.
      */
     export interface ChunkMetadata {
-      chunk_embedding_dimension?: number | null;
-
-      chunk_embedding_model?: string | null;
-
       chunk_id?: string | null;
 
       chunk_tokenizer?: string | null;
@@ -279,12 +275,18 @@ export namespace FileContentResponse {
 }
 
 export interface FileCreateParams {
+  /**
+   * The ID of the file to attach.
+   */
   file_id: string;
 
+  /**
+   * Attributes to associate with the file.
+   */
   attributes?: { [key: string]: unknown } | null;
 
   /**
-   * Automatic chunking strategy for vector store files.
+   * Strategy for chunking the file content.
    */
   chunking_strategy?:
     | FileCreateParams.VectorStoreChunkingStrategyAuto
@@ -325,20 +327,38 @@ export namespace FileCreateParams {
 }
 
 export interface FileUpdateParams {
+  /**
+   * The new attributes for the file.
+   */
   attributes: { [key: string]: unknown };
 }
 
 export interface FileListParams extends OpenAICursorPageParams {
+  /**
+   * Pagination cursor (before).
+   */
   before?: string | null;
 
+  /**
+   * Filter by file status.
+   */
   filter?: 'completed' | 'in_progress' | 'cancelled' | 'failed' | null;
 
+  /**
+   * Sort order by created_at: asc or desc.
+   */
   order?: string | null;
 }
 
 export interface FileContentParams {
+  /**
+   * Include embedding vectors.
+   */
   include_embeddings?: boolean | null;
 
+  /**
+   * Include chunk metadata.
+   */
   include_metadata?: boolean | null;
 }
 

@@ -187,17 +187,26 @@ export namespace InputItemListResponse {
       /**
        * The log probability for a token from an OpenAI-compatible chat completion
        * response.
-       *
-       * :token: The token :bytes: (Optional) The bytes for the token :logprob: The log
-       * probability of the token :top_logprobs: The top log probabilities for the token
        */
       export interface Logprob {
+        /**
+         * The token.
+         */
         token: string;
 
+        /**
+         * The log probability of the token.
+         */
         logprob: number;
 
+        /**
+         * The bytes for the token.
+         */
         bytes?: Array<number> | null;
 
+        /**
+         * The top log probabilities for the token.
+         */
         top_logprobs?: Array<Logprob.TopLogprob> | null;
       }
 
@@ -205,15 +214,21 @@ export namespace InputItemListResponse {
         /**
          * The top log probability for a token from an OpenAI-compatible chat completion
          * response.
-         *
-         * :token: The token :bytes: (Optional) The bytes for the token :logprob: The log
-         * probability of the token
          */
         export interface TopLogprob {
+          /**
+           * The token.
+           */
           token: string;
 
+          /**
+           * The log probability of the token.
+           */
           logprob: number;
 
+          /**
+           * The bytes for the token.
+           */
           bytes?: Array<number> | null;
         }
       }
@@ -514,17 +529,26 @@ export namespace InputItemListResponse {
       /**
        * The log probability for a token from an OpenAI-compatible chat completion
        * response.
-       *
-       * :token: The token :bytes: (Optional) The bytes for the token :logprob: The log
-       * probability of the token :top_logprobs: The top log probabilities for the token
        */
       export interface Logprob {
+        /**
+         * The token.
+         */
         token: string;
 
+        /**
+         * The log probability of the token.
+         */
         logprob: number;
 
+        /**
+         * The bytes for the token.
+         */
         bytes?: Array<number> | null;
 
+        /**
+         * The top log probabilities for the token.
+         */
         top_logprobs?: Array<Logprob.TopLogprob> | null;
       }
 
@@ -532,15 +556,21 @@ export namespace InputItemListResponse {
         /**
          * The top log probability for a token from an OpenAI-compatible chat completion
          * response.
-         *
-         * :token: The token :bytes: (Optional) The bytes for the token :logprob: The log
-         * probability of the token
          */
         export interface TopLogprob {
+          /**
+           * The token.
+           */
           token: string;
 
+          /**
+           * The log probability of the token.
+           */
           logprob: number;
 
+          /**
+           * The bytes for the token.
+           */
           bytes?: Array<number> | null;
         }
       }
@@ -558,12 +588,33 @@ export namespace InputItemListResponse {
 }
 
 export interface InputItemListParams {
+  /**
+   * An item ID to list items after, used for pagination.
+   */
   after?: string | null;
 
+  /**
+   * An item ID to list items before, used for pagination.
+   */
   before?: string | null;
 
-  include?: Array<string> | null;
+  /**
+   * Additional fields to include in the response.
+   */
+  include?: Array<
+    | 'web_search_call.action.sources'
+    | 'code_interpreter_call.outputs'
+    | 'computer_call_output.output.image_url'
+    | 'file_search_call.results'
+    | 'message.input_image.image_url'
+    | 'message.output_text.logprobs'
+    | 'reasoning.encrypted_content'
+  > | null;
 
+  /**
+   * A limit on the number of objects to be returned. Limit can range between 1 and
+   * 100, and the default is 20.
+   */
   limit?: number | null;
 
   /**

@@ -351,12 +351,26 @@ export namespace DatasetRegisterResponse {
 }
 
 export interface DatasetAppendrowsParams {
+  /**
+   * The ID of the dataset to append the rows to.
+   */
+  body_dataset_id: string;
+
+  /**
+   * The rows to append to the dataset.
+   */
   rows: Array<{ [key: string]: unknown }>;
 }
 
 export interface DatasetIterrowsParams {
+  /**
+   * The number of rows to get.
+   */
   limit?: number | null;
 
+  /**
+   * Index into dataset for the first row to get. Get all rows if None.
+   */
   start_index?: number | null;
 }
 

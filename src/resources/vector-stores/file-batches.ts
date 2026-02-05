@@ -15,10 +15,7 @@ import { type OpenAICursorPageParams } from '../../pagination';
 
 export class FileBatches extends APIResource {
   /**
-   * Create a vector store file batch.
-   *
-   * Generate an OpenAI-compatible vector store file batch for the given vector
-   * store.
+   * Create a vector store file batch (OpenAI-compatible).
    */
   create(
     vectorStoreId: string,
@@ -29,7 +26,7 @@ export class FileBatches extends APIResource {
   }
 
   /**
-   * Retrieve a vector store file batch.
+   * Retrieve a vector store file batch (OpenAI-compatible).
    */
   retrieve(
     vectorStoreId: string,
@@ -40,7 +37,7 @@ export class FileBatches extends APIResource {
   }
 
   /**
-   * Cancels a vector store file batch.
+   * Cancel a vector store file batch (OpenAI-compatible).
    */
   cancel(
     vectorStoreId: string,
@@ -51,7 +48,7 @@ export class FileBatches extends APIResource {
   }
 
   /**
-   * Returns a list of vector store files in a batch.
+   * List files in a vector store file batch (OpenAI-compatible).
    */
   listFiles(
     vectorStoreId: string,
@@ -182,10 +179,19 @@ export namespace FileBatchCreateParams {
 }
 
 export interface FileBatchListFilesParams extends OpenAICursorPageParams {
+  /**
+   * Pagination cursor (before).
+   */
   before?: string | null;
 
+  /**
+   * Filter by file status.
+   */
   filter?: string | null;
 
+  /**
+   * Sort order by created_at: asc or desc.
+   */
   order?: string | null;
 }
 

@@ -48,7 +48,13 @@ export class Shields extends APIResource {
   }
 }
 
+/**
+ * Response containing a list of all shields.
+ */
 export interface ListShieldsResponse {
+  /**
+   * List of shield objects
+   */
   data: ShieldListResponse;
 }
 
@@ -76,15 +82,30 @@ export interface Shield {
   type?: 'shield';
 }
 
+/**
+ * List of shield objects
+ */
 export type ShieldListResponse = Array<Shield>;
 
 export interface ShieldRegisterParams {
+  /**
+   * The identifier of the shield to register.
+   */
   shield_id: string;
 
+  /**
+   * The parameters of the shield.
+   */
   params?: { [key: string]: unknown } | null;
 
+  /**
+   * The identifier of the provider.
+   */
   provider_id?: string | null;
 
+  /**
+   * The identifier of the shield in the provider.
+   */
   provider_shield_id?: string | null;
 }
 

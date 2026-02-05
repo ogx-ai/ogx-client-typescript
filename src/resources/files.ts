@@ -13,33 +13,21 @@ import { OpenAICursorPage, type OpenAICursorPageParams } from '../pagination';
 
 export class Files extends APIResource {
   /**
-   * Upload file.
-   *
-   * Upload a file that can be used across various endpoints.
-   *
-   * The file upload should be a multipart form request with:
-   *
-   * - file: The File object (not file name) to be uploaded.
-   * - purpose: The intended purpose of the uploaded file.
-   * - expires_after: Optional form values describing expiration for the file.
+   * Upload a file.
    */
   create(body: FileCreateParams, options?: Core.RequestOptions): Core.APIPromise<File> {
     return this._client.post('/v1/files', Core.multipartFormRequestOptions({ body, ...options }));
   }
 
   /**
-   * Retrieve file.
-   *
-   * Returns information about a specific file.
+   * Get file
    */
   retrieve(fileId: string, options?: Core.RequestOptions): Core.APIPromise<File> {
     return this._client.get(`/v1/files/${fileId}`, options);
   }
 
   /**
-   * List files.
-   *
-   * Returns a list of files that belong to the user's organization.
+   * List files
    */
   list(query?: FileListParams, options?: Core.RequestOptions): Core.PagePromise<FilesOpenAICursorPage, File>;
   list(options?: Core.RequestOptions): Core.PagePromise<FilesOpenAICursorPage, File>;
@@ -54,16 +42,14 @@ export class Files extends APIResource {
   }
 
   /**
-   * Delete file.
+   * Delete file
    */
   delete(fileId: string, options?: Core.RequestOptions): Core.APIPromise<DeleteFileResponse> {
     return this._client.delete(`/v1/files/${fileId}`, options);
   }
 
   /**
-   * Retrieve file content.
-   *
-   * Returns the contents of the specified file.
+   * Retrieve file content
    */
   content(fileId: string, options?: Core.RequestOptions): Core.APIPromise<unknown> {
     return this._client.get(`/v1/files/${fileId}/content`, options);
@@ -76,10 +62,19 @@ export class FilesOpenAICursorPage extends OpenAICursorPage<File> {}
  * Response for deleting a file in OpenAI Files API.
  */
 export interface DeleteFileResponse {
+  /**
+   * The file identifier that was deleted.
+   */
   id: string;
 
+  /**
+   * Whether the file was successfully deleted.
+   */
   deleted: boolean;
 
+  /**
+   * The object type, which is always 'file'.
+   */
   object?: 'file';
 }
 
@@ -87,21 +82,39 @@ export interface DeleteFileResponse {
  * OpenAI File object as defined in the OpenAI Files API.
  */
 export interface File {
+  /**
+   * The file identifier, which can be referenced in the API endpoints.
+   */
   id: string;
 
+  /**
+   * The size of the file, in bytes.
+   */
   bytes: number;
 
+  /**
+   * The Unix timestamp (in seconds) for when the file was created.
+   */
   created_at: number;
 
+  /**
+   * The Unix timestamp (in seconds) for when the file expires.
+   */
   expires_at: number;
 
+  /**
+   * The name of the file.
+   */
   filename: string;
 
   /**
-   * Valid purpose values for OpenAI Files API.
+   * The intended purpose of the file.
    */
   purpose: 'assistants' | 'batch';
 
+  /**
+   * The object type, which is always 'file'.
+   */
   object?: 'file';
 }
 
@@ -109,34 +122,47 @@ export interface File {
  * Response for listing files in OpenAI Files API.
  */
 export interface ListFilesResponse {
+  /**
+   * The list of files.
+   */
   data: Array<File>;
 
+  /**
+   * The ID of the first file in the list for pagination.
+   */
   first_id: string;
 
+  /**
+   * Whether there are more files available beyond this page.
+   */
   has_more: boolean;
 
+  /**
+   * The ID of the last file in the list for pagination.
+   */
   last_id: string;
 
+  /**
+   * The object type, which is always 'list'.
+   */
   object?: 'list';
 }
 
 export type FileContentResponse = unknown;
 
 export interface FileCreateParams {
+  /**
+   * The file to upload.
+   */
   file: Core.Uploadable;
 
   /**
-   * Valid purpose values for OpenAI Files API.
+   * The intended purpose of the uploaded file.
    */
   purpose: 'assistants' | 'batch';
 
   /**
    * Control expiration of uploaded files.
-   *
-   * Params:
-   *
-   * - anchor, must be "created_at"
-   * - seconds, must be int between 3600 and 2592000 (1 hour to 30 days)
    */
   expires_after?: FileCreateParams.ExpiresAfter | null;
 }
@@ -144,15 +170,16 @@ export interface FileCreateParams {
 export namespace FileCreateParams {
   /**
    * Control expiration of uploaded files.
-   *
-   * Params:
-   *
-   * - anchor, must be "created_at"
-   * - seconds, must be int between 3600 and 2592000 (1 hour to 30 days)
    */
   export interface ExpiresAfter {
+    /**
+     * The anchor point for expiration, must be 'created_at'.
+     */
     anchor: 'created_at';
 
+    /**
+     * Seconds until expiration, between 3600 (1 hour) and 2592000 (30 days).
+     */
     seconds: number;
   }
 }

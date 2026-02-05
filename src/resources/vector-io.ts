@@ -11,7 +11,7 @@ import * as Core from '../core';
 
 export class VectorIo extends APIResource {
   /**
-   * Insert chunks into a vector database.
+   * Insert embedded chunks into a vector database.
    */
   insert(body: VectorIoInsertParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/v1/vector-io/insert', {
@@ -40,10 +40,21 @@ export interface QueryChunksResponse {
 
 export namespace QueryChunksResponse {
   /**
-   * A chunk of content that can be inserted into a vector database.
+   * A chunk of content with its embedding vector for vector database operations.
+   * Inherits all fields from Chunk and adds embedding-related fields.
    */
   export interface Chunk {
     chunk_id: string;
+
+    /**
+     * `ChunkMetadata` is backend metadata for a `Chunk` that is used to store
+     * additional information about the chunk that will not be used in the context
+     * during inference, but is required for backend functionality. The `ChunkMetadata`
+     * is set during chunk creation in `MemoryToolRuntimeImpl().insert()`and is not
+     * expected to change after. Use `Chunk.metadata` for metadata that will be used in
+     * the context during inference.
+     */
+    chunk_metadata: Chunk.ChunkMetadata;
 
     /**
      * A image content item
@@ -54,110 +65,16 @@ export namespace QueryChunksResponse {
       | Chunk.TextContentItem
       | Array<Chunk.ImageContentItemOutput | Chunk.TextContentItem>;
 
-    /**
-     * `ChunkMetadata` is backend metadata for a `Chunk` that is used to store
-     * additional information about the chunk that will not be used in the context
-     * during inference, but is required for backend functionality. The `ChunkMetadata`
-     * is set during chunk creation in `MemoryToolRuntimeImpl().insert()`and is not
-     * expected to change after. Use `Chunk.metadata` for metadata that will be used in
-     * the context during inference.
-     */
-    chunk_metadata?: Chunk.ChunkMetadata | null;
+    embedding: Array<number>;
 
-    embedding?: Array<number> | null;
+    embedding_dimension: number;
+
+    embedding_model: string;
 
     metadata?: { [key: string]: unknown };
   }
 
   export namespace Chunk {
-    /**
-     * A image content item
-     */
-    export interface ImageContentItemOutput {
-      /**
-       * A URL or a base64 encoded string
-       */
-      image: ImageContentItemOutput.Image;
-
-      type?: 'image';
-    }
-
-    export namespace ImageContentItemOutput {
-      /**
-       * A URL or a base64 encoded string
-       */
-      export interface Image {
-        data?: string | null;
-
-        /**
-         * A URL reference to external content.
-         */
-        url?: Image.URL | null;
-      }
-
-      export namespace Image {
-        /**
-         * A URL reference to external content.
-         */
-        export interface URL {
-          uri: string;
-        }
-      }
-    }
-
-    /**
-     * A text content item
-     */
-    export interface TextContentItem {
-      text: string;
-
-      type?: 'text';
-    }
-
-    /**
-     * A image content item
-     */
-    export interface ImageContentItemOutput {
-      /**
-       * A URL or a base64 encoded string
-       */
-      image: ImageContentItemOutput.Image;
-
-      type?: 'image';
-    }
-
-    export namespace ImageContentItemOutput {
-      /**
-       * A URL or a base64 encoded string
-       */
-      export interface Image {
-        data?: string | null;
-
-        /**
-         * A URL reference to external content.
-         */
-        url?: Image.URL | null;
-      }
-
-      export namespace Image {
-        /**
-         * A URL reference to external content.
-         */
-        export interface URL {
-          uri: string;
-        }
-      }
-    }
-
-    /**
-     * A text content item
-     */
-    export interface TextContentItem {
-      text: string;
-
-      type?: 'text';
-    }
-
     /**
      * `ChunkMetadata` is backend metadata for a `Chunk` that is used to store
      * additional information about the chunk that will not be used in the context
@@ -167,10 +84,6 @@ export namespace QueryChunksResponse {
      * the context during inference.
      */
     export interface ChunkMetadata {
-      chunk_embedding_dimension?: number | null;
-
-      chunk_embedding_model?: string | null;
-
       chunk_id?: string | null;
 
       chunk_tokenizer?: string | null;
@@ -189,23 +102,131 @@ export namespace QueryChunksResponse {
 
       updated_timestamp?: number | null;
     }
+
+    /**
+     * A image content item
+     */
+    export interface ImageContentItemOutput {
+      /**
+       * A URL or a base64 encoded string
+       */
+      image: ImageContentItemOutput.Image;
+
+      type?: 'image';
+    }
+
+    export namespace ImageContentItemOutput {
+      /**
+       * A URL or a base64 encoded string
+       */
+      export interface Image {
+        data?: string | null;
+
+        /**
+         * A URL reference to external content.
+         */
+        url?: Image.URL | null;
+      }
+
+      export namespace Image {
+        /**
+         * A URL reference to external content.
+         */
+        export interface URL {
+          uri: string;
+        }
+      }
+    }
+
+    /**
+     * A text content item
+     */
+    export interface TextContentItem {
+      text: string;
+
+      type?: 'text';
+    }
+
+    /**
+     * A image content item
+     */
+    export interface ImageContentItemOutput {
+      /**
+       * A URL or a base64 encoded string
+       */
+      image: ImageContentItemOutput.Image;
+
+      type?: 'image';
+    }
+
+    export namespace ImageContentItemOutput {
+      /**
+       * A URL or a base64 encoded string
+       */
+      export interface Image {
+        data?: string | null;
+
+        /**
+         * A URL reference to external content.
+         */
+        url?: Image.URL | null;
+      }
+
+      export namespace Image {
+        /**
+         * A URL reference to external content.
+         */
+        export interface URL {
+          uri: string;
+        }
+      }
+    }
+
+    /**
+     * A text content item
+     */
+    export interface TextContentItem {
+      text: string;
+
+      type?: 'text';
+    }
   }
 }
 
 export interface VectorIoInsertParams {
+  /**
+   * The list of embedded chunks to insert.
+   */
   chunks: Array<VectorIoInsertParams.Chunk>;
 
+  /**
+   * The ID of the vector store to insert chunks into.
+   */
   vector_store_id: string;
 
+  /**
+   * Time-to-live in seconds for the inserted chunks.
+   */
   ttl_seconds?: number | null;
 }
 
 export namespace VectorIoInsertParams {
   /**
-   * A chunk of content that can be inserted into a vector database.
+   * A chunk of content with its embedding vector for vector database operations.
+   * Inherits all fields from Chunk and adds embedding-related fields.
    */
   export interface Chunk {
     chunk_id: string;
+
+    /**
+     * `ChunkMetadata` is backend metadata for a `Chunk` that is used to store
+     * additional information about the chunk that will not be used in the context
+     * during inference, but is required for backend functionality. The `ChunkMetadata`
+     * is set during chunk creation in `MemoryToolRuntimeImpl().insert()`and is not
+     * expected to change after. Use `Chunk.metadata` for metadata that will be used in
+     * the context during inference.
+     */
+    chunk_metadata: Chunk.ChunkMetadata;
 
     /**
      * A image content item
@@ -216,110 +237,16 @@ export namespace VectorIoInsertParams {
       | Chunk.TextContentItem
       | Array<Chunk.ImageContentItemInput | Chunk.TextContentItem>;
 
-    /**
-     * `ChunkMetadata` is backend metadata for a `Chunk` that is used to store
-     * additional information about the chunk that will not be used in the context
-     * during inference, but is required for backend functionality. The `ChunkMetadata`
-     * is set during chunk creation in `MemoryToolRuntimeImpl().insert()`and is not
-     * expected to change after. Use `Chunk.metadata` for metadata that will be used in
-     * the context during inference.
-     */
-    chunk_metadata?: Chunk.ChunkMetadata | null;
+    embedding: Array<number>;
 
-    embedding?: Array<number> | null;
+    embedding_dimension: number;
+
+    embedding_model: string;
 
     metadata?: { [key: string]: unknown };
   }
 
   export namespace Chunk {
-    /**
-     * A image content item
-     */
-    export interface ImageContentItemInput {
-      /**
-       * A URL or a base64 encoded string
-       */
-      image: ImageContentItemInput.Image;
-
-      type?: 'image';
-    }
-
-    export namespace ImageContentItemInput {
-      /**
-       * A URL or a base64 encoded string
-       */
-      export interface Image {
-        data?: string | null;
-
-        /**
-         * A URL reference to external content.
-         */
-        url?: Image.URL | null;
-      }
-
-      export namespace Image {
-        /**
-         * A URL reference to external content.
-         */
-        export interface URL {
-          uri: string;
-        }
-      }
-    }
-
-    /**
-     * A text content item
-     */
-    export interface TextContentItem {
-      text: string;
-
-      type?: 'text';
-    }
-
-    /**
-     * A image content item
-     */
-    export interface ImageContentItemInput {
-      /**
-       * A URL or a base64 encoded string
-       */
-      image: ImageContentItemInput.Image;
-
-      type?: 'image';
-    }
-
-    export namespace ImageContentItemInput {
-      /**
-       * A URL or a base64 encoded string
-       */
-      export interface Image {
-        data?: string | null;
-
-        /**
-         * A URL reference to external content.
-         */
-        url?: Image.URL | null;
-      }
-
-      export namespace Image {
-        /**
-         * A URL reference to external content.
-         */
-        export interface URL {
-          uri: string;
-        }
-      }
-    }
-
-    /**
-     * A text content item
-     */
-    export interface TextContentItem {
-      text: string;
-
-      type?: 'text';
-    }
-
     /**
      * `ChunkMetadata` is backend metadata for a `Chunk` that is used to store
      * additional information about the chunk that will not be used in the context
@@ -329,10 +256,6 @@ export namespace VectorIoInsertParams {
      * the context during inference.
      */
     export interface ChunkMetadata {
-      chunk_embedding_dimension?: number | null;
-
-      chunk_embedding_model?: string | null;
-
       chunk_id?: string | null;
 
       chunk_tokenizer?: string | null;
@@ -351,12 +274,100 @@ export namespace VectorIoInsertParams {
 
       updated_timestamp?: number | null;
     }
+
+    /**
+     * A image content item
+     */
+    export interface ImageContentItemInput {
+      /**
+       * A URL or a base64 encoded string
+       */
+      image: ImageContentItemInput.Image;
+
+      type?: 'image';
+    }
+
+    export namespace ImageContentItemInput {
+      /**
+       * A URL or a base64 encoded string
+       */
+      export interface Image {
+        data?: string | null;
+
+        /**
+         * A URL reference to external content.
+         */
+        url?: Image.URL | null;
+      }
+
+      export namespace Image {
+        /**
+         * A URL reference to external content.
+         */
+        export interface URL {
+          uri: string;
+        }
+      }
+    }
+
+    /**
+     * A text content item
+     */
+    export interface TextContentItem {
+      text: string;
+
+      type?: 'text';
+    }
+
+    /**
+     * A image content item
+     */
+    export interface ImageContentItemInput {
+      /**
+       * A URL or a base64 encoded string
+       */
+      image: ImageContentItemInput.Image;
+
+      type?: 'image';
+    }
+
+    export namespace ImageContentItemInput {
+      /**
+       * A URL or a base64 encoded string
+       */
+      export interface Image {
+        data?: string | null;
+
+        /**
+         * A URL reference to external content.
+         */
+        url?: Image.URL | null;
+      }
+
+      export namespace Image {
+        /**
+         * A URL reference to external content.
+         */
+        export interface URL {
+          uri: string;
+        }
+      }
+    }
+
+    /**
+     * A text content item
+     */
+    export interface TextContentItem {
+      text: string;
+
+      type?: 'text';
+    }
   }
 }
 
 export interface VectorIoQueryParams {
   /**
-   * A image content item
+   * The query content to search for.
    */
   query:
     | string
@@ -364,8 +375,14 @@ export interface VectorIoQueryParams {
     | VectorIoQueryParams.TextContentItem
     | Array<VectorIoQueryParams.ImageContentItemInput | VectorIoQueryParams.TextContentItem>;
 
+  /**
+   * The ID of the vector store to query.
+   */
   vector_store_id: string;
 
+  /**
+   * Additional query parameters.
+   */
   params?: { [key: string]: unknown } | null;
 }
 

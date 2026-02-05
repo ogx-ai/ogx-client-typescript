@@ -61,7 +61,7 @@ export class Eval extends APIResource {
  */
 export interface BenchmarkConfig {
   /**
-   * A model candidate for evaluation.
+   * The candidate to evaluate
    */
   eval_candidate: BenchmarkConfig.EvalCandidate;
 
@@ -85,13 +85,16 @@ export interface BenchmarkConfig {
 
 export namespace BenchmarkConfig {
   /**
-   * A model candidate for evaluation.
+   * The candidate to evaluate
    */
   export interface EvalCandidate {
+    /**
+     * The model ID to evaluate
+     */
     model: string;
 
     /**
-     * Sampling parameters.
+     * The sampling parameters for the model
      */
     sampling_params: Shared.SamplingParams;
 
@@ -164,8 +167,14 @@ export namespace BenchmarkConfig {
  * The response from an evaluation.
  */
 export interface EvaluateResponse {
+  /**
+   * The generations from the evaluation
+   */
   generations: Array<{ [key: string]: unknown }>;
 
+  /**
+   * The scores from the evaluation. Each key in the dict is a scoring function name
+   */
   scores: { [key: string]: Shared.ScoringResult };
 }
 
@@ -183,36 +192,48 @@ export interface Job {
 
 export interface EvalEvaluateRowsParams {
   /**
-   * A benchmark configuration for evaluation.
+   * The configuration for the benchmark
    */
   benchmark_config: BenchmarkConfig;
 
+  /**
+   * The rows to evaluate
+   */
   input_rows: Array<{ [key: string]: unknown }>;
 
+  /**
+   * The scoring functions to use for the evaluation
+   */
   scoring_functions: Array<string>;
 }
 
 export interface EvalEvaluateRowsAlphaParams {
   /**
-   * A benchmark configuration for evaluation.
+   * The configuration for the benchmark
    */
   benchmark_config: BenchmarkConfig;
 
+  /**
+   * The rows to evaluate
+   */
   input_rows: Array<{ [key: string]: unknown }>;
 
+  /**
+   * The scoring functions to use for the evaluation
+   */
   scoring_functions: Array<string>;
 }
 
 export interface EvalRunEvalParams {
   /**
-   * A benchmark configuration for evaluation.
+   * The configuration for the benchmark
    */
   benchmark_config: BenchmarkConfig;
 }
 
 export interface EvalRunEvalAlphaParams {
   /**
-   * A benchmark configuration for evaluation.
+   * The configuration for the benchmark
    */
   benchmark_config: BenchmarkConfig;
 }
