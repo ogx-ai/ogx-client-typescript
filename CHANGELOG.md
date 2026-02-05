@@ -1,5 +1,46 @@
 # Changelog
 
+## 0.5.0-alpha.2 (2026-02-05)
+
+Full Changelog: [v0.4.0-alpha.7...v0.5.0-alpha.2](https://github.com/llamastack/llama-stack-client-typescript/compare/v0.4.0-alpha.7...v0.5.0-alpha.2)
+
+### Features
+
+* add support for tool_choice to repsponses api ([8170d7f](https://github.com/llamastack/llama-stack-client-typescript/commit/8170d7f453cdc6263fe19ddf8e6cddc097b61780))
+* Adds support for the `safety_identifier` parameter ([db2ebc6](https://github.com/llamastack/llama-stack-client-typescript/commit/db2ebc6f214bebe06e329bbfa6509f93dbc47b69))
+* **api:** add readonly connectors API ([c810c19](https://github.com/llamastack/llama-stack-client-typescript/commit/c810c19d824604b34dab48d453bf1f19ac1ff66d))
+* convert Benchmarks API to use FastAPI router ([bcc19bb](https://github.com/llamastack/llama-stack-client-typescript/commit/bcc19bb3640fffce18a128c042f11b695c8f7a6d))
+* convert Datasets API to use FastAPI router ([a52b7ee](https://github.com/llamastack/llama-stack-client-typescript/commit/a52b7ee0bd64a843134b2354e95502da2fe55f66))
+* Implement include parameter specifically for adding logprobs in the output message ([01f0ba8](https://github.com/llamastack/llama-stack-client-typescript/commit/01f0ba8970e6c1a729dd872cf228376fddd5f3fe))
+* introduce /admin API for stack administration and operations ([2c9e2ab](https://github.com/llamastack/llama-stack-client-typescript/commit/2c9e2ab11a42bb2192370880781e2faee633c17c))
+* migrate Inspect API to FastAPI router ([79f8d87](https://github.com/llamastack/llama-stack-client-typescript/commit/79f8d87b64a243c782c5a9eb5b62d31378781f36))
+* migrate Providers API to FastAPI router pattern ([22f7cf6](https://github.com/llamastack/llama-stack-client-typescript/commit/22f7cf60f463db6091bf213a630ac48bb1f12e49))
+
+
+### Bug Fixes
+
+* **mcp:** correct code tool API endpoint ([6006307](https://github.com/llamastack/llama-stack-client-typescript/commit/60063077b65f31a31dabf254dbcfae50909cd692))
+* **mcp:** return correct lines on typescript errors ([368f4b5](https://github.com/llamastack/llama-stack-client-typescript/commit/368f4b50eb87213ab27f43a161df688d3cba4f62))
+
+
+### Chores
+
+* break long lines in snippets into multiline ([a3f9a49](https://github.com/llamastack/llama-stack-client-typescript/commit/a3f9a49ec9ae6ce575a355888d0332643b314fff))
+* **ci:** upgrade `actions/github-script` ([8d32768](https://github.com/llamastack/llama-stack-client-typescript/commit/8d327684ea36362d0b06b297d8a7355353800298))
+* clarify use of yarn for development and npm/yarn/pnpm for users ([#51](https://github.com/llamastack/llama-stack-client-typescript/issues/51)) ([b413eed](https://github.com/llamastack/llama-stack-client-typescript/commit/b413eedc57a6666df5aa98af4c8726a468cb77ec))
+* **internal:** codegen related update ([c12b19b](https://github.com/llamastack/llama-stack-client-typescript/commit/c12b19b37e47e9982a99ea1f4ba7d0a92ff61f1f))
+* **internal:** codegen related update ([db8b76f](https://github.com/llamastack/llama-stack-client-typescript/commit/db8b76f2ca7761bf0b71fcf548d24e93b83014e0))
+* **internal:** codegen related update ([9d4ee0f](https://github.com/llamastack/llama-stack-client-typescript/commit/9d4ee0f21db979f28ac2008f37b02a70e72094ff))
+* **internal:** codegen related update ([b5ea21d](https://github.com/llamastack/llama-stack-client-typescript/commit/b5ea21d0dcf0a71a49420efdf721f21254b9a0ce))
+* **internal:** codegen related update ([d199aff](https://github.com/llamastack/llama-stack-client-typescript/commit/d199aff3d638854e58ae5575979d2c7f57eebc10))
+* **internal:** update `actions/checkout` version ([fe86770](https://github.com/llamastack/llama-stack-client-typescript/commit/fe867703d0446b015c6c59a62ae9e9b29161aca3))
+* **internal:** upgrade babel, qs, js-yaml ([d318482](https://github.com/llamastack/llama-stack-client-typescript/commit/d318482504fd85a956d3a382ba8113fedfb8416c))
+
+
+### Documentation
+
+* add more examples ([cc58d0d](https://github.com/llamastack/llama-stack-client-typescript/commit/cc58d0d59eda97e5fbad6b6daea0272dcbb189cb))
+
 ## 0.4.0-alpha.7 (2025-12-03)
 
 Full Changelog: [v0.4.0-alpha.6...v0.4.0-alpha.7](https://github.com/llamastack/llama-stack-client-typescript/compare/v0.4.0-alpha.6...v0.4.0-alpha.7)
