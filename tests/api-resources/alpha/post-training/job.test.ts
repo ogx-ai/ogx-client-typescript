@@ -31,7 +31,7 @@ describe('resource job', () => {
   });
 
   test('artifacts', async () => {
-    const responsePromise = client.alpha.postTraining.job.artifacts();
+    const responsePromise = client.alpha.postTraining.job.artifacts('job_uuid');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -44,12 +44,12 @@ describe('resource job', () => {
   test('artifacts: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.alpha.postTraining.job.artifacts({ path: '/_stainless_unknown_path' }),
+      client.alpha.postTraining.job.artifacts('job_uuid', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(LlamaStackClient.NotFoundError);
   });
 
   test('cancel', async () => {
-    const responsePromise = client.alpha.postTraining.job.cancel();
+    const responsePromise = client.alpha.postTraining.job.cancel('job_uuid');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -61,13 +61,13 @@ describe('resource job', () => {
 
   test('cancel: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.alpha.postTraining.job.cancel({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      LlamaStackClient.NotFoundError,
-    );
+    await expect(
+      client.alpha.postTraining.job.cancel('job_uuid', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(LlamaStackClient.NotFoundError);
   });
 
   test('status', async () => {
-    const responsePromise = client.alpha.postTraining.job.status();
+    const responsePromise = client.alpha.postTraining.job.status('job_uuid');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -79,8 +79,8 @@ describe('resource job', () => {
 
   test('status: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.alpha.postTraining.job.status({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      LlamaStackClient.NotFoundError,
-    );
+    await expect(
+      client.alpha.postTraining.job.status('job_uuid', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(LlamaStackClient.NotFoundError);
   });
 });

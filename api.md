@@ -407,9 +407,9 @@ Types:
 Methods:
 
 - <code title="get /v1alpha/post-training/jobs">client.alpha.postTraining.job.<a href="./src/resources/alpha/post-training/job.ts">list</a>() -> JobListResponse</code>
-- <code title="get /v1alpha/post-training/job/artifacts">client.alpha.postTraining.job.<a href="./src/resources/alpha/post-training/job.ts">artifacts</a>() -> JobArtifactsResponse</code>
-- <code title="post /v1alpha/post-training/job/cancel">client.alpha.postTraining.job.<a href="./src/resources/alpha/post-training/job.ts">cancel</a>() -> void</code>
-- <code title="get /v1alpha/post-training/job/status">client.alpha.postTraining.job.<a href="./src/resources/alpha/post-training/job.ts">status</a>() -> JobStatusResponse</code>
+- <code title="get /v1alpha/post-training/jobs/{job_uuid}/artifacts">client.alpha.postTraining.job.<a href="./src/resources/alpha/post-training/job.ts">artifacts</a>(jobUuid) -> JobArtifactsResponse</code>
+- <code title="post /v1alpha/post-training/jobs/{job_uuid}/cancel">client.alpha.postTraining.job.<a href="./src/resources/alpha/post-training/job.ts">cancel</a>(jobUuid) -> void</code>
+- <code title="get /v1alpha/post-training/jobs/{job_uuid}/status">client.alpha.postTraining.job.<a href="./src/resources/alpha/post-training/job.ts">status</a>(jobUuid) -> JobStatusResponse</code>
 
 ## Benchmarks
 
