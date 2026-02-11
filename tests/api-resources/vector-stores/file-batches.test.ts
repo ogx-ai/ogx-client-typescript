@@ -103,7 +103,7 @@ describe('resource fileBatches', () => {
           after: 'after',
           before: 'before',
           filter: 'filter',
-          limit: 0,
+          limit: 1,
           order: 'order',
         },
         { path: '/_stainless_unknown_path' },

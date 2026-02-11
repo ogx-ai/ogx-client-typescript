@@ -95,7 +95,7 @@ describe('resource files', () => {
           after: 'after',
           before: 'before',
           filter: 'completed',
-          limit: 0,
+          limit: 1,
           order: 'order',
         },
         { path: '/_stainless_unknown_path' },
