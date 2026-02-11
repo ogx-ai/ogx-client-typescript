@@ -77,7 +77,7 @@ describe('resource vectorStores', () => {
         {
           after: 'after',
           before: 'before',
-          limit: 0,
+          limit: 1,
           order: 'order',
         },
         { path: '/_stainless_unknown_path' },
