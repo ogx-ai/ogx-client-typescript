@@ -4540,7 +4540,7 @@ export interface ResponseListParams extends OpenAICursorPageParams {
   model?: string | null;
 
   /**
-   * Sort order for paginated responses.
+   * The order to sort responses by when sorted by created_at ('asc' or 'desc').
    */
   order?: 'asc' | 'desc' | null;
 }

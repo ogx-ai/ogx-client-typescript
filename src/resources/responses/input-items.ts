@@ -618,7 +618,7 @@ export interface InputItemListParams {
   limit?: number | null;
 
   /**
-   * Sort order for paginated responses.
+   * The order to return the input items in.
    */
   order?: 'asc' | 'desc' | null;
 }

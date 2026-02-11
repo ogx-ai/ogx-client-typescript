@@ -186,12 +186,12 @@ export namespace FileCreateParams {
 
 export interface FileListParams extends OpenAICursorPageParams {
   /**
-   * Sort order for paginated responses.
+   * Sort order by created_at timestamp ('asc' or 'desc').
    */
   order?: 'asc' | 'desc' | null;
 
   /**
-   * Valid purpose values for OpenAI Files API.
+   * Filter files by purpose.
    */
   purpose?: 'assistants' | 'batch' | null;
 }

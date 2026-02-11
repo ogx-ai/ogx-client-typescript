@@ -2916,7 +2916,7 @@ export interface CompletionListParams {
   model?: string | null;
 
   /**
-   * Sort order for paginated responses.
+   * The order to sort the chat completions by: "asc" or "desc". Defaults to "desc".
    */
   order?: 'asc' | 'desc' | null;
 }
