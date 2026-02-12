@@ -3867,6 +3867,12 @@ export interface ResponseCreateParamsBase {
     | ResponseCreateParams.OpenAIResponseInputToolFunction
     | ResponseCreateParams.OpenAIResponseInputToolMcp
   > | null;
+
+  /**
+   * Controls how the service truncates input when it exceeds the model context
+   * window.
+   */
+  truncation?: 'auto' | 'disabled' | null;
 }
 
 export namespace ResponseCreateParams {
