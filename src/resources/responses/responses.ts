@@ -130,6 +130,8 @@ export interface ResponseObject {
    */
   prompt?: ResponseObject.Prompt | null;
 
+  prompt_cache_key?: string | null;
+
   /**
    * Configuration for reasoning effort in OpenAI responses.
    *
@@ -2498,6 +2500,8 @@ export interface ResponseListResponse {
    */
   prompt?: ResponseListResponse.Prompt | null;
 
+  prompt_cache_key?: string | null;
+
   /**
    * Configuration for reasoning effort in OpenAI responses.
    *
@@ -3810,6 +3814,11 @@ export interface ResponseCreateParamsBase {
    * OpenAI compatible Prompt object that is used in OpenAI responses.
    */
   prompt?: ResponseCreateParams.Prompt | null;
+
+  /**
+   * A key to use when reading from or writing to the prompt cache.
+   */
+  prompt_cache_key?: string | null;
 
   /**
    * Configuration for reasoning effort in OpenAI responses.

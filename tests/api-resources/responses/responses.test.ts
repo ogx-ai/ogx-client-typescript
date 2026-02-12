@@ -42,6 +42,7 @@ describe('resource responses', () => {
         variables: { foo: { text: 'text', type: 'input_text' } },
         version: 'version',
       },
+      prompt_cache_key: 'prompt_cache_key',
       reasoning: { effort: 'none' },
       safety_identifier: 'safety_identifier',
       store: true,
