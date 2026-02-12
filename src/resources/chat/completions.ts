@@ -2445,6 +2445,11 @@ export interface CompletionCreateParamsBase {
   presence_penalty?: number | null;
 
   /**
+   * A key to use when reading from or writing to the prompt cache.
+   */
+  prompt_cache_key?: string | null;
+
+  /**
    * The effort level for reasoning models.
    */
   reasoning_effort?: 'none' | 'minimal' | 'low' | 'medium' | 'high' | 'xhigh' | null;

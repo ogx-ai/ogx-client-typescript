@@ -46,6 +46,7 @@ describe('resource completions', () => {
       n: 1,
       parallel_tool_calls: true,
       presence_penalty: -2,
+      prompt_cache_key: 'prompt_cache_key',
       reasoning_effort: 'none',
       response_format: { type: 'text' },
       safety_identifier: 'safety_identifier',
