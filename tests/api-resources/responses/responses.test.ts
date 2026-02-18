@@ -45,6 +45,7 @@ describe('resource responses', () => {
       prompt_cache_key: 'prompt_cache_key',
       reasoning: { effort: 'none' },
       safety_identifier: 'safety_identifier',
+      service_tier: 'auto',
       store: true,
       stream: false,
       temperature: 0,

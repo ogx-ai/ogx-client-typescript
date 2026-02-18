@@ -51,6 +51,7 @@ describe('resource completions', () => {
       response_format: { type: 'text' },
       safety_identifier: 'safety_identifier',
       seed: 0,
+      service_tier: 'auto',
       stop: 'string',
       stream: false,
       stream_options: { foo: 'bar' },
