@@ -93,7 +93,12 @@ export interface CompletionCreateResponse {
   object?: 'chat.completion';
 
   /**
-   * Usage information for OpenAI chat completion.
+   * The service tier that was used for this response.
+   */
+  service_tier?: string | null;
+
+  /**
+   * Token usage information for the completion.
    */
   usage?: CompletionCreateResponse.Usage | null;
 }
@@ -343,54 +348,54 @@ export namespace CompletionCreateResponse {
   }
 
   /**
-   * Usage information for OpenAI chat completion.
+   * Token usage information for the completion.
    */
   export interface Usage {
     /**
      * Number of tokens in the completion.
      */
-    completion_tokens: number;
+    completion_tokens?: number;
+
+    /**
+     * Detailed breakdown of output token usage.
+     */
+    completion_tokens_details?: Usage.CompletionTokensDetails;
 
     /**
      * Number of tokens in the prompt.
      */
-    prompt_tokens: number;
+    prompt_tokens?: number;
+
+    /**
+     * Detailed breakdown of input token usage.
+     */
+    prompt_tokens_details?: Usage.PromptTokensDetails;
 
     /**
      * Total tokens used (prompt + completion).
      */
-    total_tokens: number;
-
-    /**
-     * Token details for output tokens in OpenAI chat completion usage.
-     */
-    completion_tokens_details?: Usage.CompletionTokensDetails | null;
-
-    /**
-     * Token details for prompt tokens in OpenAI chat completion usage.
-     */
-    prompt_tokens_details?: Usage.PromptTokensDetails | null;
+    total_tokens?: number;
   }
 
   export namespace Usage {
     /**
-     * Token details for output tokens in OpenAI chat completion usage.
+     * Detailed breakdown of output token usage.
      */
     export interface CompletionTokensDetails {
       /**
        * Number of tokens used for reasoning (o1/o3 models).
        */
-      reasoning_tokens?: number | null;
+      reasoning_tokens?: number;
     }
 
     /**
-     * Token details for prompt tokens in OpenAI chat completion usage.
+     * Detailed breakdown of input token usage.
      */
     export interface PromptTokensDetails {
       /**
        * Number of tokens retrieved from cache.
        */
-      cached_tokens?: number | null;
+      cached_tokens?: number;
     }
   }
 }
@@ -433,9 +438,14 @@ export interface CompletionRetrieveResponse {
   object?: 'chat.completion';
 
   /**
-   * Usage information for OpenAI chat completion.
+   * The service tier that was used for this response.
    */
-  usage?: CompletionRetrieveResponse.Usage | null;
+  service_tier?: string | null;
+
+  /**
+   * Token usage information for the completion.
+   */
+  usage?: CompletionRetrieveResponse.Usage;
 }
 
 export namespace CompletionRetrieveResponse {
@@ -993,54 +1003,54 @@ export namespace CompletionRetrieveResponse {
   }
 
   /**
-   * Usage information for OpenAI chat completion.
+   * Token usage information for the completion.
    */
   export interface Usage {
     /**
      * Number of tokens in the completion.
      */
-    completion_tokens: number;
+    completion_tokens?: number;
+
+    /**
+     * Detailed breakdown of output token usage.
+     */
+    completion_tokens_details?: Usage.CompletionTokensDetails;
 
     /**
      * Number of tokens in the prompt.
      */
-    prompt_tokens: number;
+    prompt_tokens?: number;
+
+    /**
+     * Detailed breakdown of input token usage.
+     */
+    prompt_tokens_details?: Usage.PromptTokensDetails;
 
     /**
      * Total tokens used (prompt + completion).
      */
-    total_tokens: number;
-
-    /**
-     * Token details for output tokens in OpenAI chat completion usage.
-     */
-    completion_tokens_details?: Usage.CompletionTokensDetails | null;
-
-    /**
-     * Token details for prompt tokens in OpenAI chat completion usage.
-     */
-    prompt_tokens_details?: Usage.PromptTokensDetails | null;
+    total_tokens?: number;
   }
 
   export namespace Usage {
     /**
-     * Token details for output tokens in OpenAI chat completion usage.
+     * Detailed breakdown of output token usage.
      */
     export interface CompletionTokensDetails {
       /**
        * Number of tokens used for reasoning (o1/o3 models).
        */
-      reasoning_tokens?: number | null;
+      reasoning_tokens?: number;
     }
 
     /**
-     * Token details for prompt tokens in OpenAI chat completion usage.
+     * Detailed breakdown of input token usage.
      */
     export interface PromptTokensDetails {
       /**
        * Number of tokens retrieved from cache.
        */
-      cached_tokens?: number | null;
+      cached_tokens?: number;
     }
   }
 }
@@ -1114,9 +1124,14 @@ export namespace CompletionListResponse {
     object?: 'chat.completion';
 
     /**
-     * Usage information for OpenAI chat completion.
+     * The service tier that was used for this response.
      */
-    usage?: Data.Usage | null;
+    service_tier?: string | null;
+
+    /**
+     * Token usage information for the completion.
+     */
+    usage?: Data.Usage;
   }
 
   export namespace Data {
@@ -1674,54 +1689,54 @@ export namespace CompletionListResponse {
     }
 
     /**
-     * Usage information for OpenAI chat completion.
+     * Token usage information for the completion.
      */
     export interface Usage {
       /**
        * Number of tokens in the completion.
        */
-      completion_tokens: number;
+      completion_tokens?: number;
+
+      /**
+       * Detailed breakdown of output token usage.
+       */
+      completion_tokens_details?: Usage.CompletionTokensDetails;
 
       /**
        * Number of tokens in the prompt.
        */
-      prompt_tokens: number;
+      prompt_tokens?: number;
+
+      /**
+       * Detailed breakdown of input token usage.
+       */
+      prompt_tokens_details?: Usage.PromptTokensDetails;
 
       /**
        * Total tokens used (prompt + completion).
        */
-      total_tokens: number;
-
-      /**
-       * Token details for output tokens in OpenAI chat completion usage.
-       */
-      completion_tokens_details?: Usage.CompletionTokensDetails | null;
-
-      /**
-       * Token details for prompt tokens in OpenAI chat completion usage.
-       */
-      prompt_tokens_details?: Usage.PromptTokensDetails | null;
+      total_tokens?: number;
     }
 
     export namespace Usage {
       /**
-       * Token details for output tokens in OpenAI chat completion usage.
+       * Detailed breakdown of output token usage.
        */
       export interface CompletionTokensDetails {
         /**
          * Number of tokens used for reasoning (o1/o3 models).
          */
-        reasoning_tokens?: number | null;
+        reasoning_tokens?: number;
       }
 
       /**
-       * Token details for prompt tokens in OpenAI chat completion usage.
+       * Detailed breakdown of input token usage.
        */
       export interface PromptTokensDetails {
         /**
          * Number of tokens retrieved from cache.
          */
-        cached_tokens?: number | null;
+        cached_tokens?: number;
       }
     }
   }
@@ -1824,6 +1839,11 @@ export interface CompletionCreateParamsBase {
    * The seed to use.
    */
   seed?: number | null;
+
+  /**
+   * The service tier for the request.
+   */
+  service_tier?: 'auto' | 'default' | 'flex' | 'priority' | null;
 
   /**
    * The stop tokens to use.

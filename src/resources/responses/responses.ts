@@ -111,6 +111,11 @@ export interface ResponseObject {
    */
   error?: ResponseObject.Error | null;
 
+  /**
+   * Details explaining why a response was incomplete.
+   */
+  incomplete_details?: ResponseObject.IncompleteDetails | null;
+
   instructions?: string | null;
 
   max_output_tokens?: number | null;
@@ -140,6 +145,8 @@ export interface ResponseObject {
   reasoning?: ResponseObject.Reasoning | null;
 
   safety_identifier?: string | null;
+
+  service_tier?: string | null;
 
   temperature?: number | null;
 
@@ -499,6 +506,13 @@ export namespace ResponseObject {
     code: string;
 
     message: string;
+  }
+
+  /**
+   * Details explaining why a response was incomplete.
+   */
+  export interface IncompleteDetails {
+    reason: string;
   }
 
   /**
@@ -2481,6 +2495,11 @@ export interface ResponseListResponse {
    */
   error?: ResponseListResponse.Error | null;
 
+  /**
+   * Details explaining why a response was incomplete.
+   */
+  incomplete_details?: ResponseListResponse.IncompleteDetails | null;
+
   instructions?: string | null;
 
   max_output_tokens?: number | null;
@@ -2510,6 +2529,8 @@ export interface ResponseListResponse {
   reasoning?: ResponseListResponse.Reasoning | null;
 
   safety_identifier?: string | null;
+
+  service_tier?: string | null;
 
   temperature?: number | null;
 
@@ -3405,6 +3426,13 @@ export namespace ResponseListResponse {
   }
 
   /**
+   * Details explaining why a response was incomplete.
+   */
+  export interface IncompleteDetails {
+    reason: string;
+  }
+
+  /**
    * OpenAI compatible Prompt object that is used in OpenAI responses.
    */
   export interface Prompt {
@@ -3831,6 +3859,11 @@ export interface ResponseCreateParamsBase {
    * A stable identifier used for safety monitoring and abuse detection.
    */
   safety_identifier?: string | null;
+
+  /**
+   * The service tier for the request.
+   */
+  service_tier?: 'auto' | 'default' | 'flex' | 'priority' | null;
 
   /**
    * Whether to store the response in the database.

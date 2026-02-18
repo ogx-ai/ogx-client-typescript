@@ -53,7 +53,12 @@ export interface ChatCompletionChunk {
   object?: 'chat.completion.chunk';
 
   /**
-   * Usage information for OpenAI chat completion.
+   * The service tier that was used for this response.
+   */
+  service_tier?: string | null;
+
+  /**
+   * Token usage information (typically included in final chunk with stream_options).
    */
   usage?: ChatCompletionChunk.Usage | null;
 }
@@ -278,54 +283,54 @@ export namespace ChatCompletionChunk {
   }
 
   /**
-   * Usage information for OpenAI chat completion.
+   * Token usage information (typically included in final chunk with stream_options).
    */
   export interface Usage {
     /**
      * Number of tokens in the completion.
      */
-    completion_tokens: number;
+    completion_tokens?: number;
+
+    /**
+     * Detailed breakdown of output token usage.
+     */
+    completion_tokens_details?: Usage.CompletionTokensDetails;
 
     /**
      * Number of tokens in the prompt.
      */
-    prompt_tokens: number;
+    prompt_tokens?: number;
+
+    /**
+     * Detailed breakdown of input token usage.
+     */
+    prompt_tokens_details?: Usage.PromptTokensDetails;
 
     /**
      * Total tokens used (prompt + completion).
      */
-    total_tokens: number;
-
-    /**
-     * Token details for output tokens in OpenAI chat completion usage.
-     */
-    completion_tokens_details?: Usage.CompletionTokensDetails | null;
-
-    /**
-     * Token details for prompt tokens in OpenAI chat completion usage.
-     */
-    prompt_tokens_details?: Usage.PromptTokensDetails | null;
+    total_tokens?: number;
   }
 
   export namespace Usage {
     /**
-     * Token details for output tokens in OpenAI chat completion usage.
+     * Detailed breakdown of output token usage.
      */
     export interface CompletionTokensDetails {
       /**
        * Number of tokens used for reasoning (o1/o3 models).
        */
-      reasoning_tokens?: number | null;
+      reasoning_tokens?: number;
     }
 
     /**
-     * Token details for prompt tokens in OpenAI chat completion usage.
+     * Detailed breakdown of input token usage.
      */
     export interface PromptTokensDetails {
       /**
        * Number of tokens retrieved from cache.
        */
-      cached_tokens?: number | null;
+      cached_tokens?: number;
     }
   }
 }
