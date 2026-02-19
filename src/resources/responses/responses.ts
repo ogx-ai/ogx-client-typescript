@@ -104,6 +104,8 @@ export interface ResponseObject {
 
   store: boolean;
 
+  background?: boolean;
+
   completed_at?: number | null;
 
   /**
@@ -2488,6 +2490,8 @@ export interface ResponseListResponse {
 
   store: boolean;
 
+  background?: boolean;
+
   completed_at?: number | null;
 
   /**
@@ -3779,6 +3783,12 @@ export interface ResponseCreateParamsBase {
    * The underlying LLM used for completions.
    */
   model: string;
+
+  /**
+   * Whether to run the model response in the background. When true, returns
+   * immediately with status 'queued'.
+   */
+  background?: boolean;
 
   /**
    * Optional ID of a conversation to add the response to.
