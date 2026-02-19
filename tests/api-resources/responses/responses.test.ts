@@ -27,6 +27,7 @@ describe('resource responses', () => {
     const response = await client.responses.create({
       input: 'string',
       model: 'model',
+      background: true,
       conversation: 'conversation',
       guardrails: ['string'],
       include: ['web_search_call.action.sources'],
