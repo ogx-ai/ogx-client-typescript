@@ -61,6 +61,7 @@ describe('resource responses', () => {
       },
       tool_choice: 'auto',
       tools: [{ search_context_size: 'S?oC"high', type: 'web_search' }],
+      top_p: 0,
       truncation: 'auto',
     });
   });

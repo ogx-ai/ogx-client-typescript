@@ -3921,6 +3921,12 @@ export interface ResponseCreateParamsBase {
   > | null;
 
   /**
+   * Nucleus sampling parameter that controls response diversity (lower values
+   * increase focus).
+   */
+  top_p?: number | null;
+
+  /**
    * Controls how the service truncates input when it exceeds the model context
    * window.
    */
