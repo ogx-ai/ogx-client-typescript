@@ -132,6 +132,8 @@ export interface ResponseObject {
 
   parallel_tool_calls?: boolean | null;
 
+  presence_penalty?: number | null;
+
   previous_response_id?: string | null;
 
   /**
@@ -2522,6 +2524,8 @@ export interface ResponseListResponse {
 
   parallel_tool_calls?: boolean | null;
 
+  presence_penalty?: number | null;
+
   previous_response_id?: string | null;
 
   /**
@@ -3855,6 +3859,11 @@ export interface ResponseCreateParamsBase {
    * Whether to enable parallel tool calls.
    */
   parallel_tool_calls?: boolean | null;
+
+  /**
+   * Penalizes new tokens based on whether they appear in the text so far.
+   */
+  presence_penalty?: number | null;
 
   /**
    * Optional ID of a previous response to continue from.
