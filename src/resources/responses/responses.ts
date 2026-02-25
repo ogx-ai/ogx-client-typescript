@@ -179,6 +179,8 @@ export interface ResponseObject {
     | ResponseObject.OpenAIResponseToolMcp
   > | null;
 
+  top_logprobs?: number | null;
+
   top_p?: number | null;
 
   truncation?: string | null;
@@ -2565,6 +2567,8 @@ export interface ResponseListResponse {
     | ResponseListResponse.OpenAIResponseToolMcp
   > | null;
 
+  top_logprobs?: number | null;
+
   top_p?: number | null;
 
   truncation?: string | null;
@@ -3919,6 +3923,12 @@ export interface ResponseCreateParamsBase {
     | ResponseCreateParams.OpenAIResponseInputToolFunction
     | ResponseCreateParams.OpenAIResponseInputToolMcp
   > | null;
+
+  /**
+   * The number of most likely tokens to return at each position, along with their
+   * log probabilities.
+   */
+  top_logprobs?: number | null;
 
   /**
    * Nucleus sampling parameter that controls response diversity (lower values
