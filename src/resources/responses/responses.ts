@@ -886,6 +886,8 @@ export namespace ResponseObjectStream {
      */
     response: ResponsesAPI.ResponseObject;
 
+    sequence_number: number;
+
     type?: 'response.created';
   }
 
@@ -2454,6 +2456,8 @@ export namespace ResponseObjectStream {
      * Complete OpenAI response object containing generation results and metadata.
      */
     response: ResponsesAPI.ResponseObject;
+
+    sequence_number: number;
 
     type?: 'response.completed';
   }
