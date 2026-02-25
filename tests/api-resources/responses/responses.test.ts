@@ -29,6 +29,7 @@ describe('resource responses', () => {
       model: 'model',
       background: true,
       conversation: 'conversation',
+      frequency_penalty: -2,
       guardrails: ['string'],
       include: ['web_search_call.action.sources'],
       instructions: 'instructions',
