@@ -113,6 +113,8 @@ export interface ResponseObject {
    */
   error?: ResponseObject.Error | null;
 
+  frequency_penalty?: number | null;
+
   /**
    * Details explaining why a response was incomplete.
    */
@@ -2501,6 +2503,8 @@ export interface ResponseListResponse {
    */
   error?: ResponseListResponse.Error | null;
 
+  frequency_penalty?: number | null;
+
   /**
    * Details explaining why a response was incomplete.
    */
@@ -3798,6 +3802,11 @@ export interface ResponseCreateParamsBase {
    * Optional ID of a conversation to add the response to.
    */
   conversation?: string | null;
+
+  /**
+   * Penalizes new tokens based on their frequency in the text so far.
+   */
+  frequency_penalty?: number | null;
 
   /**
    * List of guardrails to apply during response generation.
