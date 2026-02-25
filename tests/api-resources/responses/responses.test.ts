@@ -38,6 +38,7 @@ describe('resource responses', () => {
       max_tool_calls: 1,
       metadata: { foo: 'string' },
       parallel_tool_calls: true,
+      presence_penalty: -2,
       previous_response_id: 'previous_response_id',
       prompt: {
         id: 'id',
