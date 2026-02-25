@@ -1876,7 +1876,7 @@ export interface CompletionCreateParamsBase {
   tools?: Array<{ [key: string]: unknown }> | null;
 
   /**
-   * The top log probabilities to use.
+   * The number of most likely tokens to return at each position.
    */
   top_logprobs?: number | null;
 
