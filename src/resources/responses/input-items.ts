@@ -371,13 +371,58 @@ export namespace InputItemListResponse {
   export interface OpenAIResponseInputFunctionToolCallOutput {
     call_id: string;
 
-    output: string;
+    output:
+      | string
+      | Array<
+          | OpenAIResponseInputFunctionToolCallOutput.OpenAIResponseInputMessageContentText
+          | OpenAIResponseInputFunctionToolCallOutput.OpenAIResponseInputMessageContentImage
+          | OpenAIResponseInputFunctionToolCallOutput.OpenAIResponseInputMessageContentFile
+        >;
 
     id?: string | null;
 
     status?: string | null;
 
     type?: 'function_call_output';
+  }
+
+  export namespace OpenAIResponseInputFunctionToolCallOutput {
+    /**
+     * Text content for input messages in OpenAI response format.
+     */
+    export interface OpenAIResponseInputMessageContentText {
+      text: string;
+
+      type?: 'input_text';
+    }
+
+    /**
+     * Image content for input messages in OpenAI response format.
+     */
+    export interface OpenAIResponseInputMessageContentImage {
+      detail?: 'low' | 'high' | 'auto';
+
+      file_id?: string | null;
+
+      image_url?: string | null;
+
+      type?: 'input_image';
+    }
+
+    /**
+     * File content for input messages in OpenAI response format.
+     */
+    export interface OpenAIResponseInputMessageContentFile {
+      file_data?: string | null;
+
+      file_id?: string | null;
+
+      file_url?: string | null;
+
+      filename?: string | null;
+
+      type?: 'input_file';
+    }
   }
 
   /**
