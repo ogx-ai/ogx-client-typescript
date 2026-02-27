@@ -10,6 +10,9 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as Shared from './shared';
 
+/**
+ * Providers API for inspecting, listing, and modifying providers and their configurations.
+ */
 export class Providers extends APIResource {
   /**
    * Get detailed information about a specific provider.

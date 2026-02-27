@@ -11,6 +11,14 @@ import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import { OpenAICursorPage, type OpenAICursorPageParams } from '../pagination';
 
+/**
+ * The API is designed to allow use of openai client libraries for seamless integration.
+ *
+ * This API provides the following extensions:
+ *  - idempotent batch creation
+ *
+ * Note: This API is currently under active development and may undergo changes.
+ */
 export class Batches extends APIResource {
   /**
    * Create a new batch for processing multiple API requests.

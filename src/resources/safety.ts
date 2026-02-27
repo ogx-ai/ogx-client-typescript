@@ -10,6 +10,9 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as Shared from './shared';
 
+/**
+ * OpenAI-compatible Moderations API.
+ */
 export class Safety extends APIResource {
   /**
    * Run a safety shield on messages to check for policy violations.

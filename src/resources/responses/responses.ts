@@ -16,6 +16,9 @@ import { InputItemListParams, InputItemListResponse, InputItems } from './input-
 import { OpenAICursorPage, type OpenAICursorPageParams } from '../../pagination';
 import { Stream } from '../../streaming';
 
+/**
+ * APIs for creating and interacting with agentic systems.
+ */
 export class Responses extends APIResource {
   inputItems: InputItemsAPI.InputItems = new InputItemsAPI.InputItems(this._client);
 

@@ -12,6 +12,9 @@ import * as Core from '../../core';
 import * as VersionsAPI from './versions';
 import { Versions } from './versions';
 
+/**
+ * Protocol for prompt management operations.
+ */
 export class Prompts extends APIResource {
   versions: VersionsAPI.Versions = new VersionsAPI.Versions(this._client);
 

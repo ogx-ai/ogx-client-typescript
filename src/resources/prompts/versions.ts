@@ -10,6 +10,9 @@ import { APIResource } from '../../resource';
 import * as Core from '../../core';
 import * as PromptsAPI from './prompts';
 
+/**
+ * Protocol for prompt management operations.
+ */
 export class Versions extends APIResource {
   /**
    * List all versions of a specific prompt.
