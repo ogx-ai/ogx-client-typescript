@@ -12,6 +12,9 @@ import * as Shared from '../../shared';
 import * as JobsAPI from './jobs';
 import { Jobs } from './jobs';
 
+/**
+ * Llama Stack Evaluation API for running evaluations on model and agent candidates.
+ */
 export class Eval extends APIResource {
   jobs: JobsAPI.Jobs = new JobsAPI.Jobs(this._client);
 

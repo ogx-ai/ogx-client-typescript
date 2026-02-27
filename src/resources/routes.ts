@@ -11,6 +11,9 @@ import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as Shared from './shared';
 
+/**
+ * APIs for inspecting the Llama Stack service, including health status, available API routes with methods and implementing providers.
+ */
 export class Routes extends APIResource {
   /**
    * List all available API routes with their methods and implementing providers.

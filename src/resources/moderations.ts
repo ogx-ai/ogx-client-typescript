@@ -9,6 +9,9 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 
+/**
+ * OpenAI-compatible Moderations API.
+ */
 export class Moderations extends APIResource {
   /**
    * Classifies if text inputs are potentially harmful. OpenAI-compatible endpoint.

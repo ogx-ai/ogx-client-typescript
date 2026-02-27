@@ -10,6 +10,9 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as Shared from './shared';
 
+/**
+ * APIs for inspecting the Llama Stack service, including health status, available API routes with methods and implementing providers.
+ */
 export class Inspect extends APIResource {
   /**
    * Get the current health status of the service.

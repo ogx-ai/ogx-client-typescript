@@ -20,6 +20,9 @@ import {
   Items,
 } from './items';
 
+/**
+ * Protocol for conversation management operations.
+ */
 export class Conversations extends APIResource {
   items: ItemsAPI.Items = new ItemsAPI.Items(this._client);
 

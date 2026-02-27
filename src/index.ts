@@ -263,24 +263,75 @@ export class LlamaStackClient extends Core.APIClient {
   toolgroups: API.Toolgroups = new API.Toolgroups(this);
   tools: API.Tools = new API.Tools(this);
   toolRuntime: API.ToolRuntime = new API.ToolRuntime(this);
+  /**
+   * APIs for creating and interacting with agentic systems.
+   */
   responses: API.Responses = new API.Responses(this);
+  /**
+   * Protocol for prompt management operations.
+   */
   prompts: API.Prompts = new API.Prompts(this);
+  /**
+   * Protocol for conversation management operations.
+   */
   conversations: API.Conversations = new API.Conversations(this);
+  /**
+   * APIs for inspecting the Llama Stack service, including health status, available API routes with methods and implementing providers.
+   */
   inspect: API.Inspect = new API.Inspect(this);
+  /**
+   * Llama Stack Inference API for generating completions, chat completions, and embeddings.
+   *
+   * This API provides the raw interface to the underlying models. Three kinds of models are supported:
+   * - LLM models: these models generate "raw" and "chat" (conversational) completions.
+   * - Embedding models: these models generate embeddings to be used for semantic search.
+   * - Rerank models: these models reorder the documents based on their relevance to a query.
+   */
   embeddings: API.Embeddings = new API.Embeddings(this);
   chat: API.Chat = new API.Chat(this);
+  /**
+   * Llama Stack Inference API for generating completions, chat completions, and embeddings.
+   *
+   * This API provides the raw interface to the underlying models. Three kinds of models are supported:
+   * - LLM models: these models generate "raw" and "chat" (conversational) completions.
+   * - Embedding models: these models generate embeddings to be used for semantic search.
+   * - Rerank models: these models reorder the documents based on their relevance to a query.
+   */
   completions: API.Completions = new API.Completions(this);
   vectorIo: API.VectorIo = new API.VectorIo(this);
   vectorStores: API.VectorStores = new API.VectorStores(this);
   models: API.Models = new API.Models(this);
+  /**
+   * Providers API for inspecting, listing, and modifying providers and their configurations.
+   */
   providers: API.Providers = new API.Providers(this);
+  /**
+   * APIs for inspecting the Llama Stack service, including health status, available API routes with methods and implementing providers.
+   */
   routes: API.Routes = new API.Routes(this);
+  /**
+   * OpenAI-compatible Moderations API.
+   */
   moderations: API.Moderations = new API.Moderations(this);
+  /**
+   * OpenAI-compatible Moderations API.
+   */
   safety: API.Safety = new API.Safety(this);
   shields: API.Shields = new API.Shields(this);
   scoring: API.Scoring = new API.Scoring(this);
   scoringFunctions: API.ScoringFunctions = new API.ScoringFunctions(this);
+  /**
+   * This API is used to upload documents that can be used with other Llama Stack APIs.
+   */
   files: API.Files = new API.Files(this);
+  /**
+   * The API is designed to allow use of openai client libraries for seamless integration.
+   *
+   * This API provides the following extensions:
+   *  - idempotent batch creation
+   *
+   * Note: This API is currently under active development and may undergo changes.
+   */
   batches: API.Batches = new API.Batches(this);
   alpha: API.Alpha = new API.Alpha(this);
   beta: API.Beta = new API.Beta(this);

@@ -11,6 +11,9 @@ import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import { OpenAICursorPage, type OpenAICursorPageParams } from '../../pagination';
 
+/**
+ * Protocol for conversation management operations.
+ */
 export class Items extends APIResource {
   /**
    * Create items in the conversation.

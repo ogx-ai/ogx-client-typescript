@@ -11,6 +11,9 @@ import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import { OpenAICursorPage, type OpenAICursorPageParams } from '../pagination';
 
+/**
+ * This API is used to upload documents that can be used with other Llama Stack APIs.
+ */
 export class Files extends APIResource {
   /**
    * Upload a file.

@@ -10,6 +10,9 @@ import { APIResource } from '../../../resource';
 import * as Core from '../../../core';
 import * as EvalAPI from './eval';
 
+/**
+ * Llama Stack Evaluation API for running evaluations on model and agent candidates.
+ */
 export class Jobs extends APIResource {
   /**
    * Get the result of a job.

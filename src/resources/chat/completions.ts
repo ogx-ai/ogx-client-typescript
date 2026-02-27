@@ -14,6 +14,14 @@ import * as CompletionsAPI from './completions';
 import * as ChatAPI from './chat';
 import { Stream } from '../../streaming';
 
+/**
+ * Llama Stack Inference API for generating completions, chat completions, and embeddings.
+ *
+ * This API provides the raw interface to the underlying models. Three kinds of models are supported:
+ * - LLM models: these models generate "raw" and "chat" (conversational) completions.
+ * - Embedding models: these models generate embeddings to be used for semantic search.
+ * - Rerank models: these models reorder the documents based on their relevance to a query.
+ */
 export class Completions extends APIResource {
   /**
    * Generate an OpenAI-compatible chat completion for the given messages using the
