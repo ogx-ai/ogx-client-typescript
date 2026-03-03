@@ -3,6 +3,9 @@ import { LlamaStackClientError } from './error';
 import { findDoubleNewlineIndex, LineDecoder } from './internal/decoders/line';
 import { ReadableStreamToAsyncIterable } from './internal/stream-utils';
 
+import { createResponseHeaders } from './core';
+import { APIError } from './error';
+
 type Bytes = string | ArrayBuffer | Uint8Array | Buffer | null | undefined;
 
 export type ServerSentEvent = {
@@ -32,12 +35,27 @@ export class Stream<Item> implements AsyncIterable<Item> {
       let done = false;
       try {
         for await (const sse of _iterSSEMessages(response, controller)) {
-          try {
-            yield JSON.parse(sse.data) as Item;
-          } catch (e) {
-            console.error(`Could not parse message into JSON:`, sse.data);
-            console.error(`From chunk:`, sse.raw);
-            throw e;
+          if (done) continue;
+
+          if (sse.data.startsWith('[DONE]')) {
+            done = true;
+            continue;
+          } else {
+            let data;
+
+            try {
+              data = JSON.parse(sse.data) as any;
+            } catch (e) {
+              console.error(`Could not parse message into JSON:`, sse.data);
+              console.error(`From chunk:`, sse.raw);
+              throw e;
+            }
+
+            if (data && data.error) {
+              throw new APIError(undefined, data.error, undefined, createResponseHeaders(response.headers));
+            }
+
+            yield data;
           }
         }
         done = true;

@@ -30,6 +30,28 @@ const client = new LlamaStackClient();
 const models = await client.models.list();
 ```
 
+## Streaming responses
+
+We provide support for streaming responses using Server Sent Events (SSE).
+
+```ts
+import LlamaStackClient from 'llama-stack-client';
+
+const client = new LlamaStackClient();
+
+const stream = await client.chat.completions.create({
+  messages: [{ content: 'string', role: 'user' }],
+  model: 'model',
+  stream: true,
+});
+for await (const chatCompletionChunk of stream) {
+  console.log(chatCompletionChunk.id);
+}
+```
+
+If you need to cancel a stream, you can `break` from the loop
+or call `stream.controller.abort()`.
+
 ### Request & Response types
 
 This library includes TypeScript definitions for all request params and response fields. You may import and use them like so:
