@@ -4011,6 +4011,8 @@ export interface ResponseCreateParamsBase {
    * window.
    */
   truncation?: 'auto' | 'disabled' | null;
+
+  [k: string]: unknown;
 }
 
 export namespace ResponseCreateParams {
@@ -4713,6 +4715,8 @@ export interface ResponseCreateParamsNonStreaming extends ResponseCreateParamsBa
    * Whether to stream the response.
    */
   stream?: false | null;
+
+  [k: string]: unknown;
 }
 
 export interface ResponseCreateParamsStreaming extends ResponseCreateParamsBase {
@@ -4720,6 +4724,8 @@ export interface ResponseCreateParamsStreaming extends ResponseCreateParamsBase 
    * Whether to stream the response.
    */
   stream: true;
+
+  [k: string]: unknown;
 }
 
 export interface ResponseListParams extends OpenAICursorPageParams {
