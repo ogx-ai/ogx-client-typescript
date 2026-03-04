@@ -874,6 +874,8 @@ export namespace CompletionRetrieveResponse {
      * List of tool calls. Each tool call is an OpenAIChatCompletionToolCall object.
      */
     tool_calls?: Array<OpenAIAssistantMessageParamOutput.ToolCall> | null;
+
+    [k: string]: unknown;
   }
 
   export namespace OpenAIAssistantMessageParamOutput {
@@ -1560,6 +1562,8 @@ export namespace CompletionListResponse {
        * List of tool calls. Each tool call is an OpenAIChatCompletionToolCall object.
        */
       tool_calls?: Array<OpenAIAssistantMessageParamOutput.ToolCall> | null;
+
+      [k: string]: unknown;
     }
 
     export namespace OpenAIAssistantMessageParamOutput {
@@ -2076,6 +2080,8 @@ export namespace CompletionCreateParams {
      * List of tool calls. Each tool call is an OpenAIChatCompletionToolCall object.
      */
     tool_calls?: Array<OpenAIAssistantMessageParamInput.ToolCall> | null;
+
+    [k: string]: unknown;
   }
 
   export namespace OpenAIAssistantMessageParamInput {
