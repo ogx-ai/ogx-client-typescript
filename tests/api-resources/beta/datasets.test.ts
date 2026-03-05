@@ -50,7 +50,7 @@ describe('resource datasets', () => {
 
   test('appendrows: only required params', async () => {
     const responsePromise = client.beta.datasets.appendrows('dataset_id', {
-      body_dataset_id: 'dataset_id',
+      dataset_id: 'dataset_id',
       rows: [{ foo: 'bar' }],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -64,7 +64,7 @@ describe('resource datasets', () => {
 
   test('appendrows: required and optional params', async () => {
     const response = await client.beta.datasets.appendrows('dataset_id', {
-      body_dataset_id: 'dataset_id',
+      dataset_id: 'dataset_id',
       rows: [{ foo: 'bar' }],
     });
   });
