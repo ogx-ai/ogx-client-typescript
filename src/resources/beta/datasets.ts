@@ -354,7 +354,7 @@ export interface DatasetAppendrowsParams {
   /**
    * The ID of the dataset to append the rows to.
    */
-  body_dataset_id: string;
+  dataset_id: string;
 
   /**
    * The rows to append to the dataset.
