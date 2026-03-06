@@ -107,6 +107,13 @@ export interface ModelRetrieveResponse {
   model_type?: 'llm' | 'embedding' | 'rerank';
 
   /**
+   * Enable model availability check during registration. When false (default),
+   * validation is deferred to runtime and model is preserved during provider
+   * refresh.
+   */
+  model_validation?: boolean | null;
+
+  /**
    * Unique identifier for this resource in the provider
    */
   provider_resource_id?: string | null;
@@ -144,6 +151,13 @@ export interface ModelRegisterResponse {
   model_type?: 'llm' | 'embedding' | 'rerank';
 
   /**
+   * Enable model availability check during registration. When false (default),
+   * validation is deferred to runtime and model is preserved during provider
+   * refresh.
+   */
+  model_validation?: boolean | null;
+
+  /**
    * Unique identifier for this resource in the provider
    */
   provider_resource_id?: string | null;
@@ -166,6 +180,13 @@ export interface ModelRegisterParams {
    * Enumeration of supported model types in Llama Stack.
    */
   model_type?: 'llm' | 'embedding' | 'rerank' | null;
+
+  /**
+   * Enable model availability check during registration. When false (default),
+   * validation is deferred to runtime and model is preserved during provider
+   * refresh.
+   */
+  model_validation?: boolean | null;
 
   /**
    * The identifier of the provider.
