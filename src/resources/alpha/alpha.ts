@@ -30,40 +30,20 @@ import {
   EvaluateResponse,
   Job,
 } from './eval/eval';
-import * as PostTrainingAPI from './post-training/post-training';
-import {
-  AlgorithmConfig,
-  ListPostTrainingJobsResponse,
-  PostTraining,
-  PostTrainingJob,
-  PostTrainingPreferenceOptimizeParams,
-  PostTrainingSupervisedFineTuneParams,
-} from './post-training/post-training';
 
 export class Alpha extends APIResource {
-  postTraining: PostTrainingAPI.PostTraining = new PostTrainingAPI.PostTraining(this._client);
   benchmarks: BenchmarksAPI.Benchmarks = new BenchmarksAPI.Benchmarks(this._client);
   eval: EvalAPI.Eval = new EvalAPI.Eval(this._client);
   admin: AdminAPI.Admin = new AdminAPI.Admin(this._client);
   inference: InferenceAPI.Inference = new InferenceAPI.Inference(this._client);
 }
 
-Alpha.PostTraining = PostTraining;
 Alpha.Benchmarks = Benchmarks;
 Alpha.Eval = Eval;
 Alpha.Admin = Admin;
 Alpha.Inference = Inference;
 
 export declare namespace Alpha {
-  export {
-    PostTraining as PostTraining,
-    type AlgorithmConfig as AlgorithmConfig,
-    type ListPostTrainingJobsResponse as ListPostTrainingJobsResponse,
-    type PostTrainingJob as PostTrainingJob,
-    type PostTrainingPreferenceOptimizeParams as PostTrainingPreferenceOptimizeParams,
-    type PostTrainingSupervisedFineTuneParams as PostTrainingSupervisedFineTuneParams,
-  };
-
   export {
     Benchmarks as Benchmarks,
     type Benchmark as Benchmark,

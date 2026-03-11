@@ -100,7 +100,7 @@ describe('resource datasets', () => {
 
   test('register: only required params', async () => {
     const responsePromise = client.beta.datasets.register({
-      purpose: 'post-training/messages',
+      purpose: 'eval/question-answer',
       source: { uri: 'uri', type: 'uri' },
     });
     const rawResponse = await responsePromise.asResponse();
@@ -114,7 +114,7 @@ describe('resource datasets', () => {
 
   test('register: required and optional params', async () => {
     const response = await client.beta.datasets.register({
-      purpose: 'post-training/messages',
+      purpose: 'eval/question-answer',
       source: { uri: 'uri', type: 'uri' },
       dataset_id: 'dataset_id',
       metadata: { foo: 'bar' },
