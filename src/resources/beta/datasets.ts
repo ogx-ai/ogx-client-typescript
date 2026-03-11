@@ -352,11 +352,6 @@ export namespace DatasetRegisterResponse {
 
 export interface DatasetAppendrowsParams {
   /**
-   * The ID of the dataset to append the rows to.
-   */
-  dataset_id: string;
-
-  /**
    * The rows to append to the dataset.
    */
   rows: Array<{ [key: string]: unknown }>;
