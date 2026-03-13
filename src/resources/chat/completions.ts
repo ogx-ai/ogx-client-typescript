@@ -106,6 +106,11 @@ export interface CompletionCreateResponse {
   service_tier?: string | null;
 
   /**
+   * System fingerprint for this completion.
+   */
+  system_fingerprint?: string | null;
+
+  /**
    * Token usage information for the completion.
    */
   usage?: CompletionCreateResponse.Usage | null;
@@ -132,10 +137,9 @@ export namespace CompletionCreateResponse {
     message: Choice.Message;
 
     /**
-     * The log probabilities for the tokens in the message from an OpenAI-compatible
-     * chat completion response.
+     * The log probabilities for the tokens in the message.
      */
-    logprobs?: Choice.Logprobs | null;
+    logprobs?: Choice.Logprobs;
   }
 
   export namespace Choice {
@@ -187,12 +191,12 @@ export namespace CompletionCreateResponse {
         /**
          * Arguments to pass to the function as a JSON string.
          */
-        arguments?: string | null;
+        arguments: string;
 
         /**
          * Name of the function to call.
          */
-        name?: string | null;
+        name: string;
       }
 
       /**
@@ -228,30 +232,29 @@ export namespace CompletionCreateResponse {
           /**
            * Arguments to pass to the function as a JSON string.
            */
-          arguments?: string | null;
+          arguments: string;
 
           /**
            * Name of the function to call.
            */
-          name?: string | null;
+          name: string;
         }
       }
     }
 
     /**
-     * The log probabilities for the tokens in the message from an OpenAI-compatible
-     * chat completion response.
+     * The log probabilities for the tokens in the message.
      */
     export interface Logprobs {
       /**
        * The log probabilities for the tokens in the message.
        */
-      content?: Array<Logprobs.Content> | null;
+      content?: Array<Logprobs.Content>;
 
       /**
        * The log probabilities for the refusal tokens.
        */
-      refusal?: Array<Logprobs.Refusal> | null;
+      refusal?: Array<Logprobs.Refusal>;
     }
 
     export namespace Logprobs {
@@ -451,6 +454,11 @@ export interface CompletionRetrieveResponse {
   service_tier?: string | null;
 
   /**
+   * System fingerprint for this completion.
+   */
+  system_fingerprint?: string;
+
+  /**
    * Token usage information for the completion.
    */
   usage?: CompletionRetrieveResponse.Usage;
@@ -477,10 +485,9 @@ export namespace CompletionRetrieveResponse {
     message: Choice.Message;
 
     /**
-     * The log probabilities for the tokens in the message from an OpenAI-compatible
-     * chat completion response.
+     * The log probabilities for the tokens in the message.
      */
-    logprobs?: Choice.Logprobs | null;
+    logprobs?: Choice.Logprobs;
   }
 
   export namespace Choice {
@@ -532,12 +539,12 @@ export namespace CompletionRetrieveResponse {
         /**
          * Arguments to pass to the function as a JSON string.
          */
-        arguments?: string | null;
+        arguments: string;
 
         /**
          * Name of the function to call.
          */
-        name?: string | null;
+        name: string;
       }
 
       /**
@@ -573,30 +580,29 @@ export namespace CompletionRetrieveResponse {
           /**
            * Arguments to pass to the function as a JSON string.
            */
-          arguments?: string | null;
+          arguments: string;
 
           /**
            * Name of the function to call.
            */
-          name?: string | null;
+          name: string;
         }
       }
     }
 
     /**
-     * The log probabilities for the tokens in the message from an OpenAI-compatible
-     * chat completion response.
+     * The log probabilities for the tokens in the message.
      */
     export interface Logprobs {
       /**
        * The log probabilities for the tokens in the message.
        */
-      content?: Array<Logprobs.Content> | null;
+      content?: Array<Logprobs.Content>;
 
       /**
        * The log probabilities for the refusal tokens.
        */
-      refusal?: Array<Logprobs.Refusal> | null;
+      refusal?: Array<Logprobs.Refusal>;
     }
 
     export namespace Logprobs {
@@ -927,12 +933,12 @@ export namespace CompletionRetrieveResponse {
         /**
          * Arguments to pass to the function as a JSON string.
          */
-        arguments?: string | null;
+        arguments: string;
 
         /**
          * Name of the function to call.
          */
-        name?: string | null;
+        name: string;
       }
     }
   }
@@ -1139,6 +1145,11 @@ export namespace CompletionListResponse {
     service_tier?: string | null;
 
     /**
+     * System fingerprint for this completion.
+     */
+    system_fingerprint?: string;
+
+    /**
      * Token usage information for the completion.
      */
     usage?: Data.Usage;
@@ -1165,10 +1176,9 @@ export namespace CompletionListResponse {
       message: Choice.Message;
 
       /**
-       * The log probabilities for the tokens in the message from an OpenAI-compatible
-       * chat completion response.
+       * The log probabilities for the tokens in the message.
        */
-      logprobs?: Choice.Logprobs | null;
+      logprobs?: Choice.Logprobs;
     }
 
     export namespace Choice {
@@ -1220,12 +1230,12 @@ export namespace CompletionListResponse {
           /**
            * Arguments to pass to the function as a JSON string.
            */
-          arguments?: string | null;
+          arguments: string;
 
           /**
            * Name of the function to call.
            */
-          name?: string | null;
+          name: string;
         }
 
         /**
@@ -1261,30 +1271,29 @@ export namespace CompletionListResponse {
             /**
              * Arguments to pass to the function as a JSON string.
              */
-            arguments?: string | null;
+            arguments: string;
 
             /**
              * Name of the function to call.
              */
-            name?: string | null;
+            name: string;
           }
         }
       }
 
       /**
-       * The log probabilities for the tokens in the message from an OpenAI-compatible
-       * chat completion response.
+       * The log probabilities for the tokens in the message.
        */
       export interface Logprobs {
         /**
          * The log probabilities for the tokens in the message.
          */
-        content?: Array<Logprobs.Content> | null;
+        content?: Array<Logprobs.Content>;
 
         /**
          * The log probabilities for the refusal tokens.
          */
-        refusal?: Array<Logprobs.Refusal> | null;
+        refusal?: Array<Logprobs.Refusal>;
       }
 
       export namespace Logprobs {
@@ -1615,12 +1624,12 @@ export namespace CompletionListResponse {
           /**
            * Arguments to pass to the function as a JSON string.
            */
-          arguments?: string | null;
+          arguments: string;
 
           /**
            * Name of the function to call.
            */
-          name?: string | null;
+          name: string;
         }
       }
     }
@@ -2133,12 +2142,12 @@ export namespace CompletionCreateParams {
         /**
          * Arguments to pass to the function as a JSON string.
          */
-        arguments?: string | null;
+        arguments: string;
 
         /**
          * Name of the function to call.
          */
-        name?: string | null;
+        name: string;
       }
     }
   }

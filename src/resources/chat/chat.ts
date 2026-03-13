@@ -58,6 +58,11 @@ export interface ChatCompletionChunk {
   service_tier?: string | null;
 
   /**
+   * System fingerprint for this completion chunk.
+   */
+  system_fingerprint?: string | null;
+
+  /**
    * Token usage information (typically included in final chunk with stream_options).
    */
   usage?: ChatCompletionChunk.Usage | null;
@@ -84,8 +89,7 @@ export namespace ChatCompletionChunk {
     finish_reason?: 'stop' | 'length' | 'tool_calls' | 'content_filter' | 'function_call' | null;
 
     /**
-     * The log probabilities for the tokens in the message from an OpenAI-compatible
-     * chat completion response.
+     * The log probabilities for the tokens in the message.
      */
     logprobs?: Choice.Logprobs | null;
   }
@@ -113,7 +117,7 @@ export namespace ChatCompletionChunk {
       /**
        * The role of the delta.
        */
-      role?: string | null;
+      role?: 'developer' | 'system' | 'user' | 'assistant' | 'tool' | null;
 
       /**
        * The tool calls of the delta.
@@ -155,30 +159,29 @@ export namespace ChatCompletionChunk {
           /**
            * Arguments to pass to the function as a JSON string.
            */
-          arguments?: string | null;
+          arguments: string;
 
           /**
            * Name of the function to call.
            */
-          name?: string | null;
+          name: string;
         }
       }
     }
 
     /**
-     * The log probabilities for the tokens in the message from an OpenAI-compatible
-     * chat completion response.
+     * The log probabilities for the tokens in the message.
      */
     export interface Logprobs {
       /**
        * The log probabilities for the tokens in the message.
        */
-      content?: Array<Logprobs.Content> | null;
+      content?: Array<Logprobs.Content>;
 
       /**
        * The log probabilities for the refusal tokens.
        */
-      refusal?: Array<Logprobs.Refusal> | null;
+      refusal?: Array<Logprobs.Refusal>;
     }
 
     export namespace Logprobs {

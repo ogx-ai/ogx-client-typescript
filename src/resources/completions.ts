@@ -113,12 +113,12 @@ export namespace CompletionCreateResponse {
       /**
        * The log probabilities for the tokens in the message.
        */
-      content?: Array<Logprobs.Content> | null;
+      content?: Array<Logprobs.Content>;
 
       /**
        * The log probabilities for the refusal tokens.
        */
-      refusal?: Array<Logprobs.Refusal> | null;
+      refusal?: Array<Logprobs.Refusal>;
     }
 
     export namespace Logprobs {

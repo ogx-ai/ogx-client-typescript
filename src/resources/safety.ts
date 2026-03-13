@@ -278,12 +278,12 @@ export namespace SafetyRunShieldParams {
         /**
          * Arguments to pass to the function as a JSON string.
          */
-        arguments?: string | null;
+        arguments: string;
 
         /**
          * Name of the function to call.
          */
-        name?: string | null;
+        name: string;
       }
     }
   }
