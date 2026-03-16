@@ -54,7 +54,7 @@ export class Files extends APIResource {
   /**
    * Retrieve file content
    */
-  content(fileId: string, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+  content(fileId: string, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.get(`/v1/files/${fileId}/content`, options);
   }
 }
@@ -101,11 +101,6 @@ export interface File {
   created_at: number;
 
   /**
-   * The Unix timestamp (in seconds) for when the file expires.
-   */
-  expires_at: number;
-
-  /**
    * The name of the file.
    */
   filename: string;
@@ -114,6 +109,11 @@ export interface File {
    * The intended purpose of the file.
    */
   purpose: 'assistants' | 'batch';
+
+  /**
+   * The Unix timestamp (in seconds) for when the file expires.
+   */
+  expires_at?: number | null;
 
   /**
    * The object type, which is always 'file'.
@@ -151,7 +151,7 @@ export interface ListFilesResponse {
   object?: 'list';
 }
 
-export type FileContentResponse = unknown;
+export type FileContentResponse = string;
 
 export interface FileCreateParams {
   /**
