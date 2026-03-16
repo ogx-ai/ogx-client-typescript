@@ -3960,6 +3960,11 @@ export interface ResponseCreateParamsBase {
   stream?: boolean | null;
 
   /**
+   * Options that control streamed response behavior.
+   */
+  stream_options?: ResponseCreateParams.StreamOptions | null;
+
+  /**
    * Sampling temperature.
    */
   temperature?: number | null;
@@ -4472,6 +4477,16 @@ export namespace ResponseCreateParams {
    */
   export interface Reasoning {
     effort?: 'none' | 'minimal' | 'low' | 'medium' | 'high' | 'xhigh' | null;
+  }
+
+  /**
+   * Options that control streamed response behavior.
+   */
+  export interface StreamOptions {
+    /**
+     * Whether to obfuscate sensitive information in streamed output.
+     */
+    include_obfuscation?: boolean;
   }
 
   /**
