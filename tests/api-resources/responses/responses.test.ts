@@ -51,6 +51,7 @@ describe('resource responses', () => {
       service_tier: 'auto',
       store: true,
       stream: false,
+      stream_options: { include_obfuscation: true },
       temperature: 0,
       text: {
         format: {
