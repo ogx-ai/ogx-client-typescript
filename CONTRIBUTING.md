@@ -70,7 +70,7 @@ $ pnpm link --global llama-stack-client
 
 ## Running tests
 
-Most tests require you to [set up a mock server](https://github.com/stoplightio/prism) against the OpenAPI spec to run the tests.
+Most tests require you to [set up a mock server](https://github.com/dgellow/steady) against the OpenAPI spec to run the tests.
 
 ```sh
 $ npx @stainless-api/prism-cli@5.15.0 prism mock path/to/your/openapi.yml
