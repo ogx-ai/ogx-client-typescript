@@ -104,22 +104,6 @@ export {
   type ShieldRegisterParams,
 } from './shields';
 export {
-  ToolRuntime,
-  type ToolDef,
-  type ToolInvocationResult,
-  type ToolRuntimeListToolsResponse,
-  type ToolRuntimeInvokeToolParams,
-  type ToolRuntimeListToolsParams,
-} from './tool-runtime';
-export {
-  Toolgroups,
-  type ListToolGroupsResponse,
-  type ToolGroup,
-  type ToolgroupListResponse,
-  type ToolgroupRegisterParams,
-} from './toolgroups';
-export { Tools, type ToolListResponse, type ToolListParams } from './tools';
-export {
   VectorIo,
   type QueryChunksResponse,
   type VectorIoInsertParams,

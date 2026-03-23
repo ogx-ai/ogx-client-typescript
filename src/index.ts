@@ -75,22 +75,6 @@ import {
   Shields,
 } from './resources/shields';
 import {
-  ToolDef,
-  ToolInvocationResult,
-  ToolRuntime,
-  ToolRuntimeInvokeToolParams,
-  ToolRuntimeListToolsParams,
-  ToolRuntimeListToolsResponse,
-} from './resources/tool-runtime';
-import {
-  ListToolGroupsResponse,
-  ToolGroup,
-  ToolgroupListResponse,
-  ToolgroupRegisterParams,
-  Toolgroups,
-} from './resources/toolgroups';
-import { ToolListParams, ToolListResponse, Tools } from './resources/tools';
-import {
   QueryChunksResponse,
   VectorIo,
   VectorIoInsertParams,
@@ -260,9 +244,6 @@ export class LlamaStackClient extends Core.APIClient {
     this.apiKey = apiKey;
   }
 
-  toolgroups: API.Toolgroups = new API.Toolgroups(this);
-  tools: API.Tools = new API.Tools(this);
-  toolRuntime: API.ToolRuntime = new API.ToolRuntime(this);
   /**
    * APIs for creating and interacting with agentic systems.
    */
@@ -386,9 +367,6 @@ export class LlamaStackClient extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
-LlamaStackClient.Toolgroups = Toolgroups;
-LlamaStackClient.Tools = Tools;
-LlamaStackClient.ToolRuntime = ToolRuntime;
 LlamaStackClient.Responses = Responses;
 LlamaStackClient.ResponseListResponsesOpenAICursorPage = ResponseListResponsesOpenAICursorPage;
 LlamaStackClient.Prompts = Prompts;
@@ -428,25 +406,6 @@ export declare namespace LlamaStackClient {
   export {
     type OpenAICursorPageParams as OpenAICursorPageParams,
     type OpenAICursorPageResponse as OpenAICursorPageResponse,
-  };
-
-  export {
-    Toolgroups as Toolgroups,
-    type ListToolGroupsResponse as ListToolGroupsResponse,
-    type ToolGroup as ToolGroup,
-    type ToolgroupListResponse as ToolgroupListResponse,
-    type ToolgroupRegisterParams as ToolgroupRegisterParams,
-  };
-
-  export { Tools as Tools, type ToolListResponse as ToolListResponse, type ToolListParams as ToolListParams };
-
-  export {
-    ToolRuntime as ToolRuntime,
-    type ToolDef as ToolDef,
-    type ToolInvocationResult as ToolInvocationResult,
-    type ToolRuntimeListToolsResponse as ToolRuntimeListToolsResponse,
-    type ToolRuntimeInvokeToolParams as ToolRuntimeInvokeToolParams,
-    type ToolRuntimeListToolsParams as ToolRuntimeListToolsParams,
   };
 
   export {

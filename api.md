@@ -16,45 +16,6 @@ Types:
 - <code><a href="./src/resources/shared.ts">SystemMessage</a></code>
 - <code><a href="./src/resources/shared.ts">VersionInfo</a></code>
 
-# Toolgroups
-
-Types:
-
-- <code><a href="./src/resources/toolgroups.ts">ListToolGroupsResponse</a></code>
-- <code><a href="./src/resources/toolgroups.ts">ToolGroup</a></code>
-- <code><a href="./src/resources/toolgroups.ts">ToolgroupListResponse</a></code>
-
-Methods:
-
-- <code title="get /v1/toolgroups">client.toolgroups.<a href="./src/resources/toolgroups.ts">list</a>() -> ToolgroupListResponse</code>
-- <code title="get /v1/toolgroups/{toolgroup_id}">client.toolgroups.<a href="./src/resources/toolgroups.ts">get</a>(toolgroupId) -> ToolGroup</code>
-- <code title="post /v1/toolgroups">client.toolgroups.<a href="./src/resources/toolgroups.ts">register</a>({ ...params }) -> void</code>
-- <code title="delete /v1/toolgroups/{toolgroup_id}">client.toolgroups.<a href="./src/resources/toolgroups.ts">unregister</a>(toolgroupId) -> void</code>
-
-# Tools
-
-Types:
-
-- <code><a href="./src/resources/tools.ts">ToolListResponse</a></code>
-
-Methods:
-
-- <code title="get /v1/tools">client.tools.<a href="./src/resources/tools.ts">list</a>({ ...params }) -> ToolListResponse</code>
-- <code title="get /v1/tools/{tool_name}">client.tools.<a href="./src/resources/tools.ts">get</a>(toolName) -> ToolDef</code>
-
-# ToolRuntime
-
-Types:
-
-- <code><a href="./src/resources/tool-runtime.ts">ToolDef</a></code>
-- <code><a href="./src/resources/tool-runtime.ts">ToolInvocationResult</a></code>
-- <code><a href="./src/resources/tool-runtime.ts">ToolRuntimeListToolsResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/tool-runtime/invoke">client.toolRuntime.<a href="./src/resources/tool-runtime.ts">invokeTool</a>({ ...params }) -> ToolInvocationResult</code>
-- <code title="get /v1/tool-runtime/list-tools">client.toolRuntime.<a href="./src/resources/tool-runtime.ts">listTools</a>({ ...params }) -> ToolRuntimeListToolsResponse</code>
-
 # Responses
 
 Types:
