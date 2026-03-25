@@ -245,9 +245,6 @@ export class LlamaStackClient extends Core.APIClient {
     this.apiKey = apiKey;
   }
 
-  /**
-   * APIs for creating and interacting with agentic systems.
-   */
   responses: API.Responses = new API.Responses(this);
   /**
    * Protocol for prompt management operations.
