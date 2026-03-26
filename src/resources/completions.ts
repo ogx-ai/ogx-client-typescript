@@ -98,27 +98,25 @@ export namespace CompletionCreateResponse {
     text: string;
 
     /**
-     * The log probabilities for the tokens in the message from an OpenAI-compatible
-     * chat completion response.
+     * The log probabilities for the tokens in the choice.
      */
     logprobs?: Choice.Logprobs | null;
   }
 
   export namespace Choice {
     /**
-     * The log probabilities for the tokens in the message from an OpenAI-compatible
-     * chat completion response.
+     * The log probabilities for the tokens in the choice.
      */
     export interface Logprobs {
       /**
        * The log probabilities for the tokens in the message.
        */
-      content?: Array<Logprobs.Content>;
+      content?: Array<Logprobs.Content> | null;
 
       /**
        * The log probabilities for the refusal tokens.
        */
-      refusal?: Array<Logprobs.Refusal>;
+      refusal?: Array<Logprobs.Refusal> | null;
     }
 
     export namespace Logprobs {
