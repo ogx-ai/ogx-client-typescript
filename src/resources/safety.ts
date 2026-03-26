@@ -252,27 +252,22 @@ export namespace SafetyRunShieldParams {
       /**
        * Unique identifier for the tool call.
        */
-      id?: string | null;
+      id: string;
 
       /**
-       * Function call details for OpenAI-compatible tool calls.
+       * Function call details.
        */
-      function?: ToolCall.Function | null;
-
-      /**
-       * Index of the tool call in the list.
-       */
-      index?: number | null;
+      function: ToolCall.Function;
 
       /**
        * Must be 'function' to identify this as a function call.
        */
-      type?: 'function';
+      type: 'function';
     }
 
     export namespace ToolCall {
       /**
-       * Function call details for OpenAI-compatible tool calls.
+       * Function call details.
        */
       export interface Function {
         /**

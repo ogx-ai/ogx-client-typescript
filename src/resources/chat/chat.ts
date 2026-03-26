@@ -91,7 +91,7 @@ export namespace ChatCompletionChunk {
     /**
      * The log probabilities for the tokens in the message.
      */
-    logprobs?: Choice.Logprobs | null;
+    logprobs?: Choice.Logprobs;
   }
 
   export namespace Choice {
@@ -133,27 +133,22 @@ export namespace ChatCompletionChunk {
         /**
          * Unique identifier for the tool call.
          */
-        id?: string | null;
+        id: string;
 
         /**
-         * Function call details for OpenAI-compatible tool calls.
+         * Function call details.
          */
-        function?: ToolCall.Function | null;
-
-        /**
-         * Index of the tool call in the list.
-         */
-        index?: number | null;
+        function: ToolCall.Function;
 
         /**
          * Must be 'function' to identify this as a function call.
          */
-        type?: 'function';
+        type: 'function';
       }
 
       export namespace ToolCall {
         /**
-         * Function call details for OpenAI-compatible tool calls.
+         * Function call details.
          */
         export interface Function {
           /**
@@ -176,12 +171,12 @@ export namespace ChatCompletionChunk {
       /**
        * The log probabilities for the tokens in the message.
        */
-      content?: Array<Logprobs.Content>;
+      content?: Array<Logprobs.Content> | null;
 
       /**
        * The log probabilities for the refusal tokens.
        */
-      refusal?: Array<Logprobs.Refusal>;
+      refusal?: Array<Logprobs.Refusal> | null;
     }
 
     export namespace Logprobs {
