@@ -443,6 +443,9 @@ export namespace CompletionCreateResponse {
   }
 }
 
+/**
+ * Chat completion response extended with the original input messages.
+ */
 export interface CompletionRetrieveResponse {
   /**
    * The ID of the chat completion.
@@ -844,6 +847,9 @@ export namespace CompletionRetrieveResponse {
       }
     }
 
+    /**
+     * File content part for OpenAI-compatible chat completion messages.
+     */
     export interface OpenAIFile {
       /**
        * File specification.
@@ -1161,6 +1167,9 @@ export interface CompletionListResponse {
 }
 
 export namespace CompletionListResponse {
+  /**
+   * Chat completion response extended with the original input messages.
+   */
   export interface Data {
     /**
      * The ID of the chat completion.
@@ -1562,6 +1571,9 @@ export namespace CompletionListResponse {
         }
       }
 
+      /**
+       * File content part for OpenAI-compatible chat completion messages.
+       */
       export interface OpenAIFile {
         /**
          * File specification.
@@ -2075,6 +2087,9 @@ export namespace CompletionCreateParams {
       }
     }
 
+    /**
+     * File content part for OpenAI-compatible chat completion messages.
+     */
     export interface OpenAIFile {
       /**
        * File specification.
