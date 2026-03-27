@@ -201,6 +201,9 @@ export namespace ConversationCreateParams {
       type?: 'input_file';
     }
 
+    /**
+     * Text content within an output message of an OpenAI response.
+     */
     export interface OpenAIResponseOutputMessageContentOutputTextInput {
       text: string;
 
@@ -245,6 +248,9 @@ export namespace ConversationCreateParams {
         type?: 'url_citation';
       }
 
+      /**
+       * Container file citation annotation referencing a file within a container.
+       */
       export interface OpenAIResponseAnnotationContainerFileCitation {
         container_id: string;
 
@@ -259,6 +265,9 @@ export namespace ConversationCreateParams {
         type?: 'container_file_citation';
       }
 
+      /**
+       * File path annotation referencing a generated file in response content.
+       */
       export interface OpenAIResponseAnnotationFilePath {
         file_id: string;
 

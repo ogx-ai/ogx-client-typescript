@@ -162,7 +162,7 @@ export interface ResponseObject {
   text?: ResponseObject.Text;
 
   /**
-   * Constrains the tools available to the model to a pre-defined set.
+   * Enumeration of simple tool choice modes for response generation.
    */
   tool_choice?:
     | 'auto'
@@ -261,6 +261,9 @@ export namespace ResponseObject {
       type?: 'input_file';
     }
 
+    /**
+     * Text content within an output message of an OpenAI response.
+     */
     export interface OpenAIResponseOutputMessageContentOutputTextOutput {
       text: string;
 
@@ -305,6 +308,9 @@ export namespace ResponseObject {
         type?: 'url_citation';
       }
 
+      /**
+       * Container file citation annotation referencing a file within a container.
+       */
       export interface OpenAIResponseAnnotationContainerFileCitation {
         container_id: string;
 
@@ -319,6 +325,9 @@ export namespace ResponseObject {
         type?: 'container_file_citation';
       }
 
+      /**
+       * File path annotation referencing a generated file in response content.
+       */
       export interface OpenAIResponseAnnotationFilePath {
         file_id: string;
 
@@ -998,6 +1007,9 @@ export namespace ResponseObjectStream {
         type?: 'input_file';
       }
 
+      /**
+       * Text content within an output message of an OpenAI response.
+       */
       export interface OpenAIResponseOutputMessageContentOutputText {
         text: string;
 
@@ -1042,6 +1054,9 @@ export namespace ResponseObjectStream {
           type?: 'url_citation';
         }
 
+        /**
+         * Container file citation annotation referencing a file within a container.
+         */
         export interface OpenAIResponseAnnotationContainerFileCitation {
           container_id: string;
 
@@ -1056,6 +1071,9 @@ export namespace ResponseObjectStream {
           type?: 'container_file_citation';
         }
 
+        /**
+         * File path annotation referencing a generated file in response content.
+         */
         export interface OpenAIResponseAnnotationFilePath {
           file_id: string;
 
@@ -1338,6 +1356,9 @@ export namespace ResponseObjectStream {
         type?: 'input_file';
       }
 
+      /**
+       * Text content within an output message of an OpenAI response.
+       */
       export interface OpenAIResponseOutputMessageContentOutputText {
         text: string;
 
@@ -1382,6 +1403,9 @@ export namespace ResponseObjectStream {
           type?: 'url_citation';
         }
 
+        /**
+         * Container file citation annotation referencing a file within a container.
+         */
         export interface OpenAIResponseAnnotationContainerFileCitation {
           container_id: string;
 
@@ -1396,6 +1420,9 @@ export namespace ResponseObjectStream {
           type?: 'container_file_citation';
         }
 
+        /**
+         * File path annotation referencing a generated file in response content.
+         */
         export interface OpenAIResponseAnnotationFilePath {
           file_id: string;
 
@@ -1715,6 +1742,9 @@ export namespace ResponseObjectStream {
     type?: 'response.web_search_call.in_progress';
   }
 
+  /**
+   * Streaming event for web search calls currently searching.
+   */
   export interface OpenAIResponseObjectStreamResponseWebSearchCallSearching {
     item_id: string;
 
@@ -1738,24 +1768,36 @@ export namespace ResponseObjectStream {
     type?: 'response.web_search_call.completed';
   }
 
+  /**
+   * Streaming event for MCP list tools operation in progress.
+   */
   export interface OpenAIResponseObjectStreamResponseMcpListToolsInProgress {
     sequence_number: number;
 
     type?: 'response.mcp_list_tools.in_progress';
   }
 
+  /**
+   * Streaming event for a failed MCP list tools operation.
+   */
   export interface OpenAIResponseObjectStreamResponseMcpListToolsFailed {
     sequence_number: number;
 
     type?: 'response.mcp_list_tools.failed';
   }
 
+  /**
+   * Streaming event for a completed MCP list tools operation.
+   */
   export interface OpenAIResponseObjectStreamResponseMcpListToolsCompleted {
     sequence_number: number;
 
     type?: 'response.mcp_list_tools.completed';
   }
 
+  /**
+   * Streaming event for incremental MCP call argument updates.
+   */
   export interface OpenAIResponseObjectStreamResponseMcpCallArgumentsDelta {
     delta: string;
 
@@ -1768,6 +1810,9 @@ export namespace ResponseObjectStream {
     type?: 'response.mcp_call.arguments.delta';
   }
 
+  /**
+   * Streaming event for completed MCP call arguments.
+   */
   export interface OpenAIResponseObjectStreamResponseMcpCallArgumentsDone {
     arguments: string;
 
@@ -1884,6 +1929,9 @@ export namespace ResponseObjectStream {
         type?: 'url_citation';
       }
 
+      /**
+       * Container file citation annotation referencing a file within a container.
+       */
       export interface OpenAIResponseAnnotationContainerFileCitation {
         container_id: string;
 
@@ -1898,6 +1946,9 @@ export namespace ResponseObjectStream {
         type?: 'container_file_citation';
       }
 
+      /**
+       * File path annotation referencing a generated file in response content.
+       */
       export interface OpenAIResponseAnnotationFilePath {
         file_id: string;
 
@@ -2048,6 +2099,9 @@ export namespace ResponseObjectStream {
         type?: 'url_citation';
       }
 
+      /**
+       * Container file citation annotation referencing a file within a container.
+       */
       export interface OpenAIResponseAnnotationContainerFileCitation {
         container_id: string;
 
@@ -2062,6 +2116,9 @@ export namespace ResponseObjectStream {
         type?: 'container_file_citation';
       }
 
+      /**
+       * File path annotation referencing a generated file in response content.
+       */
       export interface OpenAIResponseAnnotationFilePath {
         file_id: string;
 
@@ -2358,6 +2415,9 @@ export namespace ResponseObjectStream {
       type?: 'url_citation';
     }
 
+    /**
+     * Container file citation annotation referencing a file within a container.
+     */
     export interface OpenAIResponseAnnotationContainerFileCitation {
       container_id: string;
 
@@ -2372,6 +2432,9 @@ export namespace ResponseObjectStream {
       type?: 'container_file_citation';
     }
 
+    /**
+     * File path annotation referencing a generated file in response content.
+     */
     export interface OpenAIResponseAnnotationFilePath {
       file_id: string;
 
@@ -2558,7 +2621,7 @@ export interface ResponseListResponse {
   text?: ResponseListResponse.Text;
 
   /**
-   * Constrains the tools available to the model to a pre-defined set.
+   * Enumeration of simple tool choice modes for response generation.
    */
   tool_choice?:
     | 'auto'
@@ -2657,6 +2720,9 @@ export namespace ResponseListResponse {
       type?: 'input_file';
     }
 
+    /**
+     * Text content within an output message of an OpenAI response.
+     */
     export interface OpenAIResponseOutputMessageContentOutputTextOutput {
       text: string;
 
@@ -2701,6 +2767,9 @@ export namespace ResponseListResponse {
         type?: 'url_citation';
       }
 
+      /**
+       * Container file citation annotation referencing a file within a container.
+       */
       export interface OpenAIResponseAnnotationContainerFileCitation {
         container_id: string;
 
@@ -2715,6 +2784,9 @@ export namespace ResponseListResponse {
         type?: 'container_file_citation';
       }
 
+      /**
+       * File path annotation referencing a generated file in response content.
+       */
       export interface OpenAIResponseAnnotationFilePath {
         file_id: string;
 
@@ -3044,6 +3116,9 @@ export namespace ResponseListResponse {
       type?: 'input_file';
     }
 
+    /**
+     * Text content within an output message of an OpenAI response.
+     */
     export interface OpenAIResponseOutputMessageContentOutputTextOutput {
       text: string;
 
@@ -3088,6 +3163,9 @@ export namespace ResponseListResponse {
         type?: 'url_citation';
       }
 
+      /**
+       * Container file citation annotation referencing a file within a container.
+       */
       export interface OpenAIResponseAnnotationContainerFileCitation {
         container_id: string;
 
@@ -3102,6 +3180,9 @@ export namespace ResponseListResponse {
         type?: 'container_file_citation';
       }
 
+      /**
+       * File path annotation referencing a generated file in response content.
+       */
       export interface OpenAIResponseAnnotationFilePath {
         file_id: string;
 
@@ -3235,6 +3316,9 @@ export namespace ResponseListResponse {
       type?: 'input_file';
     }
 
+    /**
+     * Text content within an output message of an OpenAI response.
+     */
     export interface OpenAIResponseOutputMessageContentOutputTextOutput {
       text: string;
 
@@ -3279,6 +3363,9 @@ export namespace ResponseListResponse {
         type?: 'url_citation';
       }
 
+      /**
+       * Container file citation annotation referencing a file within a container.
+       */
       export interface OpenAIResponseAnnotationContainerFileCitation {
         container_id: string;
 
@@ -3293,6 +3380,9 @@ export namespace ResponseListResponse {
         type?: 'container_file_citation';
       }
 
+      /**
+       * File path annotation referencing a generated file in response content.
+       */
       export interface OpenAIResponseAnnotationFilePath {
         file_id: string;
 
@@ -4083,6 +4173,9 @@ export namespace ResponseCreateParams {
       type?: 'input_file';
     }
 
+    /**
+     * Text content within an output message of an OpenAI response.
+     */
     export interface OpenAIResponseOutputMessageContentOutputTextInput {
       text: string;
 
@@ -4127,6 +4220,9 @@ export namespace ResponseCreateParams {
         type?: 'url_citation';
       }
 
+      /**
+       * Container file citation annotation referencing a file within a container.
+       */
       export interface OpenAIResponseAnnotationContainerFileCitation {
         container_id: string;
 
@@ -4141,6 +4237,9 @@ export namespace ResponseCreateParams {
         type?: 'container_file_citation';
       }
 
+      /**
+       * File path annotation referencing a generated file in response content.
+       */
       export interface OpenAIResponseAnnotationFilePath {
         file_id: string;
 

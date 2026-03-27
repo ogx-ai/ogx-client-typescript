@@ -125,6 +125,9 @@ export namespace SafetyRunShieldParams {
       }
     }
 
+    /**
+     * File content part for OpenAI-compatible chat completion messages.
+     */
     export interface OpenAIFile {
       /**
        * File specification.
