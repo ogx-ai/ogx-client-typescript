@@ -94,8 +94,6 @@ import {
   ListModelsResponse,
   Model,
   ModelListResponse,
-  ModelRegisterParams,
-  ModelRegisterResponse,
   ModelRetrieveResponse,
   Models,
 } from './resources/models/models';
@@ -481,8 +479,6 @@ export declare namespace LlamaStackClient {
     type Model as Model,
     type ModelRetrieveResponse as ModelRetrieveResponse,
     type ModelListResponse as ModelListResponse,
-    type ModelRegisterResponse as ModelRegisterResponse,
-    type ModelRegisterParams as ModelRegisterParams,
   };
 
   export { Providers as Providers, type ProviderListResponse as ProviderListResponse };

@@ -12,7 +12,5 @@ export {
   type Model,
   type ModelRetrieveResponse,
   type ModelListResponse,
-  type ModelRegisterResponse,
-  type ModelRegisterParams,
 } from './models';
 export { OpenAI } from './openai';

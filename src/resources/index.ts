@@ -52,8 +52,6 @@ export {
   type Model,
   type ModelRetrieveResponse,
   type ModelListResponse,
-  type ModelRegisterResponse,
-  type ModelRegisterParams,
 } from './models/models';
 export { Moderations, type CreateResponse, type ModerationCreateParams } from './moderations';
 export {

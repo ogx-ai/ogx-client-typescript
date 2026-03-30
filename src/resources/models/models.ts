@@ -29,27 +29,6 @@ export class Models extends APIResource {
       this._client.get('/v1/models', options) as Core.APIPromise<{ data: ModelListResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
-
-  /**
-   * Register a model.
-   *
-   * @deprecated
-   */
-  register(body: ModelRegisterParams, options?: Core.RequestOptions): Core.APIPromise<ModelRegisterResponse> {
-    return this._client.post('/v1/models', { body, ...options });
-  }
-
-  /**
-   * Unregister a model.
-   *
-   * @deprecated
-   */
-  unregister(modelId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/v1/models/${modelId}`, {
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
 }
 
 /**
@@ -126,79 +105,6 @@ export interface ModelRetrieveResponse {
  */
 export type ModelListResponse = Array<Model>;
 
-/**
- * A model resource representing an AI model registered in Llama Stack.
- */
-export interface ModelRegisterResponse {
-  /**
-   * Unique identifier for this resource in llama stack
-   */
-  identifier: string;
-
-  /**
-   * ID of the provider that owns this resource
-   */
-  provider_id: string;
-
-  /**
-   * Any additional metadata for this model
-   */
-  metadata?: { [key: string]: unknown };
-
-  /**
-   * Enumeration of supported model types in Llama Stack.
-   */
-  model_type?: 'llm' | 'embedding' | 'rerank';
-
-  /**
-   * Enable model availability check during registration. When false (default),
-   * validation is deferred to runtime and model is preserved during provider
-   * refresh.
-   */
-  model_validation?: boolean | null;
-
-  /**
-   * Unique identifier for this resource in the provider
-   */
-  provider_resource_id?: string | null;
-
-  type?: 'model';
-}
-
-export interface ModelRegisterParams {
-  /**
-   * The identifier of the model to register.
-   */
-  model_id: string;
-
-  /**
-   * Any additional metadata for this model.
-   */
-  metadata?: { [key: string]: unknown } | null;
-
-  /**
-   * Enumeration of supported model types in Llama Stack.
-   */
-  model_type?: 'llm' | 'embedding' | 'rerank' | null;
-
-  /**
-   * Enable model availability check during registration. When false (default),
-   * validation is deferred to runtime and model is preserved during provider
-   * refresh.
-   */
-  model_validation?: boolean | null;
-
-  /**
-   * The identifier of the provider.
-   */
-  provider_id?: string | null;
-
-  /**
-   * The identifier of the model in the provider.
-   */
-  provider_model_id?: string | null;
-}
-
 Models.OpenAI = OpenAI;
 
 export declare namespace Models {
@@ -207,8 +113,6 @@ export declare namespace Models {
     type Model as Model,
     type ModelRetrieveResponse as ModelRetrieveResponse,
     type ModelListResponse as ModelListResponse,
-    type ModelRegisterResponse as ModelRegisterResponse,
-    type ModelRegisterParams as ModelRegisterParams,
   };
 
   export { OpenAI as OpenAI };
