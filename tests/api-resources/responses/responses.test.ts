@@ -46,7 +46,7 @@ describe('resource responses', () => {
         version: 'version',
       },
       prompt_cache_key: 'prompt_cache_key',
-      reasoning: { effort: 'none' },
+      reasoning: { effort: 'none', summary: 'auto' },
       safety_identifier: 'safety_identifier',
       service_tier: 'auto',
       store: true,

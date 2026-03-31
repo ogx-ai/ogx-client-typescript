@@ -98,6 +98,7 @@ export interface ResponseObject {
     | ResponseObject.OpenAIResponseOutputMessageMcpCall
     | ResponseObject.OpenAIResponseOutputMessageMcpListTools
     | ResponseObject.OpenAIResponseMcpApprovalRequest
+    | ResponseObject.OpenAIResponseOutputMessageReasoningItem
   >;
 
   status: string;
@@ -517,6 +518,68 @@ export namespace ResponseObject {
   }
 
   /**
+   * Reasoning output from the model, representing the model's thinking process.
+   */
+  export interface OpenAIResponseOutputMessageReasoningItem {
+    /**
+     * Unique identifier for the reasoning output item.
+     */
+    id: string;
+
+    /**
+     * Summary of the reasoning output.
+     */
+    summary: Array<OpenAIResponseOutputMessageReasoningItem.Summary>;
+
+    /**
+     * The reasoning content from the model.
+     */
+    content?: Array<OpenAIResponseOutputMessageReasoningItem.Content> | null;
+
+    /**
+     * The status of the reasoning output.
+     */
+    status?: 'in_progress' | 'completed' | 'incomplete' | null;
+
+    /**
+     * The type identifier, always 'reasoning'.
+     */
+    type?: 'reasoning';
+  }
+
+  export namespace OpenAIResponseOutputMessageReasoningItem {
+    /**
+     * A summary of reasoning output from the model.
+     */
+    export interface Summary {
+      /**
+       * The summary text of the reasoning output.
+       */
+      text: string;
+
+      /**
+       * The type identifier, always 'summary_text'.
+       */
+      type?: 'summary_text';
+    }
+
+    /**
+     * Reasoning text from the model.
+     */
+    export interface Content {
+      /**
+       * The reasoning text content from the model.
+       */
+      text: string;
+
+      /**
+       * The type identifier, always 'reasoning_text'.
+       */
+      type?: 'reasoning_text';
+    }
+  }
+
+  /**
    * Error details for failed OpenAI response requests.
    */
   export interface Error {
@@ -594,6 +657,11 @@ export namespace ResponseObject {
    */
   export interface Reasoning {
     effort?: 'none' | 'minimal' | 'low' | 'medium' | 'high' | 'xhigh' | null;
+
+    /**
+     * Summary mode for reasoning output. One of 'auto', 'concise', or 'detailed'.
+     */
+    summary?: 'auto' | 'concise' | 'detailed' | null;
   }
 
   /**
@@ -930,7 +998,8 @@ export namespace ResponseObjectStream {
       | OpenAIResponseObjectStreamResponseOutputItemAdded.OpenAIResponseOutputMessageFunctionToolCall
       | OpenAIResponseObjectStreamResponseOutputItemAdded.OpenAIResponseOutputMessageMcpCall
       | OpenAIResponseObjectStreamResponseOutputItemAdded.OpenAIResponseOutputMessageMcpListTools
-      | OpenAIResponseObjectStreamResponseOutputItemAdded.OpenAIResponseMcpApprovalRequest;
+      | OpenAIResponseObjectStreamResponseOutputItemAdded.OpenAIResponseMcpApprovalRequest
+      | OpenAIResponseObjectStreamResponseOutputItemAdded.OpenAIResponseOutputMessageReasoningItem;
 
     output_index: number;
 
@@ -1261,6 +1330,68 @@ export namespace ResponseObjectStream {
 
       type?: 'mcp_approval_request';
     }
+
+    /**
+     * Reasoning output from the model, representing the model's thinking process.
+     */
+    export interface OpenAIResponseOutputMessageReasoningItem {
+      /**
+       * Unique identifier for the reasoning output item.
+       */
+      id: string;
+
+      /**
+       * Summary of the reasoning output.
+       */
+      summary: Array<OpenAIResponseOutputMessageReasoningItem.Summary>;
+
+      /**
+       * The reasoning content from the model.
+       */
+      content?: Array<OpenAIResponseOutputMessageReasoningItem.Content> | null;
+
+      /**
+       * The status of the reasoning output.
+       */
+      status?: 'in_progress' | 'completed' | 'incomplete' | null;
+
+      /**
+       * The type identifier, always 'reasoning'.
+       */
+      type?: 'reasoning';
+    }
+
+    export namespace OpenAIResponseOutputMessageReasoningItem {
+      /**
+       * A summary of reasoning output from the model.
+       */
+      export interface Summary {
+        /**
+         * The summary text of the reasoning output.
+         */
+        text: string;
+
+        /**
+         * The type identifier, always 'summary_text'.
+         */
+        type?: 'summary_text';
+      }
+
+      /**
+       * Reasoning text from the model.
+       */
+      export interface Content {
+        /**
+         * The reasoning text content from the model.
+         */
+        text: string;
+
+        /**
+         * The type identifier, always 'reasoning_text'.
+         */
+        type?: 'reasoning_text';
+      }
+    }
   }
 
   /**
@@ -1279,7 +1410,8 @@ export namespace ResponseObjectStream {
       | OpenAIResponseObjectStreamResponseOutputItemDone.OpenAIResponseOutputMessageFunctionToolCall
       | OpenAIResponseObjectStreamResponseOutputItemDone.OpenAIResponseOutputMessageMcpCall
       | OpenAIResponseObjectStreamResponseOutputItemDone.OpenAIResponseOutputMessageMcpListTools
-      | OpenAIResponseObjectStreamResponseOutputItemDone.OpenAIResponseMcpApprovalRequest;
+      | OpenAIResponseObjectStreamResponseOutputItemDone.OpenAIResponseMcpApprovalRequest
+      | OpenAIResponseObjectStreamResponseOutputItemDone.OpenAIResponseOutputMessageReasoningItem;
 
     output_index: number;
 
@@ -1609,6 +1741,68 @@ export namespace ResponseObjectStream {
       server_label: string;
 
       type?: 'mcp_approval_request';
+    }
+
+    /**
+     * Reasoning output from the model, representing the model's thinking process.
+     */
+    export interface OpenAIResponseOutputMessageReasoningItem {
+      /**
+       * Unique identifier for the reasoning output item.
+       */
+      id: string;
+
+      /**
+       * Summary of the reasoning output.
+       */
+      summary: Array<OpenAIResponseOutputMessageReasoningItem.Summary>;
+
+      /**
+       * The reasoning content from the model.
+       */
+      content?: Array<OpenAIResponseOutputMessageReasoningItem.Content> | null;
+
+      /**
+       * The status of the reasoning output.
+       */
+      status?: 'in_progress' | 'completed' | 'incomplete' | null;
+
+      /**
+       * The type identifier, always 'reasoning'.
+       */
+      type?: 'reasoning';
+    }
+
+    export namespace OpenAIResponseOutputMessageReasoningItem {
+      /**
+       * A summary of reasoning output from the model.
+       */
+      export interface Summary {
+        /**
+         * The summary text of the reasoning output.
+         */
+        text: string;
+
+        /**
+         * The type identifier, always 'summary_text'.
+         */
+        type?: 'summary_text';
+      }
+
+      /**
+       * Reasoning text from the model.
+       */
+      export interface Content {
+        /**
+         * The reasoning text content from the model.
+         */
+        text: string;
+
+        /**
+         * The type identifier, always 'reasoning_text'.
+         */
+        type?: 'reasoning_text';
+      }
     }
   }
 
@@ -2542,6 +2736,7 @@ export interface ResponseListResponse {
     | ResponseListResponse.OpenAIResponseOutputMessageMcpCall
     | ResponseListResponse.OpenAIResponseOutputMessageMcpListTools
     | ResponseListResponse.OpenAIResponseMcpApprovalRequest
+    | ResponseListResponse.OpenAIResponseOutputMessageReasoningItem
     | ResponseListResponse.OpenAIResponseInputFunctionToolCallOutput
     | ResponseListResponse.OpenAIResponseMcpApprovalResponse
     | ResponseListResponse.OpenAIResponseMessageOutput
@@ -2557,6 +2752,7 @@ export interface ResponseListResponse {
     | ResponseListResponse.OpenAIResponseOutputMessageMcpCall
     | ResponseListResponse.OpenAIResponseOutputMessageMcpListTools
     | ResponseListResponse.OpenAIResponseMcpApprovalRequest
+    | ResponseListResponse.OpenAIResponseOutputMessageReasoningItem
   >;
 
   status: string;
@@ -2973,6 +3169,68 @@ export namespace ResponseListResponse {
     server_label: string;
 
     type?: 'mcp_approval_request';
+  }
+
+  /**
+   * Reasoning output from the model, representing the model's thinking process.
+   */
+  export interface OpenAIResponseOutputMessageReasoningItem {
+    /**
+     * Unique identifier for the reasoning output item.
+     */
+    id: string;
+
+    /**
+     * Summary of the reasoning output.
+     */
+    summary: Array<OpenAIResponseOutputMessageReasoningItem.Summary>;
+
+    /**
+     * The reasoning content from the model.
+     */
+    content?: Array<OpenAIResponseOutputMessageReasoningItem.Content> | null;
+
+    /**
+     * The status of the reasoning output.
+     */
+    status?: 'in_progress' | 'completed' | 'incomplete' | null;
+
+    /**
+     * The type identifier, always 'reasoning'.
+     */
+    type?: 'reasoning';
+  }
+
+  export namespace OpenAIResponseOutputMessageReasoningItem {
+    /**
+     * A summary of reasoning output from the model.
+     */
+    export interface Summary {
+      /**
+       * The summary text of the reasoning output.
+       */
+      text: string;
+
+      /**
+       * The type identifier, always 'summary_text'.
+       */
+      type?: 'summary_text';
+    }
+
+    /**
+     * Reasoning text from the model.
+     */
+    export interface Content {
+      /**
+       * The reasoning text content from the model.
+       */
+      text: string;
+
+      /**
+       * The type identifier, always 'reasoning_text'.
+       */
+      type?: 'reasoning_text';
+    }
   }
 
   /**
@@ -3572,6 +3830,68 @@ export namespace ResponseListResponse {
   }
 
   /**
+   * Reasoning output from the model, representing the model's thinking process.
+   */
+  export interface OpenAIResponseOutputMessageReasoningItem {
+    /**
+     * Unique identifier for the reasoning output item.
+     */
+    id: string;
+
+    /**
+     * Summary of the reasoning output.
+     */
+    summary: Array<OpenAIResponseOutputMessageReasoningItem.Summary>;
+
+    /**
+     * The reasoning content from the model.
+     */
+    content?: Array<OpenAIResponseOutputMessageReasoningItem.Content> | null;
+
+    /**
+     * The status of the reasoning output.
+     */
+    status?: 'in_progress' | 'completed' | 'incomplete' | null;
+
+    /**
+     * The type identifier, always 'reasoning'.
+     */
+    type?: 'reasoning';
+  }
+
+  export namespace OpenAIResponseOutputMessageReasoningItem {
+    /**
+     * A summary of reasoning output from the model.
+     */
+    export interface Summary {
+      /**
+       * The summary text of the reasoning output.
+       */
+      text: string;
+
+      /**
+       * The type identifier, always 'summary_text'.
+       */
+      type?: 'summary_text';
+    }
+
+    /**
+     * Reasoning text from the model.
+     */
+    export interface Content {
+      /**
+       * The reasoning text content from the model.
+       */
+      text: string;
+
+      /**
+       * The type identifier, always 'reasoning_text'.
+       */
+      type?: 'reasoning_text';
+    }
+  }
+
+  /**
    * Error details for failed OpenAI response requests.
    */
   export interface Error {
@@ -3649,6 +3969,11 @@ export namespace ResponseListResponse {
    */
   export interface Reasoning {
     effort?: 'none' | 'minimal' | 'low' | 'medium' | 'high' | 'xhigh' | null;
+
+    /**
+     * Summary mode for reasoning output. One of 'auto', 'concise', or 'detailed'.
+     */
+    summary?: 'auto' | 'concise' | 'detailed' | null;
   }
 
   /**
@@ -3926,6 +4251,7 @@ export interface ResponseCreateParamsBase {
         | ResponseCreateParams.OpenAIResponseOutputMessageMcpCall
         | ResponseCreateParams.OpenAIResponseOutputMessageMcpListTools
         | ResponseCreateParams.OpenAIResponseMcpApprovalRequest
+        | ResponseCreateParams.OpenAIResponseOutputMessageReasoningItem
         | ResponseCreateParams.OpenAIResponseInputFunctionToolCallOutput
         | ResponseCreateParams.OpenAIResponseMcpApprovalResponse
       >;
@@ -4429,6 +4755,68 @@ export namespace ResponseCreateParams {
   }
 
   /**
+   * Reasoning output from the model, representing the model's thinking process.
+   */
+  export interface OpenAIResponseOutputMessageReasoningItem {
+    /**
+     * Unique identifier for the reasoning output item.
+     */
+    id: string;
+
+    /**
+     * Summary of the reasoning output.
+     */
+    summary: Array<OpenAIResponseOutputMessageReasoningItem.Summary>;
+
+    /**
+     * The reasoning content from the model.
+     */
+    content?: Array<OpenAIResponseOutputMessageReasoningItem.Content> | null;
+
+    /**
+     * The status of the reasoning output.
+     */
+    status?: 'in_progress' | 'completed' | 'incomplete' | null;
+
+    /**
+     * The type identifier, always 'reasoning'.
+     */
+    type?: 'reasoning';
+  }
+
+  export namespace OpenAIResponseOutputMessageReasoningItem {
+    /**
+     * A summary of reasoning output from the model.
+     */
+    export interface Summary {
+      /**
+       * The summary text of the reasoning output.
+       */
+      text: string;
+
+      /**
+       * The type identifier, always 'summary_text'.
+       */
+      type?: 'summary_text';
+    }
+
+    /**
+     * Reasoning text from the model.
+     */
+    export interface Content {
+      /**
+       * The reasoning text content from the model.
+       */
+      text: string;
+
+      /**
+       * The type identifier, always 'reasoning_text'.
+       */
+      type?: 'reasoning_text';
+    }
+  }
+
+  /**
    * This represents the output of a function call that gets passed back to the
    * model.
    */
@@ -4573,6 +4961,11 @@ export namespace ResponseCreateParams {
    */
   export interface Reasoning {
     effort?: 'none' | 'minimal' | 'low' | 'medium' | 'high' | 'xhigh' | null;
+
+    /**
+     * Summary mode for reasoning output. One of 'auto', 'concise', or 'detailed'.
+     */
+    summary?: 'auto' | 'concise' | 'detailed' | null;
   }
 
   /**
