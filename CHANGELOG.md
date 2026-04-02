@@ -1,5 +1,85 @@
 # Changelog
 
+## 0.5.0-alpha.3 (2026-04-02)
+
+Full Changelog: [v0.5.0-alpha.2...v0.5.0-alpha.3](https://github.com/llamastack/llama-stack-client-typescript/compare/v0.5.0-alpha.2...v0.5.0-alpha.3)
+
+### ⚠ BREAKING CHANGES
+
+* eliminate GET /chat/completions/{completion_id} conformance issues
+* rename agents API to responses API
+* eliminate /files/{file_id} GET differences
+* improve consistency of post-training API endpoints
+
+### Features
+
+* accept list content blocks in Responses API function_call_output ([9a2e825](https://github.com/llamastack/llama-stack-client-typescript/commit/9a2e82551698ce4b0f127e9b466504568feade84))
+* Add prompt_cache_key parameter support ([e6399ef](https://github.com/llamastack/llama-stack-client-typescript/commit/e6399ef9e8b34b6cf3238c4c8f8b7d0134a8788e))
+* add reasoning as valid conversation item ([25df02e](https://github.com/llamastack/llama-stack-client-typescript/commit/25df02e8fdc4e98af98c2271b5aeee8fcdedf865))
+* add reasoning output types to OpenAI Responses API spec ([652e5db](https://github.com/llamastack/llama-stack-client-typescript/commit/652e5db44b81c83830ca1d39c05ea0c7b738415c))
+* add skip_model_availability to openai_mixin for remote models ([51a4f50](https://github.com/llamastack/llama-stack-client-typescript/commit/51a4f502e896045621f4aac9e75c19418490801e))
+* Add stream_options parameter support ([992f337](https://github.com/llamastack/llama-stack-client-typescript/commit/992f337ad0a9f0d956ab0bbbcbdbc1b3367ee53c))
+* add support for 'frequency_penalty' param to Responses API ([c0a5753](https://github.com/llamastack/llama-stack-client-typescript/commit/c0a5753ffb14bba9b9b8b61ab6045087a30f8576))
+* add support for 'presence_penalty' param to Responses API ([8a1b472](https://github.com/llamastack/llama-stack-client-typescript/commit/8a1b47258a72741c9a32724af25033e2545b7ba5))
+* add support for /responses background parameter ([c7e9581](https://github.com/llamastack/llama-stack-client-typescript/commit/c7e9581d7df28f5c97dd9ecc903c942f33972649))
+* Add top_logprobs parameter support ([1ff427f](https://github.com/llamastack/llama-stack-client-typescript/commit/1ff427f5265874e0d90fe1346154f71b21d20d9e))
+* add top_p parameter support to responses API ([76bacd4](https://github.com/llamastack/llama-stack-client-typescript/commit/76bacd49f160ba9ab0740269ad7116340f265e58))
+* Add truncation parameter support ([3119d6b](https://github.com/llamastack/llama-stack-client-typescript/commit/3119d6bb8a1d38d6fa1958daeed0fb5dbb12b1e1))
+* **api:** support extra_body pass-through in responses API ([d707494](https://github.com/llamastack/llama-stack-client-typescript/commit/d70749437992017bd331c17f02e09cb093205900))
+* eliminate /files/{file_id} GET differences ([d5595b1](https://github.com/llamastack/llama-stack-client-typescript/commit/d5595b10679b717e17b1c79b1a3a17049de2dade))
+* eliminate GET /chat/completions/{completion_id} conformance issues ([1536e1a](https://github.com/llamastack/llama-stack-client-typescript/commit/1536e1a3e089cfe08582f044394f94c97dc7d60b))
+* improve consistency of post-training API endpoints ([93376fc](https://github.com/llamastack/llama-stack-client-typescript/commit/93376fcbe864d4e8becd957301e6df15b3d803f8))
+* **inference:** bidirectional reasoning token passthrough for chat completions ([cd3c600](https://github.com/llamastack/llama-stack-client-typescript/commit/cd3c6000e16cd52a830b8fa48fe4781989ad7b9a))
+* **responses:** add cancel endpoint for background responses ([df4292b](https://github.com/llamastack/llama-stack-client-typescript/commit/df4292b354950cc83db605bc0d5334c5a80fe5a1))
+* **vector_io:** Implement Contextual Retrieval for improved RAG search quality ([abf9c27](https://github.com/llamastack/llama-stack-client-typescript/commit/abf9c27dcee824cd87f5b1889c456d99a7a94fb9))
+
+
+### Bug Fixes
+
+* align chat completion usage schema with OpenAI spec ([6fa6eb8](https://github.com/llamastack/llama-stack-client-typescript/commit/6fa6eb87d96902586d4feb82747a5cdf99622045))
+* **client:** preserve URL params already embedded in path ([2bd57de](https://github.com/llamastack/llama-stack-client-typescript/commit/2bd57deec573fa1ef389d8c798e2b9588f4ddbbd))
+* **docs/contributing:** correct pnpm link command ([8aa7f85](https://github.com/llamastack/llama-stack-client-typescript/commit/8aa7f856abb9ee612cc6ea97e30984b29620fd1b))
+* fix request delays for retrying to be more respectful of high requested delays ([0b0080a](https://github.com/llamastack/llama-stack-client-typescript/commit/0b0080af337cafe4e69c446756a227270c947c2b))
+* **inference:** improve chat completions OpenAI conformance ([eb6414c](https://github.com/llamastack/llama-stack-client-typescript/commit/eb6414c133c7f8e67e1a78e44da0322450d13ed3))
+* **inference:** use flat response message model for chat/completions ([d7033cd](https://github.com/llamastack/llama-stack-client-typescript/commit/d7033cd2af32a823514135971b3775037992393c))
+* remove duplicate dataset_id parameter in append-rows endpoint ([fe105ab](https://github.com/llamastack/llama-stack-client-typescript/commit/fe105ab03ee5ef9c3eb2046c2e225bff08472f45))
+* **responses:** achieve full OpenResponses conformance — 6/6 tests passing ([6537552](https://github.com/llamastack/llama-stack-client-typescript/commit/653755208f5de83bf9a8cf879c3f77abf5ba88d3))
+* **stainless:** handle [DONE] SSE terminator in streaming responses ([3f9d067](https://github.com/llamastack/llama-stack-client-typescript/commit/3f9d06785dcb9b9e8279d0e54fdc0d4f0e1afd91))
+* **vector_io:** align Protocol signatures with request models ([11a1a20](https://github.com/llamastack/llama-stack-client-typescript/commit/11a1a20e82bae62f8210cb26091d3df8bf648f15))
+
+
+### Chores
+
+* **api:** minor updates ([1286b39](https://github.com/llamastack/llama-stack-client-typescript/commit/1286b396a69ae48b41ad125405f005264339116d))
+* **ci:** skip lint on metadata-only changes ([7a0e6aa](https://github.com/llamastack/llama-stack-client-typescript/commit/7a0e6aa16e489da90279968b3db410a2808d7897))
+* **ci:** skip uploading artifacts on stainless-internal branches ([b6ec8ca](https://github.com/llamastack/llama-stack-client-typescript/commit/b6ec8caf1dcd5db7088a0762c7e5276b05e824e3))
+* **docs:** add missing descriptions ([a1ed726](https://github.com/llamastack/llama-stack-client-typescript/commit/a1ed7261f3858be53a768817bf58d8f15ce412a6))
+* **internal:** avoid type checking errors with ts-reset ([2cffe20](https://github.com/llamastack/llama-stack-client-typescript/commit/2cffe2040a77c3310db5d1803fc3800b4dd72f28))
+* **internal:** codegen related update ([4feb3b7](https://github.com/llamastack/llama-stack-client-typescript/commit/4feb3b71dce9088968439ab554c8ee6998114d2f))
+* **internal:** move stringifyQuery implementation to internal function ([03a5b05](https://github.com/llamastack/llama-stack-client-typescript/commit/03a5b052d5406755515edb07e04e8b4fd7750234))
+* **internal:** tweak CI branches ([cb4c926](https://github.com/llamastack/llama-stack-client-typescript/commit/cb4c926869316cfbea09e9b1414456b584761d47))
+* **internal:** update gitignore ([651b312](https://github.com/llamastack/llama-stack-client-typescript/commit/651b31248f2dea6a0593b65aa2121087857a7c25))
+* **internal:** update multipart form array serialization ([a2245ee](https://github.com/llamastack/llama-stack-client-typescript/commit/a2245ee1c098f51e6cac578b29b1c26ec2757ebb))
+* **test:** do not count install time for mock server timeout ([bfb35fe](https://github.com/llamastack/llama-stack-client-typescript/commit/bfb35fe36446caea4edc9dddadc15b345e61f855))
+* **tests:** bump steady to v0.19.4 ([877e07d](https://github.com/llamastack/llama-stack-client-typescript/commit/877e07d2fb70b22761c0f16137dfb04d6003997e))
+* **tests:** bump steady to v0.19.5 ([d05e2db](https://github.com/llamastack/llama-stack-client-typescript/commit/d05e2db034a1dbd0c4c4c6ceaac4c410b17fa5a2))
+* **tests:** bump steady to v0.19.6 ([acf26c0](https://github.com/llamastack/llama-stack-client-typescript/commit/acf26c06bc0cc244bca082b1060d7477f1fa27e8))
+* **tests:** bump steady to v0.19.7 ([216ce02](https://github.com/llamastack/llama-stack-client-typescript/commit/216ce02d4b4a76b908389e848eaddad5e6124ceb))
+* **tests:** bump steady to v0.20.1 ([502633c](https://github.com/llamastack/llama-stack-client-typescript/commit/502633c9814fa7d72b60717f0270438c2af14a28))
+* **tests:** bump steady to v0.20.2 ([fa7a238](https://github.com/llamastack/llama-stack-client-typescript/commit/fa7a2389c99ff553cae2d126e8c6855f7e0dee02))
+* update mock server docs ([0d438e8](https://github.com/llamastack/llama-stack-client-typescript/commit/0d438e81af56cdc6ec91ac6c3286dedc4dc9190f))
+* update placeholder string ([62e1d34](https://github.com/llamastack/llama-stack-client-typescript/commit/62e1d34d77f46047eab860ba537164de06c74824))
+
+
+### Refactors
+
+* remove deprecated register/unregister model endpoints ([1247b1d](https://github.com/llamastack/llama-stack-client-typescript/commit/1247b1dfc7d9541c8e90dffa79c05652ccb59f75))
+* remove fine_tuning API ([81f12ca](https://github.com/llamastack/llama-stack-client-typescript/commit/81f12ca417cdbc00bcb37148c37a93af697b5439))
+* remove tool_groups from public API and auto-register from provider specs ([07f07b3](https://github.com/llamastack/llama-stack-client-typescript/commit/07f07b3ad78ed8be421c44d3c189c795b39fba93))
+* rename agents API to responses API ([0d16ccc](https://github.com/llamastack/llama-stack-client-typescript/commit/0d16cccce2e7b4c2e461186cc4cc2a52e7bac4ce))
+* rename rag-runtime provider to file-search ([5e73282](https://github.com/llamastack/llama-stack-client-typescript/commit/5e73282c2cee739eac97fca8dc6d8cda99d5b2ce))
+* **tests:** switch from prism to steady ([2e25672](https://github.com/llamastack/llama-stack-client-typescript/commit/2e25672fe9d57614833b0dd9f2254a6ba12ce699))
+
 ## 0.5.0-alpha.2 (2026-02-05)
 
 Full Changelog: [v0.4.0-alpha.7...v0.5.0-alpha.2](https://github.com/llamastack/llama-stack-client-typescript/compare/v0.4.0-alpha.7...v0.5.0-alpha.2)
