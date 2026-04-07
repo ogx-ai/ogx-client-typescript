@@ -11,12 +11,7 @@ import { stringifyQuery } from './internal/utils/query';
 import * as Core from './core';
 import * as Errors from './error';
 import * as Pagination from './pagination';
-import {
-  type DatasetsIterrowsParams,
-  DatasetsIterrowsResponse,
-  type OpenAICursorPageParams,
-  OpenAICursorPageResponse,
-} from './pagination';
+import { type OpenAICursorPageParams, OpenAICursorPageResponse } from './pagination';
 import * as Uploads from './uploads';
 import * as API from './resources/index';
 import {
@@ -53,21 +48,6 @@ import { ProviderListResponse, Providers } from './resources/providers';
 import { RouteListParams, RouteListResponse, Routes } from './resources/routes';
 import { RunShieldResponse, Safety, SafetyRunShieldParams } from './resources/safety';
 import {
-  Scoring,
-  ScoringScoreBatchParams,
-  ScoringScoreBatchResponse,
-  ScoringScoreParams,
-  ScoringScoreResponse,
-} from './resources/scoring';
-import {
-  ListScoringFunctionsResponse,
-  ScoringFn,
-  ScoringFnParams,
-  ScoringFunctionListResponse,
-  ScoringFunctionRegisterParams,
-  ScoringFunctions,
-} from './resources/scoring-functions';
-import {
   ListShieldsResponse,
   Shield,
   ShieldListResponse,
@@ -81,7 +61,6 @@ import {
   VectorIoQueryParams,
 } from './resources/vector-io';
 import { Alpha } from './resources/alpha/alpha';
-import { Beta } from './resources/beta/beta';
 import { Chat, ChatCompletionChunk } from './resources/chat/chat';
 import {
   ConversationCreateParams,
@@ -294,8 +273,6 @@ export class LlamaStackClient extends Core.APIClient {
    */
   safety: API.Safety = new API.Safety(this);
   shields: API.Shields = new API.Shields(this);
-  scoring: API.Scoring = new API.Scoring(this);
-  scoringFunctions: API.ScoringFunctions = new API.ScoringFunctions(this);
   /**
    * This API is used to upload documents that can be used with other Llama Stack APIs.
    */
@@ -310,7 +287,6 @@ export class LlamaStackClient extends Core.APIClient {
    */
   batches: API.Batches = new API.Batches(this);
   alpha: API.Alpha = new API.Alpha(this);
-  beta: API.Beta = new API.Beta(this);
 
   /**
    * Check whether the base URL is set to its default.
@@ -379,23 +355,14 @@ LlamaStackClient.Routes = Routes;
 LlamaStackClient.Moderations = Moderations;
 LlamaStackClient.Safety = Safety;
 LlamaStackClient.Shields = Shields;
-LlamaStackClient.Scoring = Scoring;
-LlamaStackClient.ScoringFunctions = ScoringFunctions;
 LlamaStackClient.Files = Files;
 LlamaStackClient.FilesOpenAICursorPage = FilesOpenAICursorPage;
 LlamaStackClient.Batches = Batches;
 LlamaStackClient.BatchListResponsesOpenAICursorPage = BatchListResponsesOpenAICursorPage;
 LlamaStackClient.Alpha = Alpha;
-LlamaStackClient.Beta = Beta;
 
 export declare namespace LlamaStackClient {
   export type RequestOptions = Core.RequestOptions;
-
-  export import DatasetsIterrows = Pagination.DatasetsIterrows;
-  export {
-    type DatasetsIterrowsParams as DatasetsIterrowsParams,
-    type DatasetsIterrowsResponse as DatasetsIterrowsResponse,
-  };
 
   export import OpenAICursorPage = Pagination.OpenAICursorPage;
   export {
@@ -510,23 +477,6 @@ export declare namespace LlamaStackClient {
   };
 
   export {
-    Scoring as Scoring,
-    type ScoringScoreResponse as ScoringScoreResponse,
-    type ScoringScoreBatchResponse as ScoringScoreBatchResponse,
-    type ScoringScoreParams as ScoringScoreParams,
-    type ScoringScoreBatchParams as ScoringScoreBatchParams,
-  };
-
-  export {
-    ScoringFunctions as ScoringFunctions,
-    type ListScoringFunctionsResponse as ListScoringFunctionsResponse,
-    type ScoringFn as ScoringFn,
-    type ScoringFnParams as ScoringFnParams,
-    type ScoringFunctionListResponse as ScoringFunctionListResponse,
-    type ScoringFunctionRegisterParams as ScoringFunctionRegisterParams,
-  };
-
-  export {
     Files as Files,
     type DeleteFileResponse as DeleteFileResponse,
     type File as File,
@@ -550,8 +500,6 @@ export declare namespace LlamaStackClient {
 
   export { Alpha as Alpha };
 
-  export { Beta as Beta };
-
   export type HealthInfo = API.HealthInfo;
   export type InterleavedContent = API.InterleavedContent;
   export type InterleavedContentItem = API.InterleavedContentItem;
@@ -562,7 +510,6 @@ export declare namespace LlamaStackClient {
   export type RouteInfo = API.RouteInfo;
   export type SafetyViolation = API.SafetyViolation;
   export type SamplingParams = API.SamplingParams;
-  export type ScoringResult = API.ScoringResult;
   export type SystemMessage = API.SystemMessage;
   export type VersionInfo = API.VersionInfo;
 }

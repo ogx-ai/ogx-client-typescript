@@ -18,7 +18,6 @@ export {
   type BatchCreateParams,
   type BatchListParams,
 } from './batches';
-export { Beta } from './beta/beta';
 export { Chat, type ChatCompletionChunk } from './chat/chat';
 export {
   Completions,
@@ -79,21 +78,6 @@ export {
 } from './responses/responses';
 export { Routes, type RouteListResponse, type RouteListParams } from './routes';
 export { Safety, type RunShieldResponse, type SafetyRunShieldParams } from './safety';
-export {
-  Scoring,
-  type ScoringScoreResponse,
-  type ScoringScoreBatchResponse,
-  type ScoringScoreParams,
-  type ScoringScoreBatchParams,
-} from './scoring';
-export {
-  ScoringFunctions,
-  type ListScoringFunctionsResponse,
-  type ScoringFn,
-  type ScoringFnParams,
-  type ScoringFunctionListResponse,
-  type ScoringFunctionRegisterParams,
-} from './scoring-functions';
 export {
   Shields,
   type ListShieldsResponse,
