@@ -132,7 +132,7 @@ export interface VectorStoreFile {
 
   created_at: number;
 
-  status: 'completed' | 'in_progress' | 'cancelled' | 'failed';
+  status: 'in_progress' | 'completed' | 'cancelled' | 'failed';
 
   vector_store_id: string;
 
@@ -143,14 +143,14 @@ export interface VectorStoreFile {
    * length of 64 characters. Values are strings with a maximum length of 512
    * characters, booleans, or numbers.
    */
-  attributes?: { [key: string]: string | number | boolean };
+  attributes?: { [key: string]: string | number | boolean } | null;
 
   /**
    * Error information for failed vector store file processing.
    */
   last_error?: VectorStoreFile.LastError | null;
 
-  object?: string;
+  object?: 'vector_store.file';
 
   usage_bytes?: number;
 }
@@ -246,7 +246,7 @@ export namespace VectorStoreFile {
    * Error information for failed vector store file processing.
    */
   export interface LastError {
-    code: 'server_error' | 'rate_limit_exceeded';
+    code: 'server_error' | 'unsupported_file' | 'invalid_file';
 
     message: string;
   }
@@ -258,9 +258,9 @@ export namespace VectorStoreFile {
 export interface FileDeleteResponse {
   id: string;
 
-  deleted?: boolean;
+  deleted: boolean;
 
-  object?: string;
+  object?: 'vector_store.file.deleted';
 }
 
 /**
@@ -269,7 +269,7 @@ export interface FileDeleteResponse {
 export interface FileContentResponse {
   data: Array<FileContentResponse.Data>;
 
-  has_more?: boolean;
+  has_more: boolean;
 
   next_page?: string | null;
 
@@ -338,9 +338,13 @@ export interface FileCreateParams {
   file_id: string;
 
   /**
-   * Attributes to associate with the file.
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful
+   * for storing additional information about the object in a structured format, and
+   * querying for objects via API or the dashboard. Keys are strings with a maximum
+   * length of 64 characters. Values are strings with a maximum length of 512
+   * characters, booleans, or numbers.
    */
-  attributes?: { [key: string]: unknown } | null;
+  attributes?: { [key: string]: string | number | boolean } | null;
 
   /**
    * Strategy for chunking the file content.
@@ -456,7 +460,7 @@ export interface FileListParams extends OpenAICursorPageParams {
   /**
    * Filter by file status.
    */
-  filter?: 'completed' | 'in_progress' | 'cancelled' | 'failed' | null;
+  filter?: 'in_progress' | 'completed' | 'cancelled' | 'failed' | null;
 
   /**
    * Sort order by created_at: asc or desc.

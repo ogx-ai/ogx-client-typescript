@@ -105,13 +105,13 @@ export class VectorStoresOpenAICursorPage extends OpenAICursorPage<VectorStore> 
 export interface ListVectorStoresResponse {
   data: Array<VectorStore>;
 
-  first_id?: string | null;
+  first_id: string;
 
-  has_more?: boolean;
+  has_more: boolean;
 
-  last_id?: string | null;
+  last_id: string;
 
-  object?: string;
+  object?: 'list';
 }
 
 /**
@@ -127,19 +127,22 @@ export interface VectorStore {
    */
   file_counts: VectorStore.FileCounts;
 
-  expires_after?: { [key: string]: unknown } | null;
+  status: 'expired' | 'in_progress' | 'completed';
+
+  /**
+   * Expiration policy for a vector store.
+   */
+  expires_after?: VectorStore.ExpiresAfter | null;
 
   expires_at?: number | null;
 
   last_active_at?: number | null;
 
-  metadata?: { [key: string]: unknown };
+  metadata?: { [key: string]: unknown } | null;
 
-  name?: string | null;
+  name?: string;
 
-  object?: string;
-
-  status?: string;
+  object?: 'vector_store';
 
   usage_bytes?: number;
 }
@@ -159,6 +162,21 @@ export namespace VectorStore {
 
     total: number;
   }
+
+  /**
+   * Expiration policy for a vector store.
+   */
+  export interface ExpiresAfter {
+    /**
+     * Anchor timestamp after which the expiration policy applies.
+     */
+    anchor: 'last_active_at';
+
+    /**
+     * The number of days after the anchor time that the vector store will expire.
+     */
+    days: number;
+  }
 }
 
 /**
@@ -167,9 +185,9 @@ export namespace VectorStore {
 export interface VectorStoreDeleteResponse {
   id: string;
 
-  deleted?: boolean;
+  deleted: boolean;
 
-  object?: string;
+  object?: 'vector_store.deleted';
 }
 
 /**
@@ -178,13 +196,13 @@ export interface VectorStoreDeleteResponse {
 export interface VectorStoreSearchResponse {
   data: Array<VectorStoreSearchResponse.Data>;
 
-  search_query: Array<string>;
+  has_more: boolean;
 
-  has_more?: boolean;
+  search_query: Array<string>;
 
   next_page?: string | null;
 
-  object?: string;
+  object?: 'vector_store.search_results.page';
 }
 
 export namespace VectorStoreSearchResponse {
@@ -269,7 +287,12 @@ export interface VectorStoreCreateParams {
     | VectorStoreCreateParams.VectorStoreChunkingStrategyContextual
     | null;
 
-  expires_after?: { [key: string]: unknown } | null;
+  description?: string | null;
+
+  /**
+   * Expiration policy for a vector store.
+   */
+  expires_after?: VectorStoreCreateParams.ExpiresAfter | null;
 
   file_ids?: Array<string> | null;
 
@@ -366,13 +389,28 @@ export namespace VectorStoreCreateParams {
       timeout_seconds?: number | null;
     }
   }
+
+  /**
+   * Expiration policy for a vector store.
+   */
+  export interface ExpiresAfter {
+    /**
+     * Anchor timestamp after which the expiration policy applies.
+     */
+    anchor: 'last_active_at';
+
+    /**
+     * The number of days after the anchor time that the vector store will expire.
+     */
+    days: number;
+  }
 }
 
 export interface VectorStoreUpdateParams {
   /**
-   * Expiration policy for the vector store.
+   * Expiration policy for a vector store.
    */
-  expires_after?: { [key: string]: unknown } | null;
+  expires_after?: VectorStoreUpdateParams.ExpiresAfter | null;
 
   /**
    * Metadata to associate with the vector store.
@@ -383,6 +421,23 @@ export interface VectorStoreUpdateParams {
    * The new name for the vector store.
    */
   name?: string | null;
+}
+
+export namespace VectorStoreUpdateParams {
+  /**
+   * Expiration policy for a vector store.
+   */
+  export interface ExpiresAfter {
+    /**
+     * Anchor timestamp after which the expiration policy applies.
+     */
+    anchor: 'last_active_at';
+
+    /**
+     * The number of days after the anchor time that the vector store will expire.
+     */
+    days: number;
+  }
 }
 
 export interface VectorStoreListParams extends OpenAICursorPageParams {
@@ -411,7 +466,7 @@ export interface VectorStoreSearchParams {
   /**
    * Maximum number of results to return.
    */
-  max_num_results?: number | null;
+  max_num_results?: number;
 
   /**
    * Options for ranking and filtering search results.
@@ -437,7 +492,7 @@ export interface VectorStoreSearchParams {
   /**
    * Whether to rewrite the query for better results.
    */
-  rewrite_query?: boolean | null;
+  rewrite_query?: boolean;
 
   /**
    * The search mode to use (e.g., 'vector', 'keyword').
