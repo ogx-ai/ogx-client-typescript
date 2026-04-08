@@ -19,8 +19,12 @@ Types:
 
 Types:
 
+- <code><a href="./src/resources/responses/responses.ts">CompactedResponse</a></code>
+- <code><a href="./src/resources/responses/responses.ts">ResponseInput</a></code>
+- <code><a href="./src/resources/responses/responses.ts">ResponseMessage</a></code>
 - <code><a href="./src/resources/responses/responses.ts">ResponseObject</a></code>
 - <code><a href="./src/resources/responses/responses.ts">ResponseObjectStream</a></code>
+- <code><a href="./src/resources/responses/responses.ts">ResponseOutput</a></code>
 - <code><a href="./src/resources/responses/responses.ts">ResponseListResponse</a></code>
 - <code><a href="./src/resources/responses/responses.ts">ResponseDeleteResponse</a></code>
 
@@ -30,6 +34,7 @@ Methods:
 - <code title="get /v1/responses/{response_id}">client.responses.<a href="./src/resources/responses/responses.ts">retrieve</a>(responseId) -> ResponseObject</code>
 - <code title="get /v1/responses">client.responses.<a href="./src/resources/responses/responses.ts">list</a>({ ...params }) -> ResponseListResponsesOpenAICursorPage</code>
 - <code title="delete /v1/responses/{response_id}">client.responses.<a href="./src/resources/responses/responses.ts">delete</a>(responseId) -> ResponseDeleteResponse</code>
+- <code title="post /v1/responses/compact">client.responses.<a href="./src/resources/responses/responses.ts">compact</a>({ ...params }) -> CompactedResponse</code>
 
 ## InputItems
 

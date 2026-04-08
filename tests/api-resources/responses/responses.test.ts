@@ -28,6 +28,7 @@ describe('resource responses', () => {
       input: 'string',
       model: 'model',
       background: true,
+      context_management: [{ type: 'compaction', compact_threshold: 0 }],
       conversation: 'conversation',
       frequency_penalty: -2,
       guardrails: ['string'],
@@ -61,6 +62,7 @@ describe('resource responses', () => {
           strict: true,
           type: 'text',
         },
+        verbosity: 'low',
       },
       tool_choice: 'auto',
       tools: [{ search_context_size: 'S?oC"high', type: 'web_search' }],
@@ -137,5 +139,39 @@ describe('resource responses', () => {
     await expect(
       client.responses.delete('response_id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(LlamaStackClient.NotFoundError);
+  });
+
+  test('compact: only required params', async () => {
+    const responsePromise = client.responses.compact({ model: 'model' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('compact: required and optional params', async () => {
+    const response = await client.responses.compact({
+      model: 'model',
+      input: 'string',
+      instructions: 'instructions',
+      parallel_tool_calls: true,
+      previous_response_id: 'previous_response_id',
+      prompt_cache_key: 'prompt_cache_key',
+      reasoning: { effort: 'none', summary: 'auto' },
+      text: {
+        format: {
+          description: 'description',
+          name: 'name',
+          schema: { foo: 'bar' },
+          strict: true,
+          type: 'text',
+        },
+        verbosity: 'low',
+      },
+      tools: [{ search_context_size: 'S?oC"high', type: 'web_search' }],
+    });
   });
 });
