@@ -113,8 +113,16 @@ export interface BatchCreateResponse {
 
   output_file_id?: string | null;
 
+  /**
+   * The request counts for different statuses within the batch.
+   */
   request_counts?: BatchCreateResponse.RequestCounts | null;
 
+  /**
+   * Represents token usage details including input tokens, output tokens, a
+   * breakdown of output tokens, and the total tokens used. Only populated on batches
+   * created after September 7, 2025.
+   */
   usage?: BatchCreateResponse.Usage | null;
 
   [k: string]: unknown;
@@ -143,6 +151,9 @@ export namespace BatchCreateResponse {
     }
   }
 
+  /**
+   * The request counts for different statuses within the batch.
+   */
   export interface RequestCounts {
     completed: number;
 
@@ -153,13 +164,24 @@ export namespace BatchCreateResponse {
     [k: string]: unknown;
   }
 
+  /**
+   * Represents token usage details including input tokens, output tokens, a
+   * breakdown of output tokens, and the total tokens used. Only populated on batches
+   * created after September 7, 2025.
+   */
   export interface Usage {
     input_tokens: number;
 
+    /**
+     * A detailed breakdown of the input tokens.
+     */
     input_tokens_details: Usage.InputTokensDetails;
 
     output_tokens: number;
 
+    /**
+     * A detailed breakdown of the output tokens.
+     */
     output_tokens_details: Usage.OutputTokensDetails;
 
     total_tokens: number;
@@ -168,12 +190,18 @@ export namespace BatchCreateResponse {
   }
 
   export namespace Usage {
+    /**
+     * A detailed breakdown of the input tokens.
+     */
     export interface InputTokensDetails {
       cached_tokens: number;
 
       [k: string]: unknown;
     }
 
+    /**
+     * A detailed breakdown of the output tokens.
+     */
     export interface OutputTokensDetails {
       reasoning_tokens: number;
 
@@ -231,8 +259,16 @@ export interface BatchRetrieveResponse {
 
   output_file_id?: string | null;
 
+  /**
+   * The request counts for different statuses within the batch.
+   */
   request_counts?: BatchRetrieveResponse.RequestCounts | null;
 
+  /**
+   * Represents token usage details including input tokens, output tokens, a
+   * breakdown of output tokens, and the total tokens used. Only populated on batches
+   * created after September 7, 2025.
+   */
   usage?: BatchRetrieveResponse.Usage | null;
 
   [k: string]: unknown;
@@ -261,6 +297,9 @@ export namespace BatchRetrieveResponse {
     }
   }
 
+  /**
+   * The request counts for different statuses within the batch.
+   */
   export interface RequestCounts {
     completed: number;
 
@@ -271,13 +310,24 @@ export namespace BatchRetrieveResponse {
     [k: string]: unknown;
   }
 
+  /**
+   * Represents token usage details including input tokens, output tokens, a
+   * breakdown of output tokens, and the total tokens used. Only populated on batches
+   * created after September 7, 2025.
+   */
   export interface Usage {
     input_tokens: number;
 
+    /**
+     * A detailed breakdown of the input tokens.
+     */
     input_tokens_details: Usage.InputTokensDetails;
 
     output_tokens: number;
 
+    /**
+     * A detailed breakdown of the output tokens.
+     */
     output_tokens_details: Usage.OutputTokensDetails;
 
     total_tokens: number;
@@ -286,12 +336,18 @@ export namespace BatchRetrieveResponse {
   }
 
   export namespace Usage {
+    /**
+     * A detailed breakdown of the input tokens.
+     */
     export interface InputTokensDetails {
       cached_tokens: number;
 
       [k: string]: unknown;
     }
 
+    /**
+     * A detailed breakdown of the output tokens.
+     */
     export interface OutputTokensDetails {
       reasoning_tokens: number;
 
@@ -349,8 +405,16 @@ export interface BatchListResponse {
 
   output_file_id?: string | null;
 
+  /**
+   * The request counts for different statuses within the batch.
+   */
   request_counts?: BatchListResponse.RequestCounts | null;
 
+  /**
+   * Represents token usage details including input tokens, output tokens, a
+   * breakdown of output tokens, and the total tokens used. Only populated on batches
+   * created after September 7, 2025.
+   */
   usage?: BatchListResponse.Usage | null;
 
   [k: string]: unknown;
@@ -379,6 +443,9 @@ export namespace BatchListResponse {
     }
   }
 
+  /**
+   * The request counts for different statuses within the batch.
+   */
   export interface RequestCounts {
     completed: number;
 
@@ -389,13 +456,24 @@ export namespace BatchListResponse {
     [k: string]: unknown;
   }
 
+  /**
+   * Represents token usage details including input tokens, output tokens, a
+   * breakdown of output tokens, and the total tokens used. Only populated on batches
+   * created after September 7, 2025.
+   */
   export interface Usage {
     input_tokens: number;
 
+    /**
+     * A detailed breakdown of the input tokens.
+     */
     input_tokens_details: Usage.InputTokensDetails;
 
     output_tokens: number;
 
+    /**
+     * A detailed breakdown of the output tokens.
+     */
     output_tokens_details: Usage.OutputTokensDetails;
 
     total_tokens: number;
@@ -404,12 +482,18 @@ export namespace BatchListResponse {
   }
 
   export namespace Usage {
+    /**
+     * A detailed breakdown of the input tokens.
+     */
     export interface InputTokensDetails {
       cached_tokens: number;
 
       [k: string]: unknown;
     }
 
+    /**
+     * A detailed breakdown of the output tokens.
+     */
     export interface OutputTokensDetails {
       reasoning_tokens: number;
 
@@ -467,8 +551,16 @@ export interface BatchCancelResponse {
 
   output_file_id?: string | null;
 
+  /**
+   * The request counts for different statuses within the batch.
+   */
   request_counts?: BatchCancelResponse.RequestCounts | null;
 
+  /**
+   * Represents token usage details including input tokens, output tokens, a
+   * breakdown of output tokens, and the total tokens used. Only populated on batches
+   * created after September 7, 2025.
+   */
   usage?: BatchCancelResponse.Usage | null;
 
   [k: string]: unknown;
@@ -497,6 +589,9 @@ export namespace BatchCancelResponse {
     }
   }
 
+  /**
+   * The request counts for different statuses within the batch.
+   */
   export interface RequestCounts {
     completed: number;
 
@@ -507,13 +602,24 @@ export namespace BatchCancelResponse {
     [k: string]: unknown;
   }
 
+  /**
+   * Represents token usage details including input tokens, output tokens, a
+   * breakdown of output tokens, and the total tokens used. Only populated on batches
+   * created after September 7, 2025.
+   */
   export interface Usage {
     input_tokens: number;
 
+    /**
+     * A detailed breakdown of the input tokens.
+     */
     input_tokens_details: Usage.InputTokensDetails;
 
     output_tokens: number;
 
+    /**
+     * A detailed breakdown of the output tokens.
+     */
     output_tokens_details: Usage.OutputTokensDetails;
 
     total_tokens: number;
@@ -522,12 +628,18 @@ export namespace BatchCancelResponse {
   }
 
   export namespace Usage {
+    /**
+     * A detailed breakdown of the input tokens.
+     */
     export interface InputTokensDetails {
       cached_tokens: number;
 
       [k: string]: unknown;
     }
 
+    /**
+     * A detailed breakdown of the output tokens.
+     */
     export interface OutputTokensDetails {
       reasoning_tokens: number;
 

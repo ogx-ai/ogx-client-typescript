@@ -87,15 +87,20 @@ import {
   Prompts,
 } from './resources/prompts/prompts';
 import {
+  CompactedResponse,
+  ResponseCompactParams,
   ResponseCreateParams,
   ResponseCreateParamsNonStreaming,
   ResponseCreateParamsStreaming,
   ResponseDeleteResponse,
+  ResponseInput,
   ResponseListParams,
   ResponseListResponse,
   ResponseListResponsesOpenAICursorPage,
+  ResponseMessage,
   ResponseObject,
   ResponseObjectStream,
+  ResponseOutput,
   Responses,
 } from './resources/responses/responses';
 import {
@@ -372,8 +377,12 @@ export declare namespace LlamaStackClient {
 
   export {
     Responses as Responses,
+    type CompactedResponse as CompactedResponse,
+    type ResponseInput as ResponseInput,
+    type ResponseMessage as ResponseMessage,
     type ResponseObject as ResponseObject,
     type ResponseObjectStream as ResponseObjectStream,
+    type ResponseOutput as ResponseOutput,
     type ResponseListResponse as ResponseListResponse,
     type ResponseDeleteResponse as ResponseDeleteResponse,
     ResponseListResponsesOpenAICursorPage as ResponseListResponsesOpenAICursorPage,
@@ -381,6 +390,7 @@ export declare namespace LlamaStackClient {
     type ResponseCreateParamsNonStreaming as ResponseCreateParamsNonStreaming,
     type ResponseCreateParamsStreaming as ResponseCreateParamsStreaming,
     type ResponseListParams as ResponseListParams,
+    type ResponseCompactParams as ResponseCompactParams,
   };
 
   export {

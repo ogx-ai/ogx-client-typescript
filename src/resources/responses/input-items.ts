@@ -47,7 +47,7 @@ export interface InputItemListResponse {
     | InputItemListResponse.OpenAIResponseOutputMessageReasoningItem
     | InputItemListResponse.OpenAIResponseInputFunctionToolCallOutput
     | InputItemListResponse.OpenAIResponseMcpApprovalResponse
-    | InputItemListResponse.OpenAIResponseMessageOutput
+    | InputItemListResponse.OpenAIResponseCompaction
   >;
 
   object?: 'list';
@@ -513,203 +513,14 @@ export namespace InputItemListResponse {
   }
 
   /**
-   * Corresponds to the various Message types in the Responses API. They are all
-   * under one type because the Responses API gives them all the same "type" value,
-   * and there is no way to tell them apart in certain scenarios.
+   * A compaction item that summarizes prior conversation context.
    */
-  export interface OpenAIResponseMessageOutput {
-    content:
-      | string
-      | Array<
-          | OpenAIResponseMessageOutput.OpenAIResponseInputMessageContentText
-          | OpenAIResponseMessageOutput.OpenAIResponseInputMessageContentImage
-          | OpenAIResponseMessageOutput.OpenAIResponseInputMessageContentFile
-        >
-      | Array<
-          | OpenAIResponseMessageOutput.OpenAIResponseOutputMessageContentOutputTextOutput
-          | OpenAIResponseMessageOutput.OpenAIResponseContentPartRefusal
-        >;
-
-    role: 'system' | 'developer' | 'user' | 'assistant';
+  export interface OpenAIResponseCompaction {
+    encrypted_content: string;
 
     id?: string | null;
 
-    status?: string | null;
-
-    type?: 'message';
-  }
-
-  export namespace OpenAIResponseMessageOutput {
-    /**
-     * Text content for input messages in OpenAI response format.
-     */
-    export interface OpenAIResponseInputMessageContentText {
-      text: string;
-
-      type?: 'input_text';
-    }
-
-    /**
-     * Image content for input messages in OpenAI response format.
-     */
-    export interface OpenAIResponseInputMessageContentImage {
-      detail?: 'low' | 'high' | 'auto';
-
-      file_id?: string | null;
-
-      image_url?: string | null;
-
-      type?: 'input_image';
-    }
-
-    /**
-     * File content for input messages in OpenAI response format.
-     */
-    export interface OpenAIResponseInputMessageContentFile {
-      file_data?: string | null;
-
-      file_id?: string | null;
-
-      file_url?: string | null;
-
-      filename?: string | null;
-
-      type?: 'input_file';
-    }
-
-    /**
-     * Text content within an output message of an OpenAI response.
-     */
-    export interface OpenAIResponseOutputMessageContentOutputTextOutput {
-      text: string;
-
-      annotations?: Array<
-        | OpenAIResponseOutputMessageContentOutputTextOutput.OpenAIResponseAnnotationFileCitation
-        | OpenAIResponseOutputMessageContentOutputTextOutput.OpenAIResponseAnnotationCitation
-        | OpenAIResponseOutputMessageContentOutputTextOutput.OpenAIResponseAnnotationContainerFileCitation
-        | OpenAIResponseOutputMessageContentOutputTextOutput.OpenAIResponseAnnotationFilePath
-      >;
-
-      logprobs?: Array<OpenAIResponseOutputMessageContentOutputTextOutput.Logprob> | null;
-
-      type?: 'output_text';
-    }
-
-    export namespace OpenAIResponseOutputMessageContentOutputTextOutput {
-      /**
-       * File citation annotation for referencing specific files in response content.
-       */
-      export interface OpenAIResponseAnnotationFileCitation {
-        file_id: string;
-
-        filename: string;
-
-        index: number;
-
-        type?: 'file_citation';
-      }
-
-      /**
-       * URL citation annotation for referencing external web resources.
-       */
-      export interface OpenAIResponseAnnotationCitation {
-        end_index: number;
-
-        start_index: number;
-
-        title: string;
-
-        url: string;
-
-        type?: 'url_citation';
-      }
-
-      /**
-       * Container file citation annotation referencing a file within a container.
-       */
-      export interface OpenAIResponseAnnotationContainerFileCitation {
-        container_id: string;
-
-        end_index: number;
-
-        file_id: string;
-
-        filename: string;
-
-        start_index: number;
-
-        type?: 'container_file_citation';
-      }
-
-      /**
-       * File path annotation referencing a generated file in response content.
-       */
-      export interface OpenAIResponseAnnotationFilePath {
-        file_id: string;
-
-        index: number;
-
-        type?: 'file_path';
-      }
-
-      /**
-       * The log probability for a token from an OpenAI-compatible chat completion
-       * response.
-       */
-      export interface Logprob {
-        /**
-         * The token.
-         */
-        token: string;
-
-        /**
-         * The log probability of the token.
-         */
-        logprob: number;
-
-        /**
-         * The bytes for the token.
-         */
-        bytes?: Array<number> | null;
-
-        /**
-         * The top log probabilities for the token.
-         */
-        top_logprobs?: Array<Logprob.TopLogprob> | null;
-      }
-
-      export namespace Logprob {
-        /**
-         * The top log probability for a token from an OpenAI-compatible chat completion
-         * response.
-         */
-        export interface TopLogprob {
-          /**
-           * The token.
-           */
-          token: string;
-
-          /**
-           * The log probability of the token.
-           */
-          logprob: number;
-
-          /**
-           * The bytes for the token.
-           */
-          bytes?: Array<number> | null;
-        }
-      }
-    }
-
-    /**
-     * Refusal content within a streamed response part.
-     */
-    export interface OpenAIResponseContentPartRefusal {
-      refusal: string;
-
-      type?: 'refusal';
-    }
+    type?: 'compaction';
   }
 }
 

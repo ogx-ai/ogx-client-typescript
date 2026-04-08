@@ -67,14 +67,19 @@ export { Providers, type ProviderListResponse } from './providers';
 export {
   ResponseListResponsesOpenAICursorPage,
   Responses,
+  type CompactedResponse,
+  type ResponseInput,
+  type ResponseMessage,
   type ResponseObject,
   type ResponseObjectStream,
+  type ResponseOutput,
   type ResponseListResponse,
   type ResponseDeleteResponse,
   type ResponseCreateParams,
   type ResponseCreateParamsNonStreaming,
   type ResponseCreateParamsStreaming,
   type ResponseListParams,
+  type ResponseCompactParams,
 } from './responses/responses';
 export { Routes, type RouteListResponse, type RouteListParams } from './routes';
 export { Safety, type RunShieldResponse, type SafetyRunShieldParams } from './safety';
