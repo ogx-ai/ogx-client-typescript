@@ -118,7 +118,7 @@ describe('resource vectorStores', () => {
     const response = await client.vectorStores.search('vector_store_id', {
       query: 'string',
       filters: { foo: 'bar' },
-      max_num_results: 0,
+      max_num_results: 1,
       ranking_options: {
         alpha: 0,
         impact_factor: 0,

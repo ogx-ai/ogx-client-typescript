@@ -26,7 +26,7 @@ describe('resource files', () => {
   test('create: required and optional params', async () => {
     const response = await client.vectorStores.files.create('vector_store_id', {
       file_id: 'file_id',
-      attributes: { foo: 'bar' },
+      attributes: { foo: 'string' },
       chunking_strategy: { type: 'auto' },
     });
   });
@@ -94,7 +94,7 @@ describe('resource files', () => {
         {
           after: 'after',
           before: 'before',
-          filter: 'completed',
+          filter: 'in_progress',
           limit: 1,
           order: 'order',
         },
