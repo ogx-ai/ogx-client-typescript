@@ -69,13 +69,7 @@ import {
   ConversationUpdateParams,
   Conversations,
 } from './resources/conversations/conversations';
-import {
-  ListModelsResponse,
-  Model,
-  ModelListResponse,
-  ModelRetrieveResponse,
-  Models,
-} from './resources/models/models';
+import { ListModelsResponse, Model, ModelRetrieveResponse, Models } from './resources/models/models';
 import {
   ListPromptsResponse,
   Prompt,
@@ -455,7 +449,6 @@ export declare namespace LlamaStackClient {
     type ListModelsResponse as ListModelsResponse,
     type Model as Model,
     type ModelRetrieveResponse as ModelRetrieveResponse,
-    type ModelListResponse as ModelListResponse,
   };
 
   export { Providers as Providers, type ProviderListResponse as ProviderListResponse };

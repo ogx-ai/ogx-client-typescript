@@ -24,10 +24,8 @@ export class Models extends APIResource {
   /**
    * List models using the OpenAI API.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<ModelListResponse> {
-    return (
-      this._client.get('/v1/models', options) as Core.APIPromise<{ data: ModelListResponse }>
-    )._thenUnwrap((obj) => obj.data);
+  list(options?: Core.RequestOptions): Core.APIPromise<ListModelsResponse> {
+    return this._client.get('/v1/models', options);
   }
 }
 
@@ -38,7 +36,9 @@ export interface ListModelsResponse {
   /**
    * List of OpenAI model objects.
    */
-  data: ModelListResponse;
+  data: Array<Model>;
+
+  object?: 'list';
 }
 
 /**
@@ -66,14 +66,29 @@ export interface Model {
  */
 export interface ModelRetrieveResponse {
   /**
+   * The model identifier (OpenAI-compatible alias for identifier).
+   */
+  id: string;
+
+  /**
    * Unique identifier for this resource in llama stack
    */
   identifier: string;
 
   /**
+   * The object type, always 'model'.
+   */
+  object: 'model';
+
+  /**
    * ID of the provider that owns this resource
    */
   provider_id: string;
+
+  /**
+   * The Unix timestamp in seconds when the model was created.
+   */
+  created?: number;
 
   /**
    * Any additional metadata for this model
@@ -93,17 +108,17 @@ export interface ModelRetrieveResponse {
   model_validation?: boolean | null;
 
   /**
+   * The owner of the model.
+   */
+  owned_by?: string;
+
+  /**
    * Unique identifier for this resource in the provider
    */
   provider_resource_id?: string | null;
 
   type?: 'model';
 }
-
-/**
- * List of OpenAI model objects.
- */
-export type ModelListResponse = Array<Model>;
 
 Models.OpenAI = OpenAI;
 
@@ -112,7 +127,6 @@ export declare namespace Models {
     type ListModelsResponse as ListModelsResponse,
     type Model as Model,
     type ModelRetrieveResponse as ModelRetrieveResponse,
-    type ModelListResponse as ModelListResponse,
   };
 
   export { OpenAI as OpenAI };
