@@ -27,7 +27,9 @@ import LlamaStackClient from 'llama-stack-client';
 
 const client = new LlamaStackClient();
 
-const models = await client.models.list();
+const listModelsResponse = await client.models.list();
+
+console.log(listModelsResponse.data);
 ```
 
 ## Streaming responses

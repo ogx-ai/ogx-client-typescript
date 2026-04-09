@@ -111,6 +111,17 @@ export interface File {
   purpose: 'assistants' | 'batch';
 
   /**
+   * @deprecated Deprecated. The current status of the file.
+   */
+  status: 'uploaded' | 'processed' | 'error';
+
+  /**
+   * @deprecated Deprecated. For details on why a fine-tuning training file failed
+   * validation, see the error field on fine_tuning.job.
+   */
+  status_details: string;
+
+  /**
    * The Unix timestamp (in seconds) for when the file expires.
    */
   expires_at?: number | null;
