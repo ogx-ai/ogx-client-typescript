@@ -110,7 +110,7 @@ export interface VectorStoreFileBatches {
 
   vector_store_id: string;
 
-  object?: 'vector_store.file_batch';
+  object?: 'vector_store.files_batch';
 }
 
 export namespace VectorStoreFileBatches {
