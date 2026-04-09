@@ -1150,7 +1150,7 @@ export interface ResponseObject {
    */
   error?: ResponseObject.Error | null;
 
-  frequency_penalty?: number | null;
+  frequency_penalty?: number;
 
   /**
    * Details explaining why a response was incomplete.
@@ -1167,9 +1167,9 @@ export interface ResponseObject {
 
   object?: 'response';
 
-  parallel_tool_calls?: boolean | null;
+  parallel_tool_calls?: boolean;
 
-  presence_penalty?: number | null;
+  presence_penalty?: number;
 
   previous_response_id?: string | null;
 
@@ -1189,9 +1189,9 @@ export interface ResponseObject {
 
   safety_identifier?: string | null;
 
-  service_tier?: string | null;
+  service_tier?: string;
 
-  temperature?: number | null;
+  temperature?: number;
 
   /**
    * Text response configuration for OpenAI responses.
@@ -1218,11 +1218,11 @@ export interface ResponseObject {
     | ResponseObject.OpenAIResponseInputToolFileSearch
     | ResponseObject.OpenAIResponseInputToolFunction
     | ResponseObject.OpenAIResponseToolMcp
-  > | null;
+  >;
 
-  top_logprobs?: number | null;
+  top_logprobs?: number;
 
-  top_p?: number | null;
+  top_p?: number;
 
   truncation?: string | null;
 
@@ -3605,7 +3605,7 @@ export interface ResponseListResponse {
    */
   error?: ResponseListResponse.Error | null;
 
-  frequency_penalty?: number | null;
+  frequency_penalty?: number;
 
   /**
    * Details explaining why a response was incomplete.
@@ -3622,9 +3622,9 @@ export interface ResponseListResponse {
 
   object?: 'response';
 
-  parallel_tool_calls?: boolean | null;
+  parallel_tool_calls?: boolean;
 
-  presence_penalty?: number | null;
+  presence_penalty?: number;
 
   previous_response_id?: string | null;
 
@@ -3644,9 +3644,9 @@ export interface ResponseListResponse {
 
   safety_identifier?: string | null;
 
-  service_tier?: string | null;
+  service_tier?: string;
 
-  temperature?: number | null;
+  temperature?: number;
 
   /**
    * Text response configuration for OpenAI responses.
@@ -3673,11 +3673,11 @@ export interface ResponseListResponse {
     | ResponseListResponse.OpenAIResponseInputToolFileSearch
     | ResponseListResponse.OpenAIResponseInputToolFunction
     | ResponseListResponse.OpenAIResponseToolMcp
-  > | null;
+  >;
 
-  top_logprobs?: number | null;
+  top_logprobs?: number;
 
-  top_p?: number | null;
+  top_p?: number;
 
   truncation?: string | null;
 
@@ -4950,7 +4950,7 @@ export interface ResponseCreateParamsBase {
     | 'message.input_image.image_url'
     | 'message.output_text.logprobs'
     | 'reasoning.encrypted_content'
-  > | null;
+  >;
 
   /**
    * Instructions to guide the model's behavior.
@@ -5022,12 +5022,12 @@ export interface ResponseCreateParamsBase {
   /**
    * Whether to store the response in the database.
    */
-  store?: boolean | null;
+  store?: boolean;
 
   /**
    * Whether to stream the response.
    */
-  stream?: boolean | null;
+  stream?: boolean;
 
   /**
    * Options that control streamed response behavior.
@@ -5903,7 +5903,7 @@ export interface ResponseCreateParamsNonStreaming extends ResponseCreateParamsBa
   /**
    * Whether to stream the response.
    */
-  stream?: false | null;
+  stream?: false;
 
   [k: string]: unknown;
 }
