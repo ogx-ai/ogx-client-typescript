@@ -16,6 +16,9 @@ import { InputItemListParams, InputItemListResponse, InputItems } from './input-
 import { OpenAICursorPage, type OpenAICursorPageParams } from '../../pagination';
 import { Stream } from '../../streaming';
 
+/**
+ * OpenAI Responses API for agent orchestration with tool use, multi-turn conversations, and background processing.
+ */
 export class Responses extends APIResource {
   inputItems: InputItemsAPI.InputItems = new InputItemsAPI.InputItems(this._client);
 

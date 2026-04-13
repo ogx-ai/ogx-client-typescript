@@ -221,6 +221,9 @@ export class LlamaStackClient extends Core.APIClient {
     this.apiKey = apiKey;
   }
 
+  /**
+   * OpenAI Responses API for agent orchestration with tool use, multi-turn conversations, and background processing.
+   */
   responses: API.Responses = new API.Responses(this);
   /**
    * Protocol for prompt management operations.
