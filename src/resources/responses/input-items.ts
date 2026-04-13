@@ -10,6 +10,9 @@ import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 
+/**
+ * OpenAI Responses API for agent orchestration with tool use, multi-turn conversations, and background processing.
+ */
 export class InputItems extends APIResource {
   /**
    * List input items.
