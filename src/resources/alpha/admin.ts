@@ -13,6 +13,9 @@ import * as ProvidersAPI from '../providers';
 import * as RoutesAPI from '../routes';
 import * as Shared from '../shared';
 
+/**
+ * Administrative APIs for inspecting providers, routes, health, and version.
+ */
 export class Admin extends APIResource {
   /**
    * Get the current health status of the service.
