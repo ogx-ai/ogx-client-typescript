@@ -1992,7 +1992,8 @@ export type ResponseObjectStream =
   | ResponseObjectStream.OpenAIResponseObjectStreamResponseFileSearchCallCompleted
   | ResponseObjectStream.OpenAIResponseObjectStreamResponseIncomplete
   | ResponseObjectStream.OpenAIResponseObjectStreamResponseFailed
-  | ResponseObjectStream.OpenAIResponseObjectStreamResponseCompleted;
+  | ResponseObjectStream.OpenAIResponseObjectStreamResponseCompleted
+  | ResponseObjectStream.OpenAIResponseObjectStreamError;
 
 export namespace ResponseObjectStream {
   /**
@@ -3358,6 +3359,24 @@ export namespace ResponseObjectStream {
     sequence_number: number;
 
     type?: 'response.completed';
+  }
+
+  /**
+   * Standalone error event emitted during streaming when an error occurs.
+   *
+   * This is distinct from response.failed which is a response lifecycle event. The
+   * error event signals transport/infrastructure-level errors to the client.
+   */
+  export interface OpenAIResponseObjectStreamError {
+    message: string;
+
+    sequence_number: number;
+
+    code?: string | null;
+
+    param?: string | null;
+
+    type?: 'error';
   }
 }
 
