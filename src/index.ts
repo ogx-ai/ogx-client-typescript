@@ -215,6 +215,18 @@ export class LlamaStackClient extends Core.APIClient {
       fetch: options.fetch,
     });
 
+    const customHeadersEnv = Core.readEnv('LLAMA_STACK_CLIENT_CUSTOM_HEADERS');
+    if (customHeadersEnv) {
+      const parsed: Record<string, string> = {};
+      for (const line of customHeadersEnv.split('\n')) {
+        const colon = line.indexOf(':');
+        if (colon >= 0) {
+          parsed[line.substring(0, colon).trim()] = line.substring(colon + 1).trim();
+        }
+      }
+      options.defaultHeaders = { ...parsed, ...options.defaultHeaders };
+    }
+
     this._options = options;
 
     this.apiKey = apiKey;
