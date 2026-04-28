@@ -7,7 +7,7 @@
 import { Response } from 'node-fetch';
 import { PassThrough } from 'stream';
 import assert from 'assert';
-import { _iterSSEMessages } from 'llama-stack-client/streaming';
+import { _iterSSEMessages } from 'ogx-client/streaming';
 
 describe('streaming decoding', () => {
   test('basic', async () => {

@@ -1,4 +1,4 @@
-// Copyright (c) Meta Platforms, Inc. and affiliates.
+// Copyright (c) The OGX Contributors.
 // All rights reserved.
 //
 // This source code is licensed under the terms described in the LICENSE file in
@@ -428,7 +428,7 @@ export namespace SamplingParams {
 export interface SystemMessage {
   /**
    * The content of the 'system prompt'. If multiple system messages are provided,
-   * they are concatenated. The underlying Llama Stack code may also add other system
+   * they are concatenated. The underlying OGX code may also add other system
    * messages.
    */
   content:

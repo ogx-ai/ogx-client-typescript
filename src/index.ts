@@ -1,4 +1,4 @@
-// Copyright (c) Meta Platforms, Inc. and affiliates.
+// Copyright (c) The OGX Contributors.
 // All rights reserved.
 //
 // This source code is licensed under the terms described in the LICENSE file in
@@ -113,14 +113,14 @@ import {
 
 export interface ClientOptions {
   /**
-   * Defaults to process.env['LLAMA_STACK_CLIENT_API_KEY'].
+   * Defaults to process.env['OGX_CLIENT_API_KEY'].
    */
   apiKey?: string | null | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['LLAMA_STACK_CLIENT_BASE_URL'].
+   * Defaults to process.env['OGX_CLIENT_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -177,18 +177,18 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Llama Stack Client API.
+ * API Client for interfacing with the Ogx Client API.
  */
-export class LlamaStackClient extends Core.APIClient {
+export class OgxClient extends Core.APIClient {
   apiKey: string | null;
 
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Llama Stack Client API.
+   * API Client for interfacing with the Ogx Client API.
    *
-   * @param {string | null | undefined} [opts.apiKey=process.env['LLAMA_STACK_CLIENT_API_KEY'] ?? null]
-   * @param {string} [opts.baseURL=process.env['LLAMA_STACK_CLIENT_BASE_URL'] ?? http://any-hosted-llama-stack.com] - Override the default base URL for the API.
+   * @param {string | null | undefined} [opts.apiKey=process.env['OGX_CLIENT_API_KEY'] ?? null]
+   * @param {string} [opts.baseURL=process.env['OGX_CLIENT_BASE_URL'] ?? http://any-hosted-ogx.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
    * @param {Core.Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -197,26 +197,26 @@ export class LlamaStackClient extends Core.APIClient {
    * @param {Core.DefaultQuery} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = Core.readEnv('LLAMA_STACK_CLIENT_BASE_URL'),
-    apiKey = Core.readEnv('LLAMA_STACK_CLIENT_API_KEY') ?? null,
+    baseURL = Core.readEnv('OGX_CLIENT_BASE_URL'),
+    apiKey = Core.readEnv('OGX_CLIENT_API_KEY') ?? null,
     ...opts
   }: ClientOptions = {}) {
     const options: ClientOptions = {
       apiKey,
       ...opts,
-      baseURL: baseURL || `http://any-hosted-llama-stack.com`,
+      baseURL: baseURL || `http://any-hosted-ogx.com`,
     };
 
     super({
       baseURL: options.baseURL!,
-      baseURLOverridden: baseURL ? baseURL !== 'http://any-hosted-llama-stack.com' : false,
+      baseURLOverridden: baseURL ? baseURL !== 'http://any-hosted-ogx.com' : false,
       timeout: options.timeout ?? 60000 /* 1 minute */,
       httpAgent: options.httpAgent,
       maxRetries: options.maxRetries,
       fetch: options.fetch,
     });
 
-    const customHeadersEnv = Core.readEnv('LLAMA_STACK_CLIENT_CUSTOM_HEADERS');
+    const customHeadersEnv = Core.readEnv('OGX_CLIENT_CUSTOM_HEADERS');
     if (customHeadersEnv) {
       const parsed: Record<string, string> = {};
       for (const line of customHeadersEnv.split('\n')) {
@@ -246,11 +246,11 @@ export class LlamaStackClient extends Core.APIClient {
    */
   conversations: API.Conversations = new API.Conversations(this);
   /**
-   * APIs for inspecting the Llama Stack service, including health status, available API routes with methods and implementing providers.
+   * APIs for inspecting the OGX service, including health status, available API routes with methods and implementing providers.
    */
   inspect: API.Inspect = new API.Inspect(this);
   /**
-   * Llama Stack Inference API for generating completions, chat completions, and embeddings.
+   * OGX Inference API for generating completions, chat completions, and embeddings.
    *
    * This API provides the raw interface to the underlying models. Three kinds of models are supported:
    * - LLM models: these models generate "raw" and "chat" (conversational) completions.
@@ -260,7 +260,7 @@ export class LlamaStackClient extends Core.APIClient {
   embeddings: API.Embeddings = new API.Embeddings(this);
   chat: API.Chat = new API.Chat(this);
   /**
-   * Llama Stack Inference API for generating completions, chat completions, and embeddings.
+   * OGX Inference API for generating completions, chat completions, and embeddings.
    *
    * This API provides the raw interface to the underlying models. Three kinds of models are supported:
    * - LLM models: these models generate "raw" and "chat" (conversational) completions.
@@ -276,7 +276,7 @@ export class LlamaStackClient extends Core.APIClient {
    */
   providers: API.Providers = new API.Providers(this);
   /**
-   * APIs for inspecting the Llama Stack service, including health status, available API routes with methods and implementing providers.
+   * APIs for inspecting the OGX service, including health status, available API routes with methods and implementing providers.
    */
   routes: API.Routes = new API.Routes(this);
   /**
@@ -289,7 +289,7 @@ export class LlamaStackClient extends Core.APIClient {
   safety: API.Safety = new API.Safety(this);
   shields: API.Shields = new API.Shields(this);
   /**
-   * This API is used to upload documents that can be used with other Llama Stack APIs.
+   * This API is used to upload documents that can be used with other OGX APIs.
    */
   files: API.Files = new API.Files(this);
   /**
@@ -307,7 +307,7 @@ export class LlamaStackClient extends Core.APIClient {
    * Check whether the base URL is set to its default.
    */
   #baseURLOverridden(): boolean {
-    return this.baseURL !== 'http://any-hosted-llama-stack.com';
+    return this.baseURL !== 'http://any-hosted-ogx.com';
   }
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
@@ -332,10 +332,10 @@ export class LlamaStackClient extends Core.APIClient {
     return stringifyQuery(query);
   }
 
-  static LlamaStackClient = this;
+  static OgxClient = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static LlamaStackClientError = Errors.LlamaStackClientError;
+  static OgxClientError = Errors.OgxClientError;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -353,30 +353,30 @@ export class LlamaStackClient extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
-LlamaStackClient.Responses = Responses;
-LlamaStackClient.ResponseListResponsesOpenAICursorPage = ResponseListResponsesOpenAICursorPage;
-LlamaStackClient.Prompts = Prompts;
-LlamaStackClient.Conversations = Conversations;
-LlamaStackClient.Inspect = Inspect;
-LlamaStackClient.Embeddings = Embeddings;
-LlamaStackClient.Chat = Chat;
-LlamaStackClient.Completions = Completions;
-LlamaStackClient.VectorIo = VectorIo;
-LlamaStackClient.VectorStores = VectorStores;
-LlamaStackClient.VectorStoresOpenAICursorPage = VectorStoresOpenAICursorPage;
-LlamaStackClient.Models = Models;
-LlamaStackClient.Providers = Providers;
-LlamaStackClient.Routes = Routes;
-LlamaStackClient.Moderations = Moderations;
-LlamaStackClient.Safety = Safety;
-LlamaStackClient.Shields = Shields;
-LlamaStackClient.Files = Files;
-LlamaStackClient.FilesOpenAICursorPage = FilesOpenAICursorPage;
-LlamaStackClient.Batches = Batches;
-LlamaStackClient.BatchListResponsesOpenAICursorPage = BatchListResponsesOpenAICursorPage;
-LlamaStackClient.Alpha = Alpha;
+OgxClient.Responses = Responses;
+OgxClient.ResponseListResponsesOpenAICursorPage = ResponseListResponsesOpenAICursorPage;
+OgxClient.Prompts = Prompts;
+OgxClient.Conversations = Conversations;
+OgxClient.Inspect = Inspect;
+OgxClient.Embeddings = Embeddings;
+OgxClient.Chat = Chat;
+OgxClient.Completions = Completions;
+OgxClient.VectorIo = VectorIo;
+OgxClient.VectorStores = VectorStores;
+OgxClient.VectorStoresOpenAICursorPage = VectorStoresOpenAICursorPage;
+OgxClient.Models = Models;
+OgxClient.Providers = Providers;
+OgxClient.Routes = Routes;
+OgxClient.Moderations = Moderations;
+OgxClient.Safety = Safety;
+OgxClient.Shields = Shields;
+OgxClient.Files = Files;
+OgxClient.FilesOpenAICursorPage = FilesOpenAICursorPage;
+OgxClient.Batches = Batches;
+OgxClient.BatchListResponsesOpenAICursorPage = BatchListResponsesOpenAICursorPage;
+OgxClient.Alpha = Alpha;
 
-export declare namespace LlamaStackClient {
+export declare namespace OgxClient {
   export type RequestOptions = Core.RequestOptions;
 
   export import OpenAICursorPage = Pagination.OpenAICursorPage;
@@ -536,7 +536,7 @@ export declare namespace LlamaStackClient {
 export { getResponseOutputText } from './lib/response-helpers';
 export { toFile, fileFromPath } from './uploads';
 export {
-  LlamaStackClientError,
+  OgxClientError,
   APIError,
   APIConnectionError,
   APIConnectionTimeoutError,
@@ -551,4 +551,4 @@ export {
   UnprocessableEntityError,
 } from './error';
 
-export default LlamaStackClient;
+export default OgxClient;

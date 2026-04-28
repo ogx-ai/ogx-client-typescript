@@ -1,4 +1,4 @@
-// Copyright (c) Meta Platforms, Inc. and affiliates.
+// Copyright (c) The OGX Contributors.
 // All rights reserved.
 //
 // This source code is licensed under the terms described in the LICENSE file in
@@ -7,12 +7,12 @@
 //
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import type { LlamaStackClient } from './index';
+import type { OgxClient } from './index';
 
 export abstract class APIResource {
-  protected _client: LlamaStackClient;
+  protected _client: OgxClient;
 
-  constructor(client: LlamaStackClient) {
+  constructor(client: OgxClient) {
     this._client = client;
   }
 }

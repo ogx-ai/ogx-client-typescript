@@ -1,4 +1,4 @@
-// Copyright (c) Meta Platforms, Inc. and affiliates.
+// Copyright (c) The OGX Contributors.
 // All rights reserved.
 //
 // This source code is licensed under the terms described in the LICENSE file in
@@ -63,7 +63,7 @@ export interface ListShieldsResponse {
  */
 export interface Shield {
   /**
-   * Unique identifier for this resource in llama stack
+   * Unique identifier for this resource in ogx
    */
   identifier: string;
 

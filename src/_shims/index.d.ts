@@ -8,7 +8,7 @@
  * Disclaimer: modules in _shims aren't intended to be imported by SDK users.
  */
 import { manual } from './manual-types';
-import * as auto from 'llama-stack-client/_shims/auto/types';
+import * as auto from 'ogx-client/_shims/auto/types';
 import { type RequestOptions } from '../core';
 
 type SelectType<Manual, Auto> = unknown extends Manual ? Auto : Manual;

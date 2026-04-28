@@ -15,9 +15,9 @@ export function getRuntime({ manuallyImported }: { manuallyImported?: boolean } 
   const recommendation =
     manuallyImported ?
       `You may need to use polyfills`
-    : `Add one of these imports before your first \`import … from 'llama-stack-client'\`:
-- \`import 'llama-stack-client/shims/node'\` (if you're running on Node)
-- \`import 'llama-stack-client/shims/web'\` (otherwise)
+    : `Add one of these imports before your first \`import … from 'ogx-client'\`:
+- \`import 'ogx-client/shims/node'\` (if you're running on Node)
+- \`import 'ogx-client/shims/web'\` (otherwise)
 `;
 
   let _fetch, _Request, _Response, _Headers;
@@ -101,7 +101,7 @@ export function getRuntime({ manuallyImported }: { manuallyImported?: boolean } 
     getDefaultAgent: (url: string) => undefined,
     fileFromPath: () => {
       throw new Error(
-        'The `fileFromPath` function is only supported in Node. See the README for more details: https://www.github.com/llamastack/llama-stack-client-typescript#file-uploads',
+        'The `fileFromPath` function is only supported in Node. See the README for more details: https://www.github.com/ogx-ai/ogx-client-typescript#file-uploads',
       );
     },
     isFsReadStream: (value: any) => false,

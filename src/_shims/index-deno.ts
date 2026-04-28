@@ -85,7 +85,7 @@ export function getDefaultAgent(url: string) {
 }
 export function fileFromPath() {
   throw new Error(
-    'The `fileFromPath` function is only supported in Node. See the README for more details: https://www.github.com/llamastack/llama-stack-client-typescript#file-uploads',
+    'The `fileFromPath` function is only supported in Node. See the README for more details: https://www.github.com/ogx-ai/ogx-client-typescript#file-uploads',
   );
 }
 

@@ -1,4 +1,4 @@
-// Copyright (c) Meta Platforms, Inc. and affiliates.
+// Copyright (c) The OGX Contributors.
 // All rights reserved.
 //
 // This source code is licensed under the terms described in the LICENSE file in
@@ -92,7 +92,7 @@ export interface ListPromptsResponse {
 
 /**
  * A prompt resource representing a stored OpenAI Compatible prompt template in
- * Llama Stack.
+ * OGX.
  */
 export interface Prompt {
   /**

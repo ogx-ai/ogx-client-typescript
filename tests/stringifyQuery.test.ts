@@ -1,4 +1,4 @@
-// Copyright (c) Meta Platforms, Inc. and affiliates.
+// Copyright (c) The OGX Contributors.
 // All rights reserved.
 //
 // This source code is licensed under the terms described in the LICENSE file in
@@ -6,7 +6,7 @@
 //
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { stringifyQuery } from 'llama-stack-client/internal/utils/query';
+import { stringifyQuery } from 'ogx-client/internal/utils/query';
 
 describe(stringifyQuery, () => {
   for (const [input, expected] of [

@@ -5,8 +5,8 @@
 // the root directory of this source tree.
 
 import fs from 'fs';
-import { toFile, type ResponseLike } from 'llama-stack-client/uploads';
-import { File } from 'llama-stack-client/_shims/index';
+import { toFile, type ResponseLike } from 'ogx-client/uploads';
+import { File } from 'ogx-client/_shims/index';
 
 class MyClass {
   name: string = 'foo';

@@ -4,9 +4,9 @@
 // This source code is licensed under the terms described in the LICENSE file in
 // the root directory of this source tree.
 
-import { multipartFormRequestOptions, createForm } from 'llama-stack-client/core';
-import { Blob } from 'llama-stack-client/_shims/index';
-import { toFile } from 'llama-stack-client';
+import { multipartFormRequestOptions, createForm } from 'ogx-client/core';
+import { Blob } from 'ogx-client/_shims/index';
+import { toFile } from 'ogx-client';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {

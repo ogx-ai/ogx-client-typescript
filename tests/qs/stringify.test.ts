@@ -5,9 +5,9 @@
 // the root directory of this source tree.
 
 import iconv from 'iconv-lite';
-import { stringify } from 'llama-stack-client/internal/qs';
-import { encode } from 'llama-stack-client/internal/qs/utils';
-import { StringifyOptions } from 'llama-stack-client/internal/qs/types';
+import { stringify } from 'ogx-client/internal/qs';
+import { encode } from 'ogx-client/internal/qs/utils';
+import { StringifyOptions } from 'ogx-client/internal/qs/types';
 import { empty_test_cases } from './empty-keys-cases';
 import assert from 'assert';
 

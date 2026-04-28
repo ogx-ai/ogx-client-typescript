@@ -4,7 +4,7 @@
 // This source code is licensed under the terms described in the LICENSE file in
 // the root directory of this source tree.
 
-import { combine, merge, is_buffer, assign_single_source } from 'llama-stack-client/internal/qs/utils';
+import { combine, merge, is_buffer, assign_single_source } from 'ogx-client/internal/qs/utils';
 
 describe('merge()', function () {
   // t.deepEqual(merge(null, true), [null, true], 'merges true into null');

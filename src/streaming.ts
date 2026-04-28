@@ -5,7 +5,7 @@
 // the root directory of this source tree.
 
 import { ReadableStream, type Response } from './_shims/index';
-import { LlamaStackClientError } from './error';
+import { OgxClientError } from './error';
 import { findDoubleNewlineIndex, LineDecoder } from './internal/decoders/line';
 import { ReadableStreamToAsyncIterable } from './internal/stream-utils';
 
@@ -196,7 +196,7 @@ export async function* _iterSSEMessages(
 ): AsyncGenerator<ServerSentEvent, void, unknown> {
   if (!response.body) {
     controller.abort();
-    throw new LlamaStackClientError(`Attempted to iterate over a response with no body`);
+    throw new OgxClientError(`Attempted to iterate over a response with no body`);
   }
 
   const sseDecoder = new SSEDecoder();

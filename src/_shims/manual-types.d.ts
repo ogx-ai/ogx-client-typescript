@@ -10,8 +10,8 @@
 /**
  * Types will get added to this namespace when you import one of the following:
  *
- *   import 'llama-stack-client/shims/node'
- *   import 'llama-stack-client/shims/web'
+ *   import 'ogx-client/shims/node'
+ *   import 'ogx-client/shims/web'
  *
  * Importing more than one will cause type and runtime errors.
  */

@@ -8,7 +8,7 @@
  * Disclaimer: modules in _shims aren't intended to be imported by SDK users.
  */
 const shims = require('./registry');
-const auto = require('llama-stack-client/_shims/auto/runtime');
+const auto = require('ogx-client/_shims/auto/runtime');
 exports.init = () => {
   if (!shims.kind) shims.setShims(auto.getRuntime(), { auto: true });
 };

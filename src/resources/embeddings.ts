@@ -1,4 +1,4 @@
-// Copyright (c) Meta Platforms, Inc. and affiliates.
+// Copyright (c) The OGX Contributors.
 // All rights reserved.
 //
 // This source code is licensed under the terms described in the LICENSE file in
@@ -10,7 +10,7 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 
 /**
- * Llama Stack Inference API for generating completions, chat completions, and embeddings.
+ * OGX Inference API for generating completions, chat completions, and embeddings.
  *
  * This API provides the raw interface to the underlying models. Three kinds of models are supported:
  * - LLM models: these models generate "raw" and "chat" (conversational) completions.

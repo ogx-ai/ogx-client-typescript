@@ -1,4 +1,4 @@
-// Copyright (c) Meta Platforms, Inc. and affiliates.
+// Copyright (c) The OGX Contributors.
 // All rights reserved.
 //
 // This source code is licensed under the terms described in the LICENSE file in
@@ -12,7 +12,7 @@ import * as Core from '../core';
 import * as Shared from './shared';
 
 /**
- * APIs for inspecting the Llama Stack service, including health status, available API routes with methods and implementing providers.
+ * APIs for inspecting the OGX service, including health status, available API routes with methods and implementing providers.
  */
 export class Routes extends APIResource {
   /**

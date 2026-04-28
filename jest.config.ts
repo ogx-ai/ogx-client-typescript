@@ -13,9 +13,9 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^llama-stack-client$': '<rootDir>/src/index.ts',
-    '^llama-stack-client/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
-    '^llama-stack-client/(.*)$': '<rootDir>/src/$1',
+    '^ogx-client$': '<rootDir>/src/index.ts',
+    '^ogx-client/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
+    '^ogx-client/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',
