@@ -1,5 +1,5 @@
-import { createResponseHeaders } from 'llama-stack-client/core';
-import { Headers } from 'llama-stack-client/_shims/index';
+import { createResponseHeaders } from 'ogx-client/core';
+import { Headers } from 'ogx-client/_shims/index';
 
 describe('response parsing', () => {
   // TODO: test unicode characters

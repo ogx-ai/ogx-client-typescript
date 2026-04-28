@@ -1,4 +1,4 @@
-// Copyright (c) Meta Platforms, Inc. and affiliates.
+// Copyright (c) The OGX Contributors.
 // All rights reserved.
 //
 // This source code is licensed under the terms described in the LICENSE file in
@@ -6,10 +6,10 @@
 //
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import LlamaStackClient from 'llama-stack-client';
+import OgxClient from 'ogx-client';
 import { Response } from 'node-fetch';
 
-const client = new LlamaStackClient({ baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010' });
+const client = new OgxClient({ baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010' });
 
 describe('resource inspect', () => {
   test('health', async () => {
@@ -26,7 +26,7 @@ describe('resource inspect', () => {
   test('health: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(client.inspect.health({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      LlamaStackClient.NotFoundError,
+      OgxClient.NotFoundError,
     );
   });
 
@@ -44,7 +44,7 @@ describe('resource inspect', () => {
   test('version: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(client.inspect.version({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      LlamaStackClient.NotFoundError,
+      OgxClient.NotFoundError,
     );
   });
 });

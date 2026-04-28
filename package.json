@@ -1,12 +1,12 @@
 {
-  "name": "llama-stack-client",
+  "name": "ogx-client",
   "version": "0.5.0-alpha.3",
-  "description": "The official TypeScript library for the Llama Stack Client API",
-  "author": "Llama Stack Client <llamastack@meta.com>",
+  "description": "The official TypeScript library for the Ogx Client API",
+  "author": "Ogx Client <contributors@ogx.dev>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
-  "repository": "github:llamastack/llama-stack-client-typescript",
+  "repository": "github:ogx-ai/ogx-client-typescript",
   "license": "MIT",
   "packageManager": "yarn@1.22.22",
   "files": [

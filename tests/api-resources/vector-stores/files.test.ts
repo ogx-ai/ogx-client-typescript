@@ -1,4 +1,4 @@
-// Copyright (c) Meta Platforms, Inc. and affiliates.
+// Copyright (c) The OGX Contributors.
 // All rights reserved.
 //
 // This source code is licensed under the terms described in the LICENSE file in
@@ -6,10 +6,10 @@
 //
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import LlamaStackClient from 'llama-stack-client';
+import OgxClient from 'ogx-client';
 import { Response } from 'node-fetch';
 
-const client = new LlamaStackClient({ baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010' });
+const client = new OgxClient({ baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010' });
 
 describe('resource files', () => {
   test('create: only required params', async () => {
@@ -46,7 +46,7 @@ describe('resource files', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.vectorStores.files.retrieve('vector_store_id', 'file_id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(LlamaStackClient.NotFoundError);
+    ).rejects.toThrow(OgxClient.NotFoundError);
   });
 
   test('update: only required params', async () => {
@@ -83,7 +83,7 @@ describe('resource files', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.vectorStores.files.list('vector_store_id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(LlamaStackClient.NotFoundError);
+    ).rejects.toThrow(OgxClient.NotFoundError);
   });
 
   test('list: request options and params are passed correctly', async () => {
@@ -100,7 +100,7 @@ describe('resource files', () => {
         },
         { path: '/_stainless_unknown_path' },
       ),
-    ).rejects.toThrow(LlamaStackClient.NotFoundError);
+    ).rejects.toThrow(OgxClient.NotFoundError);
   });
 
   test('delete', async () => {
@@ -118,7 +118,7 @@ describe('resource files', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.vectorStores.files.delete('vector_store_id', 'file_id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(LlamaStackClient.NotFoundError);
+    ).rejects.toThrow(OgxClient.NotFoundError);
   });
 
   test('content', async () => {
@@ -136,7 +136,7 @@ describe('resource files', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.vectorStores.files.content('vector_store_id', 'file_id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(LlamaStackClient.NotFoundError);
+    ).rejects.toThrow(OgxClient.NotFoundError);
   });
 
   test('content: request options and params are passed correctly', async () => {
@@ -148,6 +148,6 @@ describe('resource files', () => {
         { include_embeddings: true, include_metadata: true },
         { path: '/_stainless_unknown_path' },
       ),
-    ).rejects.toThrow(LlamaStackClient.NotFoundError);
+    ).rejects.toThrow(OgxClient.NotFoundError);
   });
 });

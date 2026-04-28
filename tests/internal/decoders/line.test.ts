@@ -1,4 +1,4 @@
-import { findDoubleNewlineIndex, LineDecoder } from 'llama-stack-client/internal/decoders/line';
+import { findDoubleNewlineIndex, LineDecoder } from 'ogx-client/internal/decoders/line';
 
 function decodeChunks(chunks: string[], { flush }: { flush: boolean } = { flush: false }): string[] {
   const decoder = new LineDecoder();

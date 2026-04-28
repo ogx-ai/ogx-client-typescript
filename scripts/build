@@ -8,7 +8,7 @@ node scripts/utils/check-version.cjs
 
 # Build into dist and will publish the package from there,
 # so that src/resources/foo.ts becomes <package root>/resources/foo.js
-# This way importing from `"llama-stack-client/resources/foo"` works
+# This way importing from `"ogx-client/resources/foo"` works
 # even with `"moduleResolution": "node"`
 
 rm -rf dist; mkdir dist
@@ -32,7 +32,7 @@ node scripts/utils/make-dist-package-json.cjs > dist/package.json
 # copy over handwritten .js/.mjs/.d.ts files
 cp src/_shims/*.{d.ts,js,mjs,md} dist/_shims
 cp src/_shims/auto/*.{d.ts,js,mjs} dist/_shims/auto
-# we need to add exports = module.exports = LlamaStackClient to index.js;
+# we need to add exports = module.exports = OgxClient to index.js;
 # No way to get that from index.ts because it would cause compile errors
 # when building .mjs
 node scripts/utils/fix-index-exports.cjs
@@ -47,8 +47,8 @@ node scripts/utils/postprocess-files.cjs
 
 # make sure that nothing crashes when we require the output CJS or
 # import the output ESM
-(cd dist && node -e 'require("llama-stack-client")')
-(cd dist && node -e 'import("llama-stack-client")' --input-type=module)
+(cd dist && node -e 'require("ogx-client")')
+(cd dist && node -e 'import("ogx-client")' --input-type=module)
 
 if [ -e ./scripts/build-deno ]
 then

@@ -8,9 +8,9 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "paths": {
-      "llama-stack-client/_shims/auto/*": ["./src/_shims/auto/*-node"],
-      "llama-stack-client/*": ["./src/*"],
-      "llama-stack-client": ["./src/index.ts"]
+      "ogx-client/_shims/auto/*": ["./src/_shims/auto/*-node"],
+      "ogx-client/*": ["./src/*"],
+      "ogx-client": ["./src/index.ts"]
     },
     "noEmit": true,
 

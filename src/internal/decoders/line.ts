@@ -1,4 +1,4 @@
-import { LlamaStackClientError } from '../../error';
+import { OgxClientError } from '../../error';
 
 export type Bytes = string | ArrayBuffer | Uint8Array | Buffer | null | undefined;
 
@@ -83,7 +83,7 @@ export class LineDecoder {
         return Buffer.from(bytes).toString();
       }
 
-      throw new LlamaStackClientError(
+      throw new OgxClientError(
         `Unexpected: received non-Uint8Array (${bytes.constructor.name}) stream chunk in an environment with a global "Buffer" defined, which this library assumes to be Node. Please report this error.`,
       );
     }
@@ -95,14 +95,14 @@ export class LineDecoder {
         return this.textDecoder.decode(bytes);
       }
 
-      throw new LlamaStackClientError(
+      throw new OgxClientError(
         `Unexpected: received non-Uint8Array/ArrayBuffer (${
           (bytes as any).constructor.name
         }) in a web platform. Please report this error.`,
       );
     }
 
-    throw new LlamaStackClientError(
+    throw new OgxClientError(
       `Unexpected: neither Buffer nor TextDecoder are available as globals. Please report this error.`,
     );
   }

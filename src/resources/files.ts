@@ -1,4 +1,4 @@
-// Copyright (c) Meta Platforms, Inc. and affiliates.
+// Copyright (c) The OGX Contributors.
 // All rights reserved.
 //
 // This source code is licensed under the terms described in the LICENSE file in
@@ -12,7 +12,7 @@ import * as Core from '../core';
 import { OpenAICursorPage, type OpenAICursorPageParams } from '../pagination';
 
 /**
- * This API is used to upload documents that can be used with other Llama Stack APIs.
+ * This API is used to upload documents that can be used with other OGX APIs.
  */
 export class Files extends APIResource {
   /**

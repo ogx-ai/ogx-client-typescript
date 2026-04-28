@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "llama-stack-client/*": ["./dist/src/*"],
-      "llama-stack-client": ["./dist/src/index.ts"]
+      "ogx-client/*": ["./dist/src/*"],
+      "ogx-client": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,

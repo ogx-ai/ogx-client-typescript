@@ -1,4 +1,4 @@
-// Copyright (c) Meta Platforms, Inc. and affiliates.
+// Copyright (c) The OGX Contributors.
 // All rights reserved.
 //
 // This source code is licensed under the terms described in the LICENSE file in
@@ -6,9 +6,9 @@
 //
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import LlamaStackClient from 'llama-stack-client';
-import { APIUserAbortError } from 'llama-stack-client';
-import { Headers } from 'llama-stack-client/core';
+import OgxClient from 'ogx-client';
+import { APIUserAbortError } from 'ogx-client';
+import { Headers } from 'ogx-client/core';
 import defaultFetch, { Response, type RequestInit, type RequestInfo } from 'node-fetch';
 
 describe('instantiate client', () => {
@@ -26,7 +26,7 @@ describe('instantiate client', () => {
   });
 
   describe('defaultHeaders', () => {
-    const client = new LlamaStackClient({
+    const client = new OgxClient({
       baseURL: 'http://localhost:5000/',
       defaultHeaders: { 'X-My-Default-Header': '2' },
     });
@@ -57,7 +57,7 @@ describe('instantiate client', () => {
 
   describe('defaultQuery', () => {
     test('with null query params given', () => {
-      const client = new LlamaStackClient({
+      const client = new OgxClient({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo' },
       });
@@ -65,7 +65,7 @@ describe('instantiate client', () => {
     });
 
     test('multiple default query params', () => {
-      const client = new LlamaStackClient({
+      const client = new OgxClient({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo', hello: 'world' },
       });
@@ -73,7 +73,7 @@ describe('instantiate client', () => {
     });
 
     test('overriding with `undefined`', () => {
-      const client = new LlamaStackClient({
+      const client = new OgxClient({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { hello: 'world' },
       });
@@ -82,7 +82,7 @@ describe('instantiate client', () => {
   });
 
   test('custom fetch', async () => {
-    const client = new LlamaStackClient({
+    const client = new OgxClient({
       baseURL: 'http://localhost:5000/',
       fetch: (url) => {
         return Promise.resolve(
@@ -99,11 +99,11 @@ describe('instantiate client', () => {
 
   test('explicit global fetch', async () => {
     // make sure the global fetch type is assignable to our Fetch type
-    const client = new LlamaStackClient({ baseURL: 'http://localhost:5000/', fetch: defaultFetch });
+    const client = new OgxClient({ baseURL: 'http://localhost:5000/', fetch: defaultFetch });
   });
 
   test('custom signal', async () => {
-    const client = new LlamaStackClient({
+    const client = new OgxClient({
       baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
       fetch: (...args) => {
         return new Promise((resolve, reject) =>
@@ -134,7 +134,7 @@ describe('instantiate client', () => {
       return new Response(JSON.stringify({}), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new LlamaStackClient({ baseURL: 'http://localhost:5000/', fetch: testFetch });
+    const client = new OgxClient({ baseURL: 'http://localhost:5000/', fetch: testFetch });
 
     await client.patch('/foo');
     expect(capturedRequest?.method).toEqual('PATCH');
@@ -142,59 +142,59 @@ describe('instantiate client', () => {
 
   describe('baseUrl', () => {
     test('trailing slash', () => {
-      const client = new LlamaStackClient({ baseURL: 'http://localhost:5000/custom/path/' });
+      const client = new OgxClient({ baseURL: 'http://localhost:5000/custom/path/' });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
 
     test('no trailing slash', () => {
-      const client = new LlamaStackClient({ baseURL: 'http://localhost:5000/custom/path' });
+      const client = new OgxClient({ baseURL: 'http://localhost:5000/custom/path' });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
 
     afterEach(() => {
-      process.env['LLAMA_STACK_CLIENT_BASE_URL'] = undefined;
+      process.env['OGX_CLIENT_BASE_URL'] = undefined;
     });
 
     test('explicit option', () => {
-      const client = new LlamaStackClient({ baseURL: 'https://example.com' });
+      const client = new OgxClient({ baseURL: 'https://example.com' });
       expect(client.baseURL).toEqual('https://example.com');
     });
 
     test('env variable', () => {
-      process.env['LLAMA_STACK_CLIENT_BASE_URL'] = 'https://example.com/from_env';
-      const client = new LlamaStackClient({});
+      process.env['OGX_CLIENT_BASE_URL'] = 'https://example.com/from_env';
+      const client = new OgxClient({});
       expect(client.baseURL).toEqual('https://example.com/from_env');
     });
 
     test('empty env variable', () => {
-      process.env['LLAMA_STACK_CLIENT_BASE_URL'] = ''; // empty
-      const client = new LlamaStackClient({});
-      expect(client.baseURL).toEqual('http://any-hosted-llama-stack.com');
+      process.env['OGX_CLIENT_BASE_URL'] = ''; // empty
+      const client = new OgxClient({});
+      expect(client.baseURL).toEqual('http://any-hosted-ogx.com');
     });
 
     test('blank env variable', () => {
-      process.env['LLAMA_STACK_CLIENT_BASE_URL'] = '  '; // blank
-      const client = new LlamaStackClient({});
-      expect(client.baseURL).toEqual('http://any-hosted-llama-stack.com');
+      process.env['OGX_CLIENT_BASE_URL'] = '  '; // blank
+      const client = new OgxClient({});
+      expect(client.baseURL).toEqual('http://any-hosted-ogx.com');
     });
 
     test('in request options', () => {
-      const client = new LlamaStackClient({});
+      const client = new OgxClient({});
       expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(
         'http://localhost:5000/option/foo',
       );
     });
 
     test('in request options overridden by client options', () => {
-      const client = new LlamaStackClient({ baseURL: 'http://localhost:5000/client' });
+      const client = new OgxClient({ baseURL: 'http://localhost:5000/client' });
       expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(
         'http://localhost:5000/client/foo',
       );
     });
 
     test('in request options overridden by env variable', () => {
-      process.env['LLAMA_STACK_CLIENT_BASE_URL'] = 'http://localhost:5000/env';
-      const client = new LlamaStackClient({});
+      process.env['OGX_CLIENT_BASE_URL'] = 'http://localhost:5000/env';
+      const client = new OgxClient({});
       expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(
         'http://localhost:5000/env/foo',
       );
@@ -202,17 +202,17 @@ describe('instantiate client', () => {
   });
 
   test('maxRetries option is correctly set', () => {
-    const client = new LlamaStackClient({ maxRetries: 4 });
+    const client = new OgxClient({ maxRetries: 4 });
     expect(client.maxRetries).toEqual(4);
 
     // default
-    const client2 = new LlamaStackClient({});
+    const client2 = new OgxClient({});
     expect(client2.maxRetries).toEqual(2);
   });
 });
 
 describe('request building', () => {
-  const client = new LlamaStackClient({});
+  const client = new OgxClient({});
 
   describe('Content-Length', () => {
     test('handles multi-byte characters', async () => {
@@ -254,7 +254,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new LlamaStackClient({ timeout: 10, fetch: testFetch });
+    const client = new OgxClient({ timeout: 10, fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -284,7 +284,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new LlamaStackClient({ fetch: testFetch, maxRetries: 4 });
+    const client = new OgxClient({ fetch: testFetch, maxRetries: 4 });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
 
@@ -308,7 +308,7 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new LlamaStackClient({ fetch: testFetch, maxRetries: 4 });
+    const client = new OgxClient({ fetch: testFetch, maxRetries: 4 });
 
     expect(
       await client.request({
@@ -337,7 +337,7 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new LlamaStackClient({
+    const client = new OgxClient({
       fetch: testFetch,
       maxRetries: 4,
       defaultHeaders: { 'X-Stainless-Retry-Count': null },
@@ -369,7 +369,7 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new LlamaStackClient({ fetch: testFetch, maxRetries: 4 });
+    const client = new OgxClient({ fetch: testFetch, maxRetries: 4 });
 
     expect(
       await client.request({
@@ -396,7 +396,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new LlamaStackClient({ fetch: testFetch });
+    const client = new OgxClient({ fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -423,7 +423,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new LlamaStackClient({ fetch: testFetch });
+    const client = new OgxClient({ fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);

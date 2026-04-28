@@ -1,21 +1,21 @@
-# Llama Stack Client Node API Library
+# Ogx Client Node API Library
 
-[![NPM version](https://img.shields.io/npm/v/llama-stack-client.svg)](https://npmjs.org/package/llama-stack-client) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/llama-stack-client)
+[![NPM version](https://img.shields.io/npm/v/ogx-client.svg)](https://npmjs.org/package/ogx-client) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/ogx-client)
 
-This library provides convenient access to the Llama Stack Client REST API from server-side TypeScript or JavaScript.
+This library provides convenient access to the Ogx Client REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found on [llama-stack.readthedocs.io](https://llama-stack.readthedocs.io/en/latest/). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [ogx.readthedocs.io](https://ogx.readthedocs.io/en/latest/). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainless.com/).
 
 ## Installation
 
 ```sh
-npm install git+ssh://git@github.com:llamastack/llama-stack-client-typescript.git
+npm install git+ssh://git@github.com:ogx-ai/ogx-client-typescript.git
 ```
 
 > [!NOTE]
-> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install llama-stack-client`
+> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install ogx-client`
 
 ## Usage
 
@@ -23,9 +23,9 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import LlamaStackClient from 'llama-stack-client';
+import OgxClient from 'ogx-client';
 
-const client = new LlamaStackClient();
+const client = new OgxClient();
 
 const listModelsResponse = await client.models.list();
 
@@ -37,9 +37,9 @@ console.log(listModelsResponse.data);
 We provide support for streaming responses using Server Sent Events (SSE).
 
 ```ts
-import LlamaStackClient from 'llama-stack-client';
+import OgxClient from 'ogx-client';
 
-const client = new LlamaStackClient();
+const client = new OgxClient();
 
 const stream = await client.chat.completions.create({
   messages: [{ content: 'string', role: 'user' }],
@@ -60,16 +60,17 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import LlamaStackClient from 'llama-stack-client';
+import OgxClient from 'ogx-client';
 
-const client = new LlamaStackClient();
+const client = new OgxClient();
 
-const params: LlamaStackClient.Chat.CompletionCreateParams = {
+const params: OgxClient.Chat.CompletionCreateParams = {
   messages: [{ content: 'string', role: 'user' }],
   model: 'model',
 };
-const completion: LlamaStackClient.Chat.CompletionCreateResponse =
-  await client.chat.completions.create(params);
+const completion: OgxClient.Chat.CompletionCreateResponse = await client.chat.completions.create(
+  params,
+);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -86,9 +87,9 @@ Request parameters that correspond to file uploads can be passed in many differe
 ```ts
 import fs from 'fs';
 import fetch from 'node-fetch';
-import LlamaStackClient, { toFile } from 'llama-stack-client';
+import OgxClient, { toFile } from 'ogx-client';
 
-const client = new LlamaStackClient();
+const client = new OgxClient();
 
 // If you have access to Node `fs` we recommend using `fs.createReadStream()`:
 await client.files.create({ file: fs.createReadStream('/path/to/file'), purpose: 'assistants' });
@@ -121,7 +122,7 @@ a subclass of `APIError` will be thrown:
 const completion = await client.chat.completions
   .create({ messages: [{ content: 'string', role: 'user' }], model: 'model' })
   .catch(async (err) => {
-    if (err instanceof LlamaStackClient.APIError) {
+    if (err instanceof OgxClient.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
       console.log(err.headers); // {server: 'nginx', ...}
@@ -155,7 +156,7 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const client = new LlamaStackClient({
+const client = new OgxClient({
   maxRetries: 0, // default is 2
 });
 
@@ -172,7 +173,7 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const client = new LlamaStackClient({
+const client = new OgxClient({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
@@ -188,7 +189,7 @@ Note that requests which time out will be [retried twice by default](#retries).
 
 ## Auto-pagination
 
-List methods in the LlamaStackClient API are paginated.
+List methods in the OgxClient API are paginated.
 You can use the `for await … of` syntax to iterate through items across all pages:
 
 ```ts
@@ -227,7 +228,7 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 
 <!-- prettier-ignore -->
 ```ts
-const client = new LlamaStackClient();
+const client = new OgxClient();
 
 const response = await client.chat.completions
   .create({ messages: [{ content: 'string', role: 'user' }], model: 'model' })
@@ -292,17 +293,17 @@ By default, this library uses `node-fetch` in Node, and expects a global `fetch`
 
 If you would prefer to use a global, web-standards-compliant `fetch` function even in a Node environment,
 (for example, if you are running Node with `--experimental-fetch` or using NextJS which polyfills with `undici`),
-add the following import before your first import `from "LlamaStackClient"`:
+add the following import before your first import `from "OgxClient"`:
 
 ```ts
 // Tell TypeScript and the package to use the global web fetch instead of node-fetch.
 // Note, despite the name, this does not add any polyfills, but expects them to be provided if needed.
-import 'llama-stack-client/shims/web';
-import LlamaStackClient from 'llama-stack-client';
+import 'ogx-client/shims/web';
+import OgxClient from 'ogx-client';
 ```
 
-To do the inverse, add `import "llama-stack-client/shims/node"` (which does import polyfills).
-This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/llamastack/llama-stack-client-typescript/tree/main/src/_shims#readme)).
+To do the inverse, add `import "ogx-client/shims/node"` (which does import polyfills).
+This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/ogx-ai/ogx-client-typescript/tree/main/src/_shims#readme)).
 
 ### Logging and middleware
 
@@ -311,9 +312,9 @@ which can be used to inspect or alter the `Request` or `Response` before/after e
 
 ```ts
 import { fetch } from 'undici'; // as one example
-import LlamaStackClient from 'llama-stack-client';
+import OgxClient from 'ogx-client';
 
-const client = new LlamaStackClient({
+const client = new OgxClient({
   fetch: async (url: RequestInfo, init?: RequestInit): Promise<Response> => {
     console.log('About to make a request', url, init);
     const response = await fetch(url, init);
@@ -338,7 +339,7 @@ import http from 'http';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 
 // Configure the default for all requests:
-const client = new LlamaStackClient({
+const client = new OgxClient({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
 });
 
@@ -361,7 +362,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/llamastack/llama-stack-client-typescript/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/ogx-ai/ogx-client-typescript/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 

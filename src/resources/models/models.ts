@@ -1,4 +1,4 @@
-// Copyright (c) Meta Platforms, Inc. and affiliates.
+// Copyright (c) The OGX Contributors.
 // All rights reserved.
 //
 // This source code is licensed under the terms described in the LICENSE file in
@@ -46,7 +46,7 @@ export interface ListModelsResponse {
  *
  * :id: The ID of the model :object: The object type, which will be "model"
  * :created: The Unix timestamp in seconds when the model was created :owned_by:
- * The owner of the model :custom_metadata: Llama Stack-specific metadata including
+ * The owner of the model :custom_metadata: OGX-specific metadata including
  * model_type, provider info, and additional metadata
  */
 export interface Model {
@@ -62,7 +62,7 @@ export interface Model {
 }
 
 /**
- * A model resource representing an AI model registered in Llama Stack.
+ * A model resource representing an AI model registered in OGX.
  */
 export interface ModelRetrieveResponse {
   /**
@@ -71,7 +71,7 @@ export interface ModelRetrieveResponse {
   id: string;
 
   /**
-   * Unique identifier for this resource in llama stack
+   * Unique identifier for this resource in ogx
    */
   identifier: string;
 
@@ -96,7 +96,7 @@ export interface ModelRetrieveResponse {
   metadata?: { [key: string]: unknown };
 
   /**
-   * Enumeration of supported model types in Llama Stack.
+   * Enumeration of supported model types in OGX.
    */
   model_type?: 'llm' | 'embedding' | 'rerank';
 
