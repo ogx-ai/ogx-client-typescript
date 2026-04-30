@@ -12,7 +12,6 @@ Types:
 - <code><a href="./src/resources/shared.ts">RouteInfo</a></code>
 - <code><a href="./src/resources/shared.ts">SafetyViolation</a></code>
 - <code><a href="./src/resources/shared.ts">SamplingParams</a></code>
-- <code><a href="./src/resources/shared.ts">ScoringResult</a></code>
 - <code><a href="./src/resources/shared.ts">SystemMessage</a></code>
 - <code><a href="./src/resources/shared.ts">VersionInfo</a></code>
 
@@ -278,34 +277,6 @@ Methods:
 - <code title="delete /v1/shields/{identifier}">client.shields.<a href="./src/resources/shields.ts">delete</a>(identifier) -> void</code>
 - <code title="post /v1/shields">client.shields.<a href="./src/resources/shields.ts">register</a>({ ...params }) -> Shield</code>
 
-# Scoring
-
-Types:
-
-- <code><a href="./src/resources/scoring.ts">ScoringScoreResponse</a></code>
-- <code><a href="./src/resources/scoring.ts">ScoringScoreBatchResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/scoring/score">client.scoring.<a href="./src/resources/scoring.ts">score</a>({ ...params }) -> ScoringScoreResponse</code>
-- <code title="post /v1/scoring/score-batch">client.scoring.<a href="./src/resources/scoring.ts">scoreBatch</a>({ ...params }) -> ScoringScoreBatchResponse</code>
-
-# ScoringFunctions
-
-Types:
-
-- <code><a href="./src/resources/scoring-functions.ts">ListScoringFunctionsResponse</a></code>
-- <code><a href="./src/resources/scoring-functions.ts">ScoringFn</a></code>
-- <code><a href="./src/resources/scoring-functions.ts">ScoringFnParams</a></code>
-- <code><a href="./src/resources/scoring-functions.ts">ScoringFunctionListResponse</a></code>
-
-Methods:
-
-- <code title="get /v1/scoring-functions/{scoring_fn_id}">client.scoringFunctions.<a href="./src/resources/scoring-functions.ts">retrieve</a>(scoringFnId) -> ScoringFn</code>
-- <code title="get /v1/scoring-functions">client.scoringFunctions.<a href="./src/resources/scoring-functions.ts">list</a>() -> ScoringFunctionListResponse</code>
-- <code title="post /v1/scoring-functions">client.scoringFunctions.<a href="./src/resources/scoring-functions.ts">register</a>({ ...params }) -> void</code>
-- <code title="delete /v1/scoring-functions/{scoring_fn_id}">client.scoringFunctions.<a href="./src/resources/scoring-functions.ts">unregister</a>(scoringFnId) -> void</code>
-
 # Files
 
 Types:
@@ -341,44 +312,6 @@ Methods:
 
 # Alpha
 
-## Benchmarks
-
-Types:
-
-- <code><a href="./src/resources/alpha/benchmarks.ts">Benchmark</a></code>
-- <code><a href="./src/resources/alpha/benchmarks.ts">ListBenchmarksResponse</a></code>
-- <code><a href="./src/resources/alpha/benchmarks.ts">BenchmarkListResponse</a></code>
-
-Methods:
-
-- <code title="get /v1alpha/eval/benchmarks/{benchmark_id}">client.alpha.benchmarks.<a href="./src/resources/alpha/benchmarks.ts">retrieve</a>(benchmarkId) -> Benchmark</code>
-- <code title="get /v1alpha/eval/benchmarks">client.alpha.benchmarks.<a href="./src/resources/alpha/benchmarks.ts">list</a>() -> BenchmarkListResponse</code>
-- <code title="post /v1alpha/eval/benchmarks">client.alpha.benchmarks.<a href="./src/resources/alpha/benchmarks.ts">register</a>({ ...params }) -> void</code>
-- <code title="delete /v1alpha/eval/benchmarks/{benchmark_id}">client.alpha.benchmarks.<a href="./src/resources/alpha/benchmarks.ts">unregister</a>(benchmarkId) -> void</code>
-
-## Eval
-
-Types:
-
-- <code><a href="./src/resources/alpha/eval/eval.ts">BenchmarkConfig</a></code>
-- <code><a href="./src/resources/alpha/eval/eval.ts">EvaluateResponse</a></code>
-- <code><a href="./src/resources/alpha/eval/eval.ts">Job</a></code>
-
-Methods:
-
-- <code title="post /v1alpha/eval/benchmarks/{benchmark_id}/evaluations">client.alpha.eval.<a href="./src/resources/alpha/eval/eval.ts">evaluateRows</a>(benchmarkId, { ...params }) -> EvaluateResponse</code>
-- <code title="post /v1alpha/eval/benchmarks/{benchmark_id}/evaluations">client.alpha.eval.<a href="./src/resources/alpha/eval/eval.ts">evaluateRowsAlpha</a>(benchmarkId, { ...params }) -> EvaluateResponse</code>
-- <code title="post /v1alpha/eval/benchmarks/{benchmark_id}/jobs">client.alpha.eval.<a href="./src/resources/alpha/eval/eval.ts">runEval</a>(benchmarkId, { ...params }) -> Job</code>
-- <code title="post /v1alpha/eval/benchmarks/{benchmark_id}/jobs">client.alpha.eval.<a href="./src/resources/alpha/eval/eval.ts">runEvalAlpha</a>(benchmarkId, { ...params }) -> Job</code>
-
-### Jobs
-
-Methods:
-
-- <code title="get /v1alpha/eval/benchmarks/{benchmark_id}/jobs/{job_id}/result">client.alpha.eval.jobs.<a href="./src/resources/alpha/eval/jobs.ts">retrieve</a>(benchmarkId, jobId) -> EvaluateResponse</code>
-- <code title="delete /v1alpha/eval/benchmarks/{benchmark_id}/jobs/{job_id}">client.alpha.eval.jobs.<a href="./src/resources/alpha/eval/jobs.ts">cancel</a>(benchmarkId, jobId) -> void</code>
-- <code title="get /v1alpha/eval/benchmarks/{benchmark_id}/jobs/{job_id}">client.alpha.eval.jobs.<a href="./src/resources/alpha/eval/jobs.ts">status</a>(benchmarkId, jobId) -> Job</code>
-
 ## Admin
 
 Methods:
@@ -398,24 +331,3 @@ Types:
 Methods:
 
 - <code title="post /v1alpha/inference/rerank">client.alpha.inference.<a href="./src/resources/alpha/inference.ts">rerank</a>({ ...params }) -> InferenceRerankResponse</code>
-
-# Beta
-
-## Datasets
-
-Types:
-
-- <code><a href="./src/resources/beta/datasets.ts">ListDatasetsResponse</a></code>
-- <code><a href="./src/resources/beta/datasets.ts">DatasetRetrieveResponse</a></code>
-- <code><a href="./src/resources/beta/datasets.ts">DatasetListResponse</a></code>
-- <code><a href="./src/resources/beta/datasets.ts">DatasetIterrowsResponse</a></code>
-- <code><a href="./src/resources/beta/datasets.ts">DatasetRegisterResponse</a></code>
-
-Methods:
-
-- <code title="get /v1beta/datasets/{dataset_id}">client.beta.datasets.<a href="./src/resources/beta/datasets.ts">retrieve</a>(datasetId) -> DatasetRetrieveResponse</code>
-- <code title="get /v1beta/datasets">client.beta.datasets.<a href="./src/resources/beta/datasets.ts">list</a>() -> DatasetListResponse</code>
-- <code title="post /v1beta/datasetio/append-rows/{dataset_id}">client.beta.datasets.<a href="./src/resources/beta/datasets.ts">appendrows</a>(datasetId, { ...params }) -> void</code>
-- <code title="get /v1beta/datasetio/iterrows/{dataset_id}">client.beta.datasets.<a href="./src/resources/beta/datasets.ts">iterrows</a>(datasetId, { ...params }) -> DatasetIterrowsResponse</code>
-- <code title="post /v1beta/datasets">client.beta.datasets.<a href="./src/resources/beta/datasets.ts">register</a>({ ...params }) -> DatasetRegisterResponse</code>
-- <code title="delete /v1beta/datasets/{dataset_id}">client.beta.datasets.<a href="./src/resources/beta/datasets.ts">unregister</a>(datasetId) -> void</code>
