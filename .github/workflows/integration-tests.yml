@@ -1,6 +1,6 @@
 name: Integration Tests (Client-side)
 
-run-name: Run TypeScript client tests from llama-stack (replay mode)
+run-name: Run TypeScript client tests from ogx (replay mode)
 
 on:
   push:
@@ -36,7 +36,7 @@ jobs:
       fail-fast: false
       matrix:
         # TypeScript client test configurations
-        # Must match entries in llama-stack/tests/integration/client-typescript/suites.json
+        # Must match entries in ogx/tests/integration/client-typescript/suites.json
         include:
           - suite: responses
             setup: gpt
@@ -44,17 +44,17 @@ jobs:
             setup: ollama
 
     steps:
-      - name: Checkout llama-stack-client-typescript repository
+      - name: Checkout ogx-client-typescript repository
         uses: actions/checkout@v4
         with:
-          path: llama-stack-client-typescript
+          path: ogx-client-typescript
 
-      - name: Checkout llama-stack repository
+      - name: Checkout ogx repository
         uses: actions/checkout@v4
         with:
-          repository: llamastack/llama-stack
+          repository: ogx-ai/ogx
           ref: main
-          path: llama-stack
+          path: ogx
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -68,7 +68,7 @@ jobs:
           version: '0.7.6'
 
       - name: Build TypeScript client
-        working-directory: llama-stack-client-typescript
+        working-directory: ogx-client-typescript
         run: |
           echo "Building TypeScript client..."
           yarn install --frozen-lockfile
@@ -76,22 +76,22 @@ jobs:
 
           echo "✅ TypeScript client built successfully"
 
-      - name: Install llama-stack dependencies
-        working-directory: llama-stack
+      - name: Install ogx dependencies
+        working-directory: ogx
         run: |
-          echo "Installing llama-stack dependencies"
+          echo "Installing ogx dependencies"
           uv sync --all-groups
           uv pip install faiss-cpu
 
-      - name: Build Llama Stack
-        working-directory: llama-stack
+      - name: Build Ogx
+        working-directory: ogx
         run: |
-          echo "Building Llama Stack"
-          LLAMA_STACK_DIR=. \
-            uv run --no-sync llama stack list-deps ci-tests | xargs -L1 uv pip install
+          echo "Building Ogx"
+          OGX_DIR=. \
+            uv run --no-sync ogx stack list-deps ci-tests | xargs -L1 uv pip install
 
       - name: Configure git for commits
-        working-directory: llama-stack
+        working-directory: ogx
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
@@ -103,10 +103,10 @@ jobs:
           df -h
 
       - name: Run Integration Tests (TypeScript only)
-        working-directory: llama-stack
+        working-directory: ogx
         env:
           OPENAI_API_KEY: dummy
-          TS_CLIENT_PATH: ${{ github.workspace }}/llama-stack-client-typescript
+          TS_CLIENT_PATH: ${{ github.workspace }}/ogx-client-typescript
         run: |
           STACK_CONFIG="server:ci-tests"
 
@@ -129,5 +129,5 @@ jobs:
         with:
           name: logs-${{ github.run_id }}-${{ github.run_attempt || '1' }}-${{ strategy.job-index || github.job }}-${{ github.action }}
           path: |
-            llama-stack/*.log
+            ogx/*.log
           retention-days: 1

@@ -4,7 +4,7 @@
 // This source code is licensed under the terms described in the LICENSE file in
 // the root directory of this source tree.
 
-import { getResponseOutputText } from 'llama-stack-client';
+import { getResponseOutputText } from 'ogx-client';
 import { createResponseHeaders } from 'ogx-client/core';
 import { Headers } from 'ogx-client/_shims/index';
 
