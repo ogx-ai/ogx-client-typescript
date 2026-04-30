@@ -1,5 +1,44 @@
 # Changelog
 
+## 0.5.0-alpha.4 (2026-04-30)
+
+Full Changelog: [v0.5.0-alpha.3...v0.5.0-alpha.4](https://github.com/ogx-ai/ogx-client-typescript/compare/v0.5.0-alpha.3...v0.5.0-alpha.4)
+
+### ⚠ BREAKING CHANGES
+
+* remove nullable annotations from Responses fields to match OpenAI spec
+* remove deprecated Eval API and related APIs
+
+### Features
+
+* add conversation compaction support to Responses API ([5b4425c](https://github.com/ogx-ai/ogx-client-typescript/commit/5b4425c7e2ed4615adcbe73dfe7a2fae77575090))
+* add spec-compliant streaming error event for Responses API ([6b4d9b5](https://github.com/ogx-ai/ogx-client-typescript/commit/6b4d9b5e69e115ab7aff029c514a59cc8419aed9))
+* **api:** api update ([c2a3765](https://github.com/ogx-ai/ogx-client-typescript/commit/c2a37659d8f9f19048aa98beb678e7c2d8df38bc))
+* support setting headers via env ([39ef512](https://github.com/ogx-ai/ogx-client-typescript/commit/39ef512304569dd163d62e6ab7e7a2884a08a044))
+
+
+### Bug Fixes
+
+* **docs:** add missing sidebar icons and fix 404s for API tags ([34c6790](https://github.com/ogx-ai/ogx-client-typescript/commit/34c6790895c4f834210b6b6d54b46c93191f3e42))
+* **docs:** remove dead API links and add missing OpenAPI tags ([1095866](https://github.com/ogx-ai/ogx-client-typescript/commit/1095866dd2cdf2a06c405da2758682999378ead0))
+* improve OpenAI API conformance by keeping type object on schemas ([84bd66a](https://github.com/ogx-ai/ogx-client-typescript/commit/84bd66a3aaeb97e37e52bb14ae576303b60740ce))
+* improve OpenAI API conformance for Models and Files ([c9eb2ce](https://github.com/ogx-ai/ogx-client-typescript/commit/c9eb2ce77e8e1aee71e0e682e178acb6946c31b2))
+* improve Vector Stores OpenAI API conformance ([18e5038](https://github.com/ogx-ai/ogx-client-typescript/commit/18e5038813421d1917318fb236f4868354c9c299))
+* remove nullable annotations from Responses fields to match OpenAI spec ([547134c](https://github.com/ogx-ai/ogx-client-typescript/commit/547134cc3cef957593db7d7620aeddc6599762be))
+
+
+### Chores
+
+* **internal:** codegen related update ([5df4304](https://github.com/ogx-ai/ogx-client-typescript/commit/5df4304d8fa9f7b3e4be41ecfa646a4063bc3abc))
+* **internal:** more robust bootstrap script ([3c1fa52](https://github.com/ogx-ai/ogx-client-typescript/commit/3c1fa5228f6ac6d333e3877210455fe716931e56))
+* **tests:** bump steady to v0.22.1 ([d57d443](https://github.com/ogx-ai/ogx-client-typescript/commit/d57d44302ccefd3a75608c7526df044db82ddf4a))
+* update SDK settings ([f20b30d](https://github.com/ogx-ai/ogx-client-typescript/commit/f20b30d63cbbf6c2c011cee3872becdc9442625e))
+
+
+### Refactors
+
+* remove deprecated Eval API and related APIs ([bc494d4](https://github.com/ogx-ai/ogx-client-typescript/commit/bc494d4492113bb595cabc25fe0177d6c247a49d))
+
 ## 0.5.0-alpha.3 (2026-04-02)
 
 Full Changelog: [v0.5.0-alpha.2...v0.5.0-alpha.3](https://github.com/llamastack/llama-stack-client-typescript/compare/v0.5.0-alpha.2...v0.5.0-alpha.3)
