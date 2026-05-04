@@ -126,15 +126,25 @@ Types:
 
 Types:
 
-- <code><a href="./src/resources/chat/completions.ts">CompletionCreateResponse</a></code>
-- <code><a href="./src/resources/chat/completions.ts">CompletionRetrieveResponse</a></code>
-- <code><a href="./src/resources/chat/completions.ts">CompletionListResponse</a></code>
+- <code><a href="./src/resources/chat/completions/completions.ts">CompletionCreateResponse</a></code>
+- <code><a href="./src/resources/chat/completions/completions.ts">CompletionRetrieveResponse</a></code>
+- <code><a href="./src/resources/chat/completions/completions.ts">CompletionListResponse</a></code>
 
 Methods:
 
-- <code title="post /v1/chat/completions">client.chat.completions.<a href="./src/resources/chat/completions.ts">create</a>({ ...params }) -> CompletionCreateResponse</code>
-- <code title="get /v1/chat/completions/{completion_id}">client.chat.completions.<a href="./src/resources/chat/completions.ts">retrieve</a>(completionId) -> CompletionRetrieveResponse</code>
-- <code title="get /v1/chat/completions">client.chat.completions.<a href="./src/resources/chat/completions.ts">list</a>({ ...params }) -> CompletionListResponse</code>
+- <code title="post /v1/chat/completions">client.chat.completions.<a href="./src/resources/chat/completions/completions.ts">create</a>({ ...params }) -> CompletionCreateResponse</code>
+- <code title="get /v1/chat/completions/{completion_id}">client.chat.completions.<a href="./src/resources/chat/completions/completions.ts">retrieve</a>(completionId) -> CompletionRetrieveResponse</code>
+- <code title="get /v1/chat/completions">client.chat.completions.<a href="./src/resources/chat/completions/completions.ts">list</a>({ ...params }) -> CompletionListResponse</code>
+
+### Messages
+
+Types:
+
+- <code><a href="./src/resources/chat/completions/messages.ts">MessageListResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/chat/completions/{completion_id}/messages">client.chat.completions.messages.<a href="./src/resources/chat/completions/messages.ts">list</a>(completionId, { ...params }) -> MessageListResponsesOpenAICursorPage</code>
 
 # Completions
 

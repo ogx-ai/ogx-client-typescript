@@ -11,8 +11,11 @@ It is generated with [Stainless](https://www.stainless.com/).
 ## Installation
 
 ```sh
-npm install ogx-client
+npm install git+ssh://git@github.com:ogx-ai/ogx-client-typescript.git
 ```
+
+> [!NOTE]
+> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install ogx-client`
 
 ## Usage
 
