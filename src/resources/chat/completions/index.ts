@@ -6,7 +6,6 @@
 //
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { Chat, type ChatCompletionChunk } from './chat';
 export {
   Completions,
   type CompletionCreateResponse,
@@ -16,4 +15,10 @@ export {
   type CompletionCreateParamsNonStreaming,
   type CompletionCreateParamsStreaming,
   type CompletionListParams,
-} from './completions/index';
+} from './completions';
+export {
+  MessageListResponsesOpenAICursorPage,
+  Messages,
+  type MessageListResponse,
+  type MessageListParams,
+} from './messages';
