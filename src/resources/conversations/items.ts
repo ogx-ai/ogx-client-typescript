@@ -9,6 +9,7 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
+import * as ConversationsAPI from './conversations';
 import { OpenAICursorPage, type OpenAICursorPageParams } from '../../pagination';
 
 /**
@@ -60,7 +61,7 @@ export class Items extends APIResource {
     conversationId: string,
     itemId: string,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<ItemDeleteResponse> {
+  ): Core.APIPromise<ConversationsAPI.ConversationObject> {
     return this._client.delete(`/v1/conversations/${conversationId}/items/${itemId}`, options);
   }
 
@@ -70,9 +71,24 @@ export class Items extends APIResource {
   get(
     conversationId: string,
     itemId: string,
+    query?: ItemGetParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ItemGetResponse>;
+  get(
+    conversationId: string,
+    itemId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ItemGetResponse>;
+  get(
+    conversationId: string,
+    itemId: string,
+    query: ItemGetParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<ItemGetResponse> {
-    return this._client.get(`/v1/conversations/${conversationId}/items/${itemId}`, options);
+    if (isRequestOptions(query)) {
+      return this.get(conversationId, itemId, {}, query);
+    }
+    return this._client.get(`/v1/conversations/${conversationId}/items/${itemId}`, { query, ...options });
   }
 }
 
@@ -96,27 +112,28 @@ export interface ItemCreateResponse {
     | ItemCreateResponse.OpenAIResponseOutputMessageMcpCall
     | ItemCreateResponse.OpenAIResponseOutputMessageMcpListTools
     | ItemCreateResponse.OpenAIResponseOutputMessageReasoningItem
+    | ItemCreateResponse.OpenAIResponseCompaction
   >;
 
   /**
-   * The ID of the first item in the list
+   * The ID of the first item in the list.
    */
-  first_id?: string | null;
+  first_id: string | null;
 
   /**
-   * Whether there are more items available
+   * Whether there are more items available.
    */
-  has_more?: boolean;
+  has_more: boolean;
 
   /**
-   * The ID of the last item in the list
+   * The ID of the last item in the list.
    */
-  last_id?: string | null;
+  last_id: string | null;
 
   /**
-   * Object type
+   * The type of object returned, must be list.
    */
-  object?: string;
+  object?: 'list';
 }
 
 export namespace ItemCreateResponse {
@@ -577,6 +594,17 @@ export namespace ItemCreateResponse {
       type?: 'reasoning_text';
     }
   }
+
+  /**
+   * A compaction item that summarizes prior conversation context.
+   */
+  export interface OpenAIResponseCompaction {
+    encrypted_content: string;
+
+    id?: string | null;
+
+    type?: 'compaction';
+  }
 }
 
 /**
@@ -594,7 +622,8 @@ export type ItemListResponse =
   | ItemListResponse.OpenAIResponseMcpApprovalResponse
   | ItemListResponse.OpenAIResponseOutputMessageMcpCall
   | ItemListResponse.OpenAIResponseOutputMessageMcpListTools
-  | ItemListResponse.OpenAIResponseOutputMessageReasoningItem;
+  | ItemListResponse.OpenAIResponseOutputMessageReasoningItem
+  | ItemListResponse.OpenAIResponseCompaction;
 
 export namespace ItemListResponse {
   /**
@@ -1054,26 +1083,17 @@ export namespace ItemListResponse {
       type?: 'reasoning_text';
     }
   }
-}
-
-/**
- * Response for deleted conversation item.
- */
-export interface ItemDeleteResponse {
-  /**
-   * The deleted item identifier
-   */
-  id: string;
 
   /**
-   * Whether the object was deleted
+   * A compaction item that summarizes prior conversation context.
    */
-  deleted?: boolean;
+  export interface OpenAIResponseCompaction {
+    encrypted_content: string;
 
-  /**
-   * Object type
-   */
-  object?: string;
+    id?: string | null;
+
+    type?: 'compaction';
+  }
 }
 
 /**
@@ -1091,7 +1111,8 @@ export type ItemGetResponse =
   | ItemGetResponse.OpenAIResponseMcpApprovalResponse
   | ItemGetResponse.OpenAIResponseOutputMessageMcpCall
   | ItemGetResponse.OpenAIResponseOutputMessageMcpListTools
-  | ItemGetResponse.OpenAIResponseOutputMessageReasoningItem;
+  | ItemGetResponse.OpenAIResponseOutputMessageReasoningItem
+  | ItemGetResponse.OpenAIResponseCompaction;
 
 export namespace ItemGetResponse {
   /**
@@ -1551,6 +1572,17 @@ export namespace ItemGetResponse {
       type?: 'reasoning_text';
     }
   }
+
+  /**
+   * A compaction item that summarizes prior conversation context.
+   */
+  export interface OpenAIResponseCompaction {
+    encrypted_content: string;
+
+    id?: string | null;
+
+    type?: 'compaction';
+  }
 }
 
 export interface ItemCreateParams {
@@ -1569,6 +1601,7 @@ export interface ItemCreateParams {
     | ItemCreateParams.OpenAIResponseOutputMessageMcpCall
     | ItemCreateParams.OpenAIResponseOutputMessageMcpListTools
     | ItemCreateParams.OpenAIResponseOutputMessageReasoningItem
+    | ItemCreateParams.OpenAIResponseCompaction
   >;
 }
 
@@ -2030,6 +2063,17 @@ export namespace ItemCreateParams {
       type?: 'reasoning_text';
     }
   }
+
+  /**
+   * A compaction item that summarizes prior conversation context.
+   */
+  export interface OpenAIResponseCompaction {
+    encrypted_content: string;
+
+    id?: string | null;
+
+    type?: 'compaction';
+  }
 }
 
 export interface ItemListParams extends OpenAICursorPageParams {
@@ -2046,16 +2090,28 @@ export interface ItemListParams extends OpenAICursorPageParams {
   order?: 'asc' | 'desc' | null;
 }
 
+export interface ItemGetParams {
+  include?: Array<
+    | 'web_search_call.action.sources'
+    | 'code_interpreter_call.outputs'
+    | 'computer_call_output.output.image_url'
+    | 'file_search_call.results'
+    | 'message.input_image.image_url'
+    | 'message.output_text.logprobs'
+    | 'reasoning.encrypted_content'
+  > | null;
+}
+
 Items.ItemListResponsesOpenAICursorPage = ItemListResponsesOpenAICursorPage;
 
 export declare namespace Items {
   export {
     type ItemCreateResponse as ItemCreateResponse,
     type ItemListResponse as ItemListResponse,
-    type ItemDeleteResponse as ItemDeleteResponse,
     type ItemGetResponse as ItemGetResponse,
     ItemListResponsesOpenAICursorPage as ItemListResponsesOpenAICursorPage,
     type ItemCreateParams as ItemCreateParams,
     type ItemListParams as ItemListParams,
+    type ItemGetParams as ItemGetParams,
   };
 }

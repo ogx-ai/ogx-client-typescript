@@ -89,15 +89,14 @@ Types:
 
 - <code><a href="./src/resources/conversations/items.ts">ItemCreateResponse</a></code>
 - <code><a href="./src/resources/conversations/items.ts">ItemListResponse</a></code>
-- <code><a href="./src/resources/conversations/items.ts">ItemDeleteResponse</a></code>
 - <code><a href="./src/resources/conversations/items.ts">ItemGetResponse</a></code>
 
 Methods:
 
 - <code title="post /v1/conversations/{conversation_id}/items">client.conversations.items.<a href="./src/resources/conversations/items.ts">create</a>(conversationId, { ...params }) -> ItemCreateResponse</code>
 - <code title="get /v1/conversations/{conversation_id}/items">client.conversations.items.<a href="./src/resources/conversations/items.ts">list</a>(conversationId, { ...params }) -> ItemListResponsesOpenAICursorPage</code>
-- <code title="delete /v1/conversations/{conversation_id}/items/{item_id}">client.conversations.items.<a href="./src/resources/conversations/items.ts">delete</a>(conversationId, itemId) -> ItemDeleteResponse</code>
-- <code title="get /v1/conversations/{conversation_id}/items/{item_id}">client.conversations.items.<a href="./src/resources/conversations/items.ts">get</a>(conversationId, itemId) -> ItemGetResponse</code>
+- <code title="delete /v1/conversations/{conversation_id}/items/{item_id}">client.conversations.items.<a href="./src/resources/conversations/items.ts">delete</a>(conversationId, itemId) -> ConversationObject</code>
+- <code title="get /v1/conversations/{conversation_id}/items/{item_id}">client.conversations.items.<a href="./src/resources/conversations/items.ts">get</a>(conversationId, itemId, { ...params }) -> ItemGetResponse</code>
 
 # Inspect
 
