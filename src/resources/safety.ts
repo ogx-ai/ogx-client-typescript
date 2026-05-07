@@ -16,6 +16,8 @@ import * as Shared from './shared';
 export class Safety extends APIResource {
   /**
    * Run a safety shield on messages to check for policy violations.
+   *
+   * @deprecated
    */
   runShield(body: SafetyRunShieldParams, options?: Core.RequestOptions): Core.APIPromise<RunShieldResponse> {
     return this._client.post('/v1/safety/run-shield', { body, ...options });

@@ -12,6 +12,8 @@ import * as Core from '../core';
 export class Shields extends APIResource {
   /**
    * Get a shield by its identifier.
+   *
+   * @deprecated
    */
   retrieve(identifier: string, options?: Core.RequestOptions): Core.APIPromise<Shield> {
     return this._client.get(`/v1/shields/${identifier}`, options);
@@ -19,6 +21,8 @@ export class Shields extends APIResource {
 
   /**
    * List all shields.
+   *
+   * @deprecated
    */
   list(options?: Core.RequestOptions): Core.APIPromise<ShieldListResponse> {
     return (
