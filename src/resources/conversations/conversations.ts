@@ -12,7 +12,7 @@ import * as ItemsAPI from './items';
 import {
   ItemCreateParams,
   ItemCreateResponse,
-  ItemDeleteResponse,
+  ItemGetParams,
   ItemGetResponse,
   ItemListParams,
   ItemListResponse,
@@ -75,12 +75,6 @@ export interface ConversationObject {
   created_at: number;
 
   /**
-   * Initial items to include in the conversation context. You may add up to 20 items
-   * at a time.
-   */
-  items?: Array<{ [key: string]: unknown }> | null;
-
-  /**
    * Set of 16 key-value pairs that can be attached to an object. This can be useful
    * for storing additional information about the object in a structured format, and
    * querying for objects via API or the dashboard.
@@ -110,7 +104,7 @@ export interface ConversationDeleteResponse {
   /**
    * Object type
    */
-  object?: string;
+  object?: 'conversation.deleted';
 }
 
 export interface ConversationCreateParams {
@@ -128,6 +122,7 @@ export interface ConversationCreateParams {
     | ConversationCreateParams.OpenAIResponseOutputMessageMcpCall
     | ConversationCreateParams.OpenAIResponseOutputMessageMcpListTools
     | ConversationCreateParams.OpenAIResponseOutputMessageReasoningItem
+    | ConversationCreateParams.OpenAIResponseCompaction
   > | null;
 
   /**
@@ -594,6 +589,17 @@ export namespace ConversationCreateParams {
       type?: 'reasoning_text';
     }
   }
+
+  /**
+   * A compaction item that summarizes prior conversation context.
+   */
+  export interface OpenAIResponseCompaction {
+    encrypted_content: string;
+
+    id?: string | null;
+
+    type?: 'compaction';
+  }
 }
 
 export interface ConversationUpdateParams {
@@ -618,10 +624,10 @@ export declare namespace Conversations {
     Items as Items,
     type ItemCreateResponse as ItemCreateResponse,
     type ItemListResponse as ItemListResponse,
-    type ItemDeleteResponse as ItemDeleteResponse,
     type ItemGetResponse as ItemGetResponse,
     ItemListResponsesOpenAICursorPage as ItemListResponsesOpenAICursorPage,
     type ItemCreateParams as ItemCreateParams,
     type ItemListParams as ItemListParams,
+    type ItemGetParams as ItemGetParams,
   };
 }

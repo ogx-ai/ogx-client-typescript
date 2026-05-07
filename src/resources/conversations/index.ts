@@ -18,8 +18,8 @@ export {
   Items,
   type ItemCreateResponse,
   type ItemListResponse,
-  type ItemDeleteResponse,
   type ItemGetResponse,
   type ItemCreateParams,
   type ItemListParams,
+  type ItemGetParams,
 } from './items';

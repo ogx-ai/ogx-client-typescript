@@ -114,4 +114,16 @@ describe('resource items', () => {
       client.conversations.items.get('conversation_id', 'item_id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(OgxClient.NotFoundError);
   });
+
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.conversations.items.get(
+        'conversation_id',
+        'item_id',
+        { include: ['web_search_call.action.sources'] },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(OgxClient.NotFoundError);
+  });
 });
