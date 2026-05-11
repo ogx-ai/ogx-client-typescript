@@ -108,7 +108,16 @@ export interface File {
   /**
    * The intended purpose of the file.
    */
-  purpose: 'assistants' | 'batch';
+  purpose:
+    | 'assistants'
+    | 'assistants_output'
+    | 'batch'
+    | 'batch_output'
+    | 'evals'
+    | 'fine-tune'
+    | 'fine-tune-results'
+    | 'vision'
+    | 'user_data';
 
   /**
    * @deprecated Deprecated. The current status of the file.
@@ -116,20 +125,20 @@ export interface File {
   status: 'uploaded' | 'processed' | 'error';
 
   /**
-   * @deprecated Deprecated. For details on why a fine-tuning training file failed
-   * validation, see the error field on fine_tuning.job.
+   * The Unix timestamp (in seconds) for when the file will expire.
    */
-  status_details: string;
-
-  /**
-   * The Unix timestamp (in seconds) for when the file expires.
-   */
-  expires_at?: number | null;
+  expires_at?: number;
 
   /**
    * The object type, which is always 'file'.
    */
   object?: 'file';
+
+  /**
+   * @deprecated Deprecated. For details on why a fine-tuning training file failed
+   * validation, see the error field on fine_tuning.job.
+   */
+  status_details?: string;
 }
 
 /**
@@ -173,7 +182,7 @@ export interface FileCreateParams {
   /**
    * The intended purpose of the uploaded file.
    */
-  purpose: 'assistants' | 'batch';
+  purpose: 'assistants' | 'batch' | 'fine-tune' | 'vision' | 'user_data' | 'evals';
 
   /**
    * Control expiration of uploaded files.
@@ -207,7 +216,17 @@ export interface FileListParams extends OpenAICursorPageParams {
   /**
    * Filter files by purpose.
    */
-  purpose?: 'assistants' | 'batch' | null;
+  purpose?:
+    | 'assistants'
+    | 'assistants_output'
+    | 'batch'
+    | 'batch_output'
+    | 'evals'
+    | 'fine-tune'
+    | 'fine-tune-results'
+    | 'vision'
+    | 'user_data'
+    | null;
 }
 
 Files.FilesOpenAICursorPage = FilesOpenAICursorPage;
