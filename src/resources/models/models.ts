@@ -7,25 +7,81 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as OpenAIAPI from './openai';
-import { OpenAI } from './openai';
+import { OpenAI, OpenAIListParams, OpenAIListResponse } from './openai';
 
 export class Models extends APIResource {
   openai: OpenAIAPI.OpenAI = new OpenAIAPI.OpenAI(this._client);
 
   /**
-   * Get a model by its identifier.
+   * Get a model by its identifier. Returns OpenAI, Anthropic, or Google response
+   * format based on SDK detection headers.
    */
-  retrieve(modelId: string, options?: Core.RequestOptions): Core.APIPromise<ModelRetrieveResponse> {
-    return this._client.get(`/v1/models/${modelId}`, options);
+  retrieve(
+    modelId: string,
+    params?: ModelRetrieveParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ModelRetrieveResponse>;
+  retrieve(modelId: string, options?: Core.RequestOptions): Core.APIPromise<ModelRetrieveResponse>;
+  retrieve(
+    modelId: string,
+    params: ModelRetrieveParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ModelRetrieveResponse> {
+    if (isRequestOptions(params)) {
+      return this.retrieve(modelId, {}, params);
+    }
+    const {
+      'anthropic-version': anthropicVersion,
+      'x-goog-api-client': xGoogAPIClient,
+      'x-goog-api-key': xGoogAPIKey,
+      'x-goog-user-project': xGoogUserProject,
+    } = params;
+    return this._client.get(`/v1/models/${modelId}`, {
+      ...options,
+      headers: {
+        ...(anthropicVersion != null ? { 'anthropic-version': anthropicVersion } : undefined),
+        ...(xGoogAPIClient != null ? { 'x-goog-api-client': xGoogAPIClient } : undefined),
+        ...(xGoogAPIKey != null ? { 'x-goog-api-key': xGoogAPIKey } : undefined),
+        ...(xGoogUserProject != null ? { 'x-goog-user-project': xGoogUserProject } : undefined),
+        ...options?.headers,
+      },
+    });
   }
 
   /**
-   * List models using the OpenAI API.
+   * List models. Returns OpenAI, Anthropic, or Google response format based on SDK
+   * detection headers.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<ListModelsResponse> {
-    return this._client.get('/v1/models', options);
+  list(params?: ModelListParams, options?: Core.RequestOptions): Core.APIPromise<ModelListResponse>;
+  list(options?: Core.RequestOptions): Core.APIPromise<ModelListResponse>;
+  list(
+    params: ModelListParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ModelListResponse> {
+    if (isRequestOptions(params)) {
+      return this.list({}, params);
+    }
+    const {
+      'anthropic-version': anthropicVersion,
+      'x-goog-api-client': xGoogAPIClient,
+      'x-goog-api-key': xGoogAPIKey,
+      'x-goog-user-project': xGoogUserProject,
+      ...query
+    } = params;
+    return this._client.get('/v1/models', {
+      query,
+      ...options,
+      headers: {
+        ...(anthropicVersion != null ? { 'anthropic-version': anthropicVersion } : undefined),
+        ...(xGoogAPIClient != null ? { 'x-goog-api-client': xGoogAPIClient } : undefined),
+        ...(xGoogAPIKey != null ? { 'x-goog-api-key': xGoogAPIKey } : undefined),
+        ...(xGoogUserProject != null ? { 'x-goog-user-project': xGoogUserProject } : undefined),
+        ...options?.headers,
+      },
+    });
   }
 }
 
@@ -64,60 +120,286 @@ export interface Model {
 /**
  * A model resource representing an AI model registered in OGX.
  */
-export interface ModelRetrieveResponse {
+export type ModelRetrieveResponse =
+  | ModelRetrieveResponse.Model
+  | ModelRetrieveResponse.AnthropicModelInfo
+  | ModelRetrieveResponse.GoogleModelInfo;
+
+export namespace ModelRetrieveResponse {
   /**
-   * The model identifier (OpenAI-compatible alias for identifier).
+   * A model resource representing an AI model registered in OGX.
    */
-  id: string;
+  export interface Model {
+    /**
+     * The model identifier (OpenAI-compatible alias for identifier).
+     */
+    id: string;
+
+    /**
+     * Unique identifier for this resource in ogx
+     */
+    identifier: string;
+
+    /**
+     * The object type, always 'model'.
+     */
+    object: 'model';
+
+    /**
+     * ID of the provider that owns this resource
+     */
+    provider_id: string;
+
+    /**
+     * The Unix timestamp in seconds when the model was created.
+     */
+    created?: number;
+
+    /**
+     * Any additional metadata for this model
+     */
+    metadata?: { [key: string]: unknown };
+
+    /**
+     * Enumeration of supported model types in OGX.
+     */
+    model_type?: 'llm' | 'embedding' | 'rerank';
+
+    /**
+     * Enable model availability check during registration. When false (default),
+     * validation is deferred to runtime and model is preserved during provider
+     * refresh.
+     */
+    model_validation?: boolean | null;
+
+    /**
+     * The owner of the model.
+     */
+    owned_by?: string;
+
+    /**
+     * Unique identifier for this resource in the provider
+     */
+    provider_resource_id?: string | null;
+
+    type?: 'model';
+  }
 
   /**
-   * Unique identifier for this resource in ogx
+   * Anthropic model info response object.
+   *
+   * :id: Unique model identifier
    */
-  identifier: string;
+  export interface AnthropicModelInfo {
+    /**
+     * Unique model identifier.
+     */
+    id: string;
+
+    /**
+     * RFC 3339 datetime string representing when the model was released.
+     */
+    created_at: string;
+
+    /**
+     * A human-readable name for the model.
+     */
+    display_name: string;
+
+    /**
+     * Maximum input context window size in tokens.
+     */
+    max_input_tokens?: number | null;
+
+    /**
+     * Maximum value for the max_tokens parameter when using this model.
+     */
+    max_tokens?: number | null;
+
+    /**
+     * Object type, always 'model'.
+     */
+    type?: 'model';
+  }
 
   /**
-   * The object type, always 'model'.
+   * Google model info response object.
+   *
+   * :name: Model resource name, e.g. 'models/gemini-pro' :display_name: A
+   * human-readable name for the model :description: A description of the model
    */
-  object: 'model';
+  export interface GoogleModelInfo {
+    /**
+     * A human-readable name for the model.
+     */
+    display_name: string;
+
+    /**
+     * Model resource name, e.g. 'models/gemini-pro'.
+     */
+    name: string;
+
+    /**
+     * A description of the model.
+     */
+    description?: string;
+  }
+}
+
+/**
+ * Response containing a list of OpenAI model objects.
+ */
+export type ModelListResponse =
+  | ListModelsResponse
+  | ModelListResponse.AnthropicListModelsResponse
+  | ModelListResponse.GoogleListModelsResponse;
+
+export namespace ModelListResponse {
+  /**
+   * Response containing a list of Anthropic model objects.
+   */
+  export interface AnthropicListModelsResponse {
+    /**
+     * List of Anthropic model objects.
+     */
+    data: Array<AnthropicListModelsResponse.Data>;
+
+    /**
+     * First ID in the data list, usable as before_id for the previous page.
+     */
+    first_id?: string | null;
+
+    /**
+     * Whether there are more results in the requested page direction.
+     */
+    has_more?: boolean;
+
+    /**
+     * Last ID in the data list, usable as after_id for the next page.
+     */
+    last_id?: string | null;
+  }
+
+  export namespace AnthropicListModelsResponse {
+    /**
+     * Anthropic model info response object.
+     *
+     * :id: Unique model identifier
+     */
+    export interface Data {
+      /**
+       * Unique model identifier.
+       */
+      id: string;
+
+      /**
+       * RFC 3339 datetime string representing when the model was released.
+       */
+      created_at: string;
+
+      /**
+       * A human-readable name for the model.
+       */
+      display_name: string;
+
+      /**
+       * Maximum input context window size in tokens.
+       */
+      max_input_tokens?: number | null;
+
+      /**
+       * Maximum value for the max_tokens parameter when using this model.
+       */
+      max_tokens?: number | null;
+
+      /**
+       * Object type, always 'model'.
+       */
+      type?: 'model';
+    }
+  }
 
   /**
-   * ID of the provider that owns this resource
+   * Response containing a list of Google model objects.
    */
-  provider_id: string;
+  export interface GoogleListModelsResponse {
+    /**
+     * List of Google model objects.
+     */
+    models: Array<GoogleListModelsResponse.Model>;
+  }
+
+  export namespace GoogleListModelsResponse {
+    /**
+     * Google model info response object.
+     *
+     * :name: Model resource name, e.g. 'models/gemini-pro' :display_name: A
+     * human-readable name for the model :description: A description of the model
+     */
+    export interface Model {
+      /**
+       * A human-readable name for the model.
+       */
+      display_name: string;
+
+      /**
+       * Model resource name, e.g. 'models/gemini-pro'.
+       */
+      name: string;
+
+      /**
+       * A description of the model.
+       */
+      description?: string;
+    }
+  }
+}
+
+export interface ModelRetrieveParams {
+  'anthropic-version'?: string;
+
+  'x-goog-api-client'?: string;
+
+  'x-goog-api-key'?: string;
+
+  'x-goog-user-project'?: string;
+}
+
+export interface ModelListParams {
+  /**
+   * Query param: Return models after this model ID (Anthropic SDK format only).
+   */
+  after_id?: string | null;
 
   /**
-   * The Unix timestamp in seconds when the model was created.
+   * Query param: Return models before this model ID (Anthropic SDK format only).
    */
-  created?: number;
+  before_id?: string | null;
 
   /**
-   * Any additional metadata for this model
+   * Query param: Maximum number of models to return (Anthropic SDK format only).
    */
-  metadata?: { [key: string]: unknown };
+  limit?: number | null;
 
   /**
-   * Enumeration of supported model types in OGX.
+   * Header param
    */
-  model_type?: 'llm' | 'embedding' | 'rerank';
+  'anthropic-version'?: string;
 
   /**
-   * Enable model availability check during registration. When false (default),
-   * validation is deferred to runtime and model is preserved during provider
-   * refresh.
+   * Header param
    */
-  model_validation?: boolean | null;
+  'x-goog-api-client'?: string;
 
   /**
-   * The owner of the model.
+   * Header param
    */
-  owned_by?: string;
+  'x-goog-api-key'?: string;
 
   /**
-   * Unique identifier for this resource in the provider
+   * Header param
    */
-  provider_resource_id?: string | null;
-
-  type?: 'model';
+  'x-goog-user-project'?: string;
 }
 
 Models.OpenAI = OpenAI;
@@ -127,7 +409,14 @@ export declare namespace Models {
     type ListModelsResponse as ListModelsResponse,
     type Model as Model,
     type ModelRetrieveResponse as ModelRetrieveResponse,
+    type ModelListResponse as ModelListResponse,
+    type ModelRetrieveParams as ModelRetrieveParams,
+    type ModelListParams as ModelListParams,
   };
 
-  export { OpenAI as OpenAI };
+  export {
+    OpenAI as OpenAI,
+    type OpenAIListResponse as OpenAIListResponse,
+    type OpenAIListParams as OpenAIListParams,
+  };
 }

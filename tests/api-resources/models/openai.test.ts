@@ -29,4 +29,22 @@ describe('resource openai', () => {
       OgxClient.NotFoundError,
     );
   });
+
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.models.openai.list(
+        {
+          after_id: 'after_id',
+          before_id: 'before_id',
+          limit: 1,
+          'anthropic-version': 'anthropic-version',
+          'x-goog-api-client': 'x-goog-api-client',
+          'x-goog-api-key': 'x-goog-api-key',
+          'x-goog-user-project': 'x-goog-user-project',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(OgxClient.NotFoundError);
+  });
 });

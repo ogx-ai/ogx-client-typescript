@@ -27,9 +27,7 @@ import OgxClient from 'ogx-client';
 
 const client = new OgxClient();
 
-const listModelsResponse = await client.models.list();
-
-console.log(listModelsResponse.data);
+const models = await client.models.list();
 ```
 
 ## Streaming responses
