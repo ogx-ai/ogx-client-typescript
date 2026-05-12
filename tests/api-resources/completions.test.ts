@@ -31,7 +31,7 @@ describe('resource completions', () => {
       echo: true,
       frequency_penalty: -2,
       logit_bias: { foo: 0 },
-      logprobs: true,
+      logprobs: 0,
       max_tokens: 1,
       n: 1,
       presence_penalty: -2,

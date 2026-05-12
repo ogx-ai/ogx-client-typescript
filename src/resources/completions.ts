@@ -255,9 +255,9 @@ export interface CompletionCreateParamsBase {
   logit_bias?: { [key: string]: number } | null;
 
   /**
-   * The log probabilities to use.
+   * Include the log probabilities on the logprobs most likely output tokens.
    */
-  logprobs?: boolean | null;
+  logprobs?: number | null;
 
   /**
    * The maximum number of tokens to generate.
