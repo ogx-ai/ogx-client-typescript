@@ -60,7 +60,15 @@ import {
   ConversationUpdateParams,
   Conversations,
 } from './resources/conversations/conversations';
-import { ListModelsResponse, Model, ModelRetrieveResponse, Models } from './resources/models/models';
+import {
+  ListModelsResponse,
+  Model,
+  ModelListParams,
+  ModelListResponse,
+  ModelRetrieveParams,
+  ModelRetrieveResponse,
+  Models,
+} from './resources/models/models';
 import {
   ListPromptsResponse,
   Prompt,
@@ -443,6 +451,9 @@ export declare namespace OgxClient {
     type ListModelsResponse as ListModelsResponse,
     type Model as Model,
     type ModelRetrieveResponse as ModelRetrieveResponse,
+    type ModelListResponse as ModelListResponse,
+    type ModelRetrieveParams as ModelRetrieveParams,
+    type ModelListParams as ModelListParams,
   };
 
   export { Providers as Providers, type ProviderListResponse as ProviderListResponse };

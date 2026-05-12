@@ -221,17 +221,22 @@ Types:
 - <code><a href="./src/resources/models/models.ts">ListModelsResponse</a></code>
 - <code><a href="./src/resources/models/models.ts">Model</a></code>
 - <code><a href="./src/resources/models/models.ts">ModelRetrieveResponse</a></code>
+- <code><a href="./src/resources/models/models.ts">ModelListResponse</a></code>
 
 Methods:
 
-- <code title="get /v1/models/{model_id}">client.models.<a href="./src/resources/models/models.ts">retrieve</a>(modelId) -> ModelRetrieveResponse</code>
-- <code title="get /v1/models">client.models.<a href="./src/resources/models/models.ts">list</a>() -> ListModelsResponse</code>
+- <code title="get /v1/models/{model_id}">client.models.<a href="./src/resources/models/models.ts">retrieve</a>(modelId, { ...params }) -> ModelRetrieveResponse</code>
+- <code title="get /v1/models">client.models.<a href="./src/resources/models/models.ts">list</a>({ ...params }) -> ModelListResponse</code>
 
 ## OpenAI
 
+Types:
+
+- <code><a href="./src/resources/models/openai.ts">OpenAIListResponse</a></code>
+
 Methods:
 
-- <code title="get /v1/models">client.models.openai.<a href="./src/resources/models/openai.ts">list</a>() -> ListModelsResponse</code>
+- <code title="get /v1/models">client.models.openai.<a href="./src/resources/models/openai.ts">list</a>({ ...params }) -> OpenAIListResponse</code>
 
 # Providers
 

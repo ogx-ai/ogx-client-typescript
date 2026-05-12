@@ -45,7 +45,15 @@ export {
   type FileListParams,
 } from './files';
 export { Inspect } from './inspect';
-export { Models, type ListModelsResponse, type Model, type ModelRetrieveResponse } from './models/models';
+export {
+  Models,
+  type ListModelsResponse,
+  type Model,
+  type ModelRetrieveResponse,
+  type ModelListResponse,
+  type ModelRetrieveParams,
+  type ModelListParams,
+} from './models/models';
 export {
   Prompts,
   type ListPromptsResponse,
