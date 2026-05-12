@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.5.0-alpha.5 (2026-05-12)
+
+Full Changelog: [v0.5.0-alpha.4...v0.5.0-alpha.5](https://github.com/ogx-ai/ogx-client-typescript/compare/v0.5.0-alpha.4...v0.5.0-alpha.5)
+
+### ⚠ BREAKING CHANGES
+
+* multi-SDK response shapes for /v1/models
+* remove Safety/Shields API and all connected code
+
+### Features
+
+* **conversations:** enhance OpenAI API coverage for conversations ([d866138](https://github.com/ogx-ai/ogx-client-typescript/commit/d866138d0236c4d9b692322945828219e7e5788e))
+* Deprecate safety shields ([00e1286](https://github.com/ogx-ai/ogx-client-typescript/commit/00e12868c18d9a64693162beb78a8bcbe8a64b80))
+* **files:** enhance OpenAI API coverage for Files API ([cdd15ad](https://github.com/ogx-ai/ogx-client-typescript/commit/cdd15ad8326351254181a800540d426cb8559748))
+* **inference:** add chat completion message listing endpoint. ([614987c](https://github.com/ogx-ai/ogx-client-typescript/commit/614987c86b5b63bcaca9f89e553434c0f454319f))
+* multi-SDK response shapes for /v1/models ([b29614b](https://github.com/ogx-ai/ogx-client-typescript/commit/b29614b163faa779372b3c9250ce05eee843d448))
+
+
+### Bug Fixes
+
+* change logprobs type from bool to int in Completions endpoint ([567f3ec](https://github.com/ogx-ai/ogx-client-typescript/commit/567f3ecebcae868bf313abb5f4c3274da7faa792))
+
+
+### Refactors
+
+* remove Safety/Shields API and all connected code ([13ecf30](https://github.com/ogx-ai/ogx-client-typescript/commit/13ecf3026b8fa04551b9543c5594a736e3a59ba2))
+
 ## 0.5.0-alpha.4 (2026-04-30)
 
 Full Changelog: [v0.5.0-alpha.3...v0.5.0-alpha.4](https://github.com/ogx-ai/ogx-client-typescript/compare/v0.5.0-alpha.3...v0.5.0-alpha.4)
