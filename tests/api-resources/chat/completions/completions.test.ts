@@ -49,7 +49,6 @@ describe('resource completions', () => {
       prompt_cache_key: 'prompt_cache_key',
       reasoning_effort: 'none',
       response_format: { type: 'text' },
-      safety_identifier: 'safety_identifier',
       seed: 0,
       service_tier: 'auto',
       stop: 'string',

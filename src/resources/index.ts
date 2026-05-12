@@ -46,7 +46,6 @@ export {
 } from './files';
 export { Inspect } from './inspect';
 export { Models, type ListModelsResponse, type Model, type ModelRetrieveResponse } from './models/models';
-export { Moderations, type CreateResponse, type ModerationCreateParams } from './moderations';
 export {
   Prompts,
   type ListPromptsResponse,
@@ -76,14 +75,6 @@ export {
   type ResponseCompactParams,
 } from './responses/responses';
 export { Routes, type RouteListResponse, type RouteListParams } from './routes';
-export { Safety, type RunShieldResponse, type SafetyRunShieldParams } from './safety';
-export {
-  Shields,
-  type ListShieldsResponse,
-  type Shield,
-  type ShieldListResponse,
-  type ShieldRegisterParams,
-} from './shields';
 export {
   VectorIo,
   type QueryChunksResponse,

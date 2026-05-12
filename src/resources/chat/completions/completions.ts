@@ -1959,11 +1959,6 @@ export interface CompletionCreateParamsBase {
     | null;
 
   /**
-   * A stable identifier used for safety monitoring and abuse detection.
-   */
-  safety_identifier?: string | null;
-
-  /**
    * The seed to use.
    */
   seed?: number | null;
