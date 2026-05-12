@@ -43,17 +43,8 @@ import {
   ListFilesResponse,
 } from './resources/files';
 import { Inspect } from './resources/inspect';
-import { CreateResponse, ModerationCreateParams, Moderations } from './resources/moderations';
 import { ProviderListResponse, Providers } from './resources/providers';
 import { RouteListParams, RouteListResponse, Routes } from './resources/routes';
-import { RunShieldResponse, Safety, SafetyRunShieldParams } from './resources/safety';
-import {
-  ListShieldsResponse,
-  Shield,
-  ShieldListResponse,
-  ShieldRegisterParams,
-  Shields,
-} from './resources/shields';
 import {
   QueryChunksResponse,
   VectorIo,
@@ -279,15 +270,6 @@ export class OgxClient extends Core.APIClient {
    */
   routes: API.Routes = new API.Routes(this);
   /**
-   * OpenAI-compatible Moderations API.
-   */
-  moderations: API.Moderations = new API.Moderations(this);
-  /**
-   * OpenAI-compatible Moderations API.
-   */
-  safety: API.Safety = new API.Safety(this);
-  shields: API.Shields = new API.Shields(this);
-  /**
    * This API is used to upload documents that can be used with other OGX APIs.
    */
   files: API.Files = new API.Files(this);
@@ -366,9 +348,6 @@ OgxClient.VectorStoresOpenAICursorPage = VectorStoresOpenAICursorPage;
 OgxClient.Models = Models;
 OgxClient.Providers = Providers;
 OgxClient.Routes = Routes;
-OgxClient.Moderations = Moderations;
-OgxClient.Safety = Safety;
-OgxClient.Shields = Shields;
 OgxClient.Files = Files;
 OgxClient.FilesOpenAICursorPage = FilesOpenAICursorPage;
 OgxClient.Batches = Batches;
@@ -475,26 +454,6 @@ export declare namespace OgxClient {
   };
 
   export {
-    Moderations as Moderations,
-    type CreateResponse as CreateResponse,
-    type ModerationCreateParams as ModerationCreateParams,
-  };
-
-  export {
-    Safety as Safety,
-    type RunShieldResponse as RunShieldResponse,
-    type SafetyRunShieldParams as SafetyRunShieldParams,
-  };
-
-  export {
-    Shields as Shields,
-    type ListShieldsResponse as ListShieldsResponse,
-    type Shield as Shield,
-    type ShieldListResponse as ShieldListResponse,
-    type ShieldRegisterParams as ShieldRegisterParams,
-  };
-
-  export {
     Files as Files,
     type DeleteFileResponse as DeleteFileResponse,
     type File as File,
@@ -526,7 +485,6 @@ export declare namespace OgxClient {
   export type ParamType = API.ParamType;
   export type ProviderInfo = API.ProviderInfo;
   export type RouteInfo = API.RouteInfo;
-  export type SafetyViolation = API.SafetyViolation;
   export type SamplingParams = API.SamplingParams;
   export type SystemMessage = API.SystemMessage;
   export type VersionInfo = API.VersionInfo;

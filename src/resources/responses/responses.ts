@@ -1190,8 +1190,6 @@ export interface ResponseObject {
    */
   reasoning?: ResponseObject.Reasoning | null;
 
-  safety_identifier?: string | null;
-
   service_tier?: string;
 
   temperature?: number;
@@ -3664,8 +3662,6 @@ export interface ResponseListResponse {
    */
   reasoning?: ResponseListResponse.Reasoning | null;
 
-  safety_identifier?: string | null;
-
   service_tier?: string;
 
   temperature?: number;
@@ -4957,11 +4953,6 @@ export interface ResponseCreateParamsBase {
   frequency_penalty?: number | null;
 
   /**
-   * List of guardrails to apply during response generation.
-   */
-  guardrails?: Array<string | ResponseCreateParams.ResponseGuardrailSpec> | null;
-
-  /**
    * Additional fields to include in the response.
    */
   include?: Array<
@@ -5030,11 +5021,6 @@ export interface ResponseCreateParamsBase {
    * Controls how much reasoning the model performs before generating a response.
    */
   reasoning?: ResponseCreateParams.Reasoning | null;
-
-  /**
-   * A stable identifier used for safety monitoring and abuse detection.
-   */
-  safety_identifier?: string | null;
 
   /**
    * The service tier for the request.
@@ -5595,13 +5581,6 @@ export namespace ResponseCreateParams {
      * Token threshold at which compaction should be triggered.
      */
     compact_threshold?: number | null;
-  }
-
-  /**
-   * Specification for a guardrail to apply during response generation.
-   */
-  export interface ResponseGuardrailSpec {
-    type: string;
   }
 
   /**

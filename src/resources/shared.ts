@@ -323,26 +323,6 @@ export interface RouteInfo {
 }
 
 /**
- * Details of a safety violation detected by content moderation.
- */
-export interface SafetyViolation {
-  /**
-   * Severity level of the violation
-   */
-  violation_level: 'info' | 'warn' | 'error';
-
-  /**
-   * Additional metadata including specific violation codes
-   */
-  metadata?: { [key: string]: unknown };
-
-  /**
-   * Message to convey to the user about the violation
-   */
-  user_message?: string | null;
-}
-
-/**
  * Sampling parameters for text generation.
  */
 export interface SamplingParams {

@@ -10,7 +10,6 @@ Types:
 - <code><a href="./src/resources/shared.ts">ParamType</a></code>
 - <code><a href="./src/resources/shared.ts">ProviderInfo</a></code>
 - <code><a href="./src/resources/shared.ts">RouteInfo</a></code>
-- <code><a href="./src/resources/shared.ts">SafetyViolation</a></code>
 - <code><a href="./src/resources/shared.ts">SamplingParams</a></code>
 - <code><a href="./src/resources/shared.ts">SystemMessage</a></code>
 - <code><a href="./src/resources/shared.ts">VersionInfo</a></code>
@@ -254,41 +253,6 @@ Types:
 Methods:
 
 - <code title="get /v1/inspect/routes">client.routes.<a href="./src/resources/routes.ts">list</a>({ ...params }) -> RouteListResponse</code>
-
-# Moderations
-
-Types:
-
-- <code><a href="./src/resources/moderations.ts">CreateResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/moderations">client.moderations.<a href="./src/resources/moderations.ts">create</a>({ ...params }) -> CreateResponse</code>
-
-# Safety
-
-Types:
-
-- <code><a href="./src/resources/safety.ts">RunShieldResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/safety/run-shield">client.safety.<a href="./src/resources/safety.ts">runShield</a>({ ...params }) -> RunShieldResponse</code>
-
-# Shields
-
-Types:
-
-- <code><a href="./src/resources/shields.ts">ListShieldsResponse</a></code>
-- <code><a href="./src/resources/shields.ts">Shield</a></code>
-- <code><a href="./src/resources/shields.ts">ShieldListResponse</a></code>
-
-Methods:
-
-- <code title="get /v1/shields/{identifier}">client.shields.<a href="./src/resources/shields.ts">retrieve</a>(identifier) -> Shield</code>
-- <code title="get /v1/shields">client.shields.<a href="./src/resources/shields.ts">list</a>() -> ShieldListResponse</code>
-- <code title="delete /v1/shields/{identifier}">client.shields.<a href="./src/resources/shields.ts">delete</a>(identifier) -> void</code>
-- <code title="post /v1/shields">client.shields.<a href="./src/resources/shields.ts">register</a>({ ...params }) -> Shield</code>
 
 # Files
 
