@@ -1225,7 +1225,11 @@ export interface ResponseObject {
 
   top_p?: number;
 
-  truncation?: string | null;
+  /**
+   * Controls how the service truncates input when it exceeds the model context
+   * window.
+   */
+  truncation?: 'auto' | 'disabled' | null;
 
   /**
    * Usage information for OpenAI response.
@@ -1694,6 +1698,11 @@ export namespace ResponseObject {
    */
   export interface Reasoning {
     effort?: 'none' | 'minimal' | 'low' | 'medium' | 'high' | 'xhigh' | null;
+
+    /**
+     * @deprecated Deprecated: use 'summary' instead.
+     */
+    generate_summary?: 'auto' | 'concise' | 'detailed' | null;
 
     /**
      * Summary mode for reasoning output. One of 'auto', 'concise', or 'detailed'.
@@ -3697,7 +3706,11 @@ export interface ResponseListResponse {
 
   top_p?: number;
 
-  truncation?: string | null;
+  /**
+   * Controls how the service truncates input when it exceeds the model context
+   * window.
+   */
+  truncation?: 'auto' | 'disabled' | null;
 
   /**
    * Usage information for OpenAI response.
@@ -4635,6 +4648,11 @@ export namespace ResponseListResponse {
    */
   export interface Reasoning {
     effort?: 'none' | 'minimal' | 'low' | 'medium' | 'high' | 'xhigh' | null;
+
+    /**
+     * @deprecated Deprecated: use 'summary' instead.
+     */
+    generate_summary?: 'auto' | 'concise' | 'detailed' | null;
 
     /**
      * Summary mode for reasoning output. One of 'auto', 'concise', or 'detailed'.
@@ -5647,6 +5665,11 @@ export namespace ResponseCreateParams {
     effort?: 'none' | 'minimal' | 'low' | 'medium' | 'high' | 'xhigh' | null;
 
     /**
+     * @deprecated Deprecated: use 'summary' instead.
+     */
+    generate_summary?: 'auto' | 'concise' | 'detailed' | null;
+
+    /**
      * Summary mode for reasoning output. One of 'auto', 'concise', or 'detailed'.
      */
     summary?: 'auto' | 'concise' | 'detailed' | null;
@@ -6480,6 +6503,11 @@ export namespace ResponseCompactParams {
    */
   export interface Reasoning {
     effort?: 'none' | 'minimal' | 'low' | 'medium' | 'high' | 'xhigh' | null;
+
+    /**
+     * @deprecated Deprecated: use 'summary' instead.
+     */
+    generate_summary?: 'auto' | 'concise' | 'detailed' | null;
 
     /**
      * Summary mode for reasoning output. One of 'auto', 'concise', or 'detailed'.
