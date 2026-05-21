@@ -46,7 +46,11 @@ describe('resource responses', () => {
         version: 'version',
       },
       prompt_cache_key: 'prompt_cache_key',
-      reasoning: { effort: 'none', summary: 'auto' },
+      reasoning: {
+        effort: 'none',
+        generate_summary: 'auto',
+        summary: 'auto',
+      },
       service_tier: 'auto',
       store: true,
       stream: false,
@@ -158,7 +162,11 @@ describe('resource responses', () => {
       parallel_tool_calls: true,
       previous_response_id: 'previous_response_id',
       prompt_cache_key: 'prompt_cache_key',
-      reasoning: { effort: 'none', summary: 'auto' },
+      reasoning: {
+        effort: 'none',
+        generate_summary: 'auto',
+        summary: 'auto',
+      },
       text: {
         format: {
           description: 'description',
