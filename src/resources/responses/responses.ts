@@ -1166,7 +1166,7 @@ export interface ResponseObject {
 
   max_tool_calls?: number | null;
 
-  metadata?: { [key: string]: string } | null;
+  metadata?: unknown;
 
   object?: 'response';
 
@@ -1229,7 +1229,7 @@ export interface ResponseObject {
    * Controls how the service truncates input when it exceeds the model context
    * window.
    */
-  truncation?: 'auto' | 'disabled' | null;
+  truncation?: 'auto' | 'disabled';
 
   /**
    * Usage information for OpenAI response.
@@ -5111,7 +5111,7 @@ export interface ResponseCreateParamsBase {
    * Controls how the service truncates input when it exceeds the model context
    * window.
    */
-  truncation?: 'auto' | 'disabled' | null;
+  truncation?: 'auto' | 'disabled';
 
   [k: string]: unknown;
 }
