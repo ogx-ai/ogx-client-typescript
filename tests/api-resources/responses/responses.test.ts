@@ -67,7 +67,20 @@ describe('resource responses', () => {
         verbosity: 'low',
       },
       tool_choice: 'auto',
-      tools: [{ search_context_size: 'S?oC"high', type: 'web_search' }],
+      tools: [
+        {
+          filters: { allowed_domains: ['string'] },
+          search_context_size: 'low',
+          type: 'web_search',
+          user_location: {
+            city: 'city',
+            country: 'country',
+            region: 'region',
+            timezone: 'timezone',
+            type: 'approximate',
+          },
+        },
+      ],
       top_logprobs: 0,
       top_p: 0,
       truncation: 'auto',
@@ -177,7 +190,20 @@ describe('resource responses', () => {
         },
         verbosity: 'low',
       },
-      tools: [{ search_context_size: 'S?oC"high', type: 'web_search' }],
+      tools: [
+        {
+          filters: { allowed_domains: ['string'] },
+          search_context_size: 'low',
+          type: 'web_search',
+          user_location: {
+            city: 'city',
+            country: 'country',
+            region: 'region',
+            timezone: 'timezone',
+            type: 'approximate',
+          },
+        },
+      ],
     });
   });
 });
