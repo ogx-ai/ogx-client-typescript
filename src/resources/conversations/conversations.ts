@@ -113,7 +113,7 @@ export interface ConversationCreateParams {
    */
   items?: Array<
     | ConversationCreateParams.OpenAIResponseMessageInput
-    | ConversationCreateParams.OpenAIResponseOutputMessageWebSearchToolCall
+    | ConversationCreateParams.OpenAIResponseOutputMessageWebSearchToolCallInput
     | ConversationCreateParams.OpenAIResponseOutputMessageFileSearchToolCall
     | ConversationCreateParams.OpenAIResponseOutputMessageFunctionToolCall
     | ConversationCreateParams.OpenAIResponseInputFunctionToolCallOutput
@@ -335,12 +335,67 @@ export namespace ConversationCreateParams {
   /**
    * Web search tool call output message for OpenAI responses.
    */
-  export interface OpenAIResponseOutputMessageWebSearchToolCall {
+  export interface OpenAIResponseOutputMessageWebSearchToolCallInput {
     id: string;
 
     status: string;
 
+    /**
+     * Web search action: performs a search query.
+     */
+    action?:
+      | OpenAIResponseOutputMessageWebSearchToolCallInput.WebSearchActionSearch
+      | OpenAIResponseOutputMessageWebSearchToolCallInput.WebSearchActionOpenPage
+      | OpenAIResponseOutputMessageWebSearchToolCallInput.WebSearchActionFind
+      | null;
+
     type?: 'web_search_call';
+  }
+
+  export namespace OpenAIResponseOutputMessageWebSearchToolCallInput {
+    /**
+     * Web search action: performs a search query.
+     */
+    export interface WebSearchActionSearch {
+      query: string;
+
+      queries?: Array<string> | null;
+
+      sources?: Array<WebSearchActionSearch.Source> | null;
+
+      type?: 'search';
+    }
+
+    export namespace WebSearchActionSearch {
+      /**
+       * A source URL returned by a web search action.
+       */
+      export interface Source {
+        url: string;
+
+        type?: 'url';
+      }
+    }
+
+    /**
+     * Web search action: opens a specific URL from search results.
+     */
+    export interface WebSearchActionOpenPage {
+      type?: 'open_page';
+
+      url?: string | null;
+    }
+
+    /**
+     * Web search action: searches for a pattern within a loaded page.
+     */
+    export interface WebSearchActionFind {
+      pattern: string;
+
+      url: string;
+
+      type?: 'find_in_page';
+    }
   }
 
   /**
