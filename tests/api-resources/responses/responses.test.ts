@@ -51,6 +51,7 @@ describe('resource responses', () => {
         generate_summary: 'auto',
         summary: 'auto',
       },
+      safety_identifier: 'safety_identifier',
       service_tier: 'auto',
       store: true,
       stream: false,

@@ -1300,6 +1300,8 @@ export interface ResponseObject {
    */
   reasoning?: ResponseObject.Reasoning | null;
 
+  safety_identifier?: string | null;
+
   service_tier?: string;
 
   temperature?: number;
@@ -4035,6 +4037,8 @@ export interface ResponseListResponse {
    */
   reasoning?: ResponseListResponse.Reasoning | null;
 
+  safety_identifier?: string | null;
+
   service_tier?: string;
 
   temperature?: number;
@@ -5547,6 +5551,12 @@ export interface ResponseCreateParamsBase {
    * Controls how much reasoning the model performs before generating a response.
    */
   reasoning?: ResponseCreateParams.Reasoning | null;
+
+  /**
+   * A stable identifier used to associate the request with an end user, for safety
+   * monitoring. Echoed back on the response.
+   */
+  safety_identifier?: string | null;
 
   /**
    * The service tier for the request.
