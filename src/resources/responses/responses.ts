@@ -6562,9 +6562,9 @@ export interface ResponseListParams extends OpenAICursorPageParams {
 
 export interface ResponseCompactParams {
   /**
-   * The model to use for generating the compacted summary.
+   * Model identifier.
    */
-  model: string;
+  model: string | null;
 
   /**
    * Input message(s) to compact.
