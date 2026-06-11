@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.1.0-alpha.6 (2026-06-11)
+
+Full Changelog: [v0.5.0-alpha.5...v1.1.0-alpha.6](https://github.com/ogx-ai/ogx-client-typescript/compare/v0.5.0-alpha.5...v1.1.0-alpha.6)
+
+### ⚠ BREAKING CHANGES
+
+* **api:** add post-generation schema transforms for Responses API conformance
+
+### Features
+
+* **responses:** add WebSocket transport and fix OpenResponses conformance gaps ([e0d391f](https://github.com/ogx-ai/ogx-client-typescript/commit/e0d391f8006e60acb9b8ca30667f8007a3b0c560))
+
+
+### Bug Fixes
+
+* **api:** add post-generation schema transforms for Responses API conformance ([59d5f80](https://github.com/ogx-ai/ogx-client-typescript/commit/59d5f806e394ca40034b70c3277895d4b786e6cf))
+* **api:** eliminate schema mismatches in Responses compact endpoint ([5fbd955](https://github.com/ogx-ai/ogx-client-typescript/commit/5fbd955051882b896956e863f6a31dcf17b1d851))
+* **api:** fix field-level schema mismatches in Responses models ([a4364a3](https://github.com/ogx-ai/ogx-client-typescript/commit/a4364a3ab2f046d3b29267d5db75c147e564ecad))
+* **brave-search:** align result slicing with search_context_size count ([0b0984e](https://github.com/ogx-ai/ogx-client-typescript/commit/0b0984ead8282130b2f6f5380736753e957a4d8b))
+
 ## 0.5.0-alpha.5 (2026-05-12)
 
 Full Changelog: [v0.5.0-alpha.4...v0.5.0-alpha.5](https://github.com/ogx-ai/ogx-client-typescript/compare/v0.5.0-alpha.4...v0.5.0-alpha.5)
