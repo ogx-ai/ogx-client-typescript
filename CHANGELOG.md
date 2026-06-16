@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0-alpha.7 (2026-06-16)
+
+Full Changelog: [v1.1.0-alpha.6...v1.1.0-alpha.7](https://github.com/ogx-ai/ogx-client-typescript/compare/v1.1.0-alpha.6...v1.1.0-alpha.7)
+
+### Features
+
+* **files:** fix Files API gaps for OpenAI spec parity ([e91f536](https://github.com/ogx-ai/ogx-client-typescript/commit/e91f536d58fae8c9f7b9e987b5e93dd7d30d9dd0))
+
 ## 1.1.0-alpha.6 (2026-06-11)
 
 Full Changelog: [v0.5.0-alpha.5...v1.1.0-alpha.6](https://github.com/ogx-ai/ogx-client-typescript/compare/v0.5.0-alpha.5...v1.1.0-alpha.6)
