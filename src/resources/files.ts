@@ -185,26 +185,9 @@ export interface FileCreateParams {
   purpose: 'assistants' | 'batch' | 'fine-tune' | 'vision' | 'user_data' | 'evals';
 
   /**
-   * Control expiration of uploaded files.
+   * Optional expiration settings for the file.
    */
-  expires_after?: FileCreateParams.ExpiresAfter | null;
-}
-
-export namespace FileCreateParams {
-  /**
-   * Control expiration of uploaded files.
-   */
-  export interface ExpiresAfter {
-    /**
-     * The anchor point for expiration, must be 'created_at'.
-     */
-    anchor: 'created_at';
-
-    /**
-     * Seconds until expiration, between 3600 (1 hour) and 2592000 (30 days).
-     */
-    seconds: number;
-  }
+  expires_after?: string | null;
 }
 
 export interface FileListParams extends OpenAICursorPageParams {
