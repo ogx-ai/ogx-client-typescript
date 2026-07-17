@@ -4,4 +4,4 @@
 // This source code is licensed under the terms described in the LICENSE file in
 // the root directory of this source tree.
 
-export const VERSION = '1.1.0-alpha.7'; // x-release-please-version
+export const VERSION = '1.1.0-alpha.8'; // x-release-please-version
