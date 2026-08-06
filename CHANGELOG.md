@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0-alpha.8 (2026-07-17)
+
+Full Changelog: [v1.1.0-alpha.7...v1.1.0-alpha.8](https://github.com/ogx-ai/ogx-client-typescript/compare/v1.1.0-alpha.7...v1.1.0-alpha.8)
+
+### Features
+
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([1653ebe](https://github.com/ogx-ai/ogx-client-typescript/commit/1653ebe8a7bd8a518954e1c42a0fffe7f6287513))
+
 ## 1.1.0-alpha.7 (2026-06-16)
 
 Full Changelog: [v1.1.0-alpha.6...v1.1.0-alpha.7](https://github.com/ogx-ai/ogx-client-typescript/compare/v1.1.0-alpha.6...v1.1.0-alpha.7)
